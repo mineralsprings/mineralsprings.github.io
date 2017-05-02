@@ -1,0 +1,38 @@
+body {
+  text-align: center;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.links-bottom > a {
+  color: black;
+  text-decoration: none;
+  font-size: 14;
+}
+
+#smaller-link {
+  font-size: 11;
+}
+
+#main-header {
+  font-size: 20;
+}
+
+a.btn {
+  background: #ff0000;
+  background-image: -webkit-linear-gradient(top, #ff0000, #ad0000);
+  background-image: -moz-linear-gradient(top, #ff0000, #ad0000);
+  background-image: -ms-linear-gradient(top, #ff0000, #ad0000);
+  background-image: -o-linear-gradient(top, #ff0000, #ad0000);
+  background-image: linear-gradient(to bottom, #ff0000, #ad0000);
+  -webkit-border-radius: 46;
+  -moz-border-radius: 46;
+  border-radius: 46px;
+  font-size: 20px;
+  padding: 16px;
+  color: white;
+}
+
+a.btn:hover {
+  background: #ad0000;
+  color: white;
+}
