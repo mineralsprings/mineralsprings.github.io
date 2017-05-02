@@ -1,7 +1,9 @@
-function parseAndWrite(json, key, elm_id, lead, foll) {
-  console.log(json);
-  document.getElementById(elm_id).innerHTML = lead + JSON.parse(json)[key] + foll;
-}
+// NOTE: this is going away in the future, to get the server to supply the validation and the edit.html page
+var ID_LIST = {
+  "1742119": true,
+  "d_richardi": true,
+  "v_schrader": true,
+};
 
 function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
@@ -18,7 +20,14 @@ function onSignIn(googleUser) {
   console.log("ID Token: " + id_token);
 
   var writehi_output = function (arg) {
-    parseAndWrite(arg, "name", "output", "Hi, ", "");
+    console.log(arg);
+    var acc = JSON.parse(arg);
+    var id = acc["email"].split("@")[0];
+    document.getElementById("output").innerHTML =
+      "Hi, " + acc["given_name"] + ".<br />You are"
+      + (acc["hd"] === "sau9.org" ? "" : "n't") + " part of SAU9 and your ID, "
+      + id + ", is"
+      + (ID_LIST[id] !== undefined ? "" : "n't") + " authorised to edit the menu.";
   }
   var fulluri = "https://www.googleapis.com/oauth2/v3/tokeninfo?id_token=" + id_token;
   console.log(fulluri);
@@ -30,15 +39,5 @@ function signOut() {
   auth2.signOut().then(function () {
     console.log('User signed out.');
   });
-}
-
-function httpGetAsync(theUrl, callback) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-      callback(xmlHttp.responseText);
-    }
-  }
-  xmlHttp.open("GET", theUrl, true); // true for asynchronous
-  xmlHttp.send(null);
+  document.getElementById("output").innerHTML = "";
 }
