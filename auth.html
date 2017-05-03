@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type: text/html" />
+    <meta charset="utf-8" />
+
+    <meta name="google-signin-scope"     content="profile email">
+    <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
+
+    <!--maybe one of these will work??-->
+    <link rel="icon"          type="x-icon"   href="images/icon.png">
+    <link rel="shortcut icon" type="x-icon"   href="images/icon.png">
+    <link rel="stylesheet"    type="text/css" href="styles/style.css">
+
+    <title>Mineral Springs Webapp Sign In | mineralsprings.github.io</title>
+
+    <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
+    <script type="text/javascript" src="scripts/auth.js"                                   ></script>
+    <script type="text/javascript" src="scripts/common_funcs.js"                           ></script>
+  </head>
+
+    <body>
+      <div style="display: inline-block;" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+      <p id="output" style="font-family: arial, sans-serif">
+
+      </p>
+
+      <a href="#" onclick="signOut();">Sign out</a>
+
+  </body>
+
+</html>
+
+
