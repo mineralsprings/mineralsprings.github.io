@@ -1,3 +1,10 @@
+function async(your_function, callback) {
+    setTimeout(function() {
+        your_function();
+        if (callback) {callback();}
+    }, 0);
+}
+
 function parseAndWrite(json, key, elm_id, lead, foll) {
   console.log(json);
   document.getElementById(elm_id).innerHTML = lead + JSON.parse(json)[key] + foll;

@@ -1,65 +1,99 @@
-<!DOCTYPE html>
+<!DOCTYPE html5>
+<html lang='en'>
+
   <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-    <link rel="stylesheet" href="styles/style.css">
+    <!-- EXTERNAL RESOURCES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Playfair+Display" >
 
-    <!--maybe one of these will work??-->
-    <link rel="icon" type="x-icon" href="images/icon.png">
-    <link rel="shortcut icon" type="x-icon" href="images/icon.png">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--maybe one of these will work as a favico-->
+    <link rel="icon"          type="x-icon" href="img/icon.png">
+    <link rel="shortcut icon" type="x-icon" href="img/icon.png">
+    <link rel='stylesheet'                  href='css/style.css'>
 
     <title>Mineral Springs Order Placement | mineralsprings.github.io</title>
 
-    <script type="text/javascript" src="scripts/common_funcs.js" ></script>
-    <script type="text/javascript" src="scripts/index-helper.js" ></script>
+    <script type="text/javascript" src="js/common_funcs.js" ></script>
+    <script type="text/javascript" src="js/index-helper.js" ></script>
 
   </head>
 
-  <body>
-    <!--<h1>Under Construction</h1>-->
 
-    <div class="top">
-      <p id="main-header">
-        mineral springs order placement app (under construction)
-      </p>
+  <body onload="bodyLoader();">
+
+    <div class="bodyWrapper">
+
+      <div class="headerWrapper">
+        <p class="titleText">Mineral Springs</p>
+      </div>
+
+      <!--
+        NOTE: instead of the noscript tag, which cannot be styled
+        this is set to display: none when javascript is enabled
+        this will confuse bots, but that's okay
+      -->
+      <div id="alert" >
+        The web client requires client-side JavaScript to work.
+        <br>
+        Your browser does not have JavaScript, or it is disabled.
+        <br>
+        Use a modern browser, or allow JavaScript on mineralsprings.github.io.
+      </div>
+
+
+      <div id="buttonWrapper" style="display: none;">
+
+        <div class="block">
+          <p class="blockText">Place an Order</p>
+        </div>
+
+        <div class="block">
+          <p class="blockText">View Menu</p>
+        </div>
+
+        <div class="block">
+          <p class="blockText">Edit Menu</p>
+        </div>
+
+        <div class="block">
+          <p class="blockText">About Us</p>
+        </div>
+
+      </div>
+
+      <div class="authorTag">
+        <p class="authorText links-bottom">
+          the
+          <a class="authorText links-bottom" href="//github.com/mineralsprings/mineralsprings.github.io">
+            open source
+          </a>
+          Mineral Springs Webapp
+          <br />
+          courtesy
+          <a class="authorText links-bottom" href="//github.com/mattb0t">
+            @mattb0t
+          </a>
+          +
+          <a class="authorText links-bottom" href="//github.com/catb0t">
+            @catb0t
+          </a>
+        </p>
+      </div class="authorTag">
+
+      <div class="google-auth-holder links-bottom">
+        <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >
+          Google API registration token
+        </a>
+      </div>
+
     </div>
 
-    <!-- NOTE: instead of the noscript tag, which cannot be styled
-      this is set to display: none when javascript is enabled
-      this will confuse bots, but that's okay
-    -->
-    <div id="alert" >
-      The web client requires client-side JavaScript to work.
-      <br>
-      Your browser does not have JavaScript, or it is disabled.
-      <br>
-      Use a modern browser, or allow JavaScript on <font style="font-weight: bold;" > mineralsprings.github.io
-      </font>
-      .
-    </div>
 
-    <div id="orderform">
-      <!-- NOTE: menu-loader.js should load data here when JS is enabled -->
-    </div>
-
-    <div id="edit-button">
-      <!-- NOTE: index-helper.js writes the editor button here when JS is enabled -->
-    </div>
-
-    <div class="links-bottom">
-      <!--disallow overlapping-->
-      <div class="clearfix" style="padding-top: 10px;"></div>
-
-      <br>
-      <a class="smaller-link" target="_blank" href="https://github.com/mineralsprings/mineralsprings.github.io">github source</a>
-
-      <div class="clearfix"></div>
-      <br>
-      <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >Google API registration token</a>
-    </div>
-
-    <script type="text/javascript">bodyLoader();</script>
   </body>
+
+
 </html>
-
-
