@@ -59,6 +59,14 @@
 
   }
 
+  div.textBox {
+
+    width: 85vw;
+
+    background-color: ;
+
+  }
+
   /*
   TEXT THINGS
   */
@@ -98,6 +106,16 @@
     transform: translateY(-50%);
   }
 
+  p.aboutText {
+
+    font-size: 4vh;
+
+    color: #000;
+
+    text-align: justify;
+
+  }
+
   .authorText {
     font-family: Arial, sans-serif;
     font-size: 2vh;
@@ -128,6 +146,14 @@
     background: #fafafa;
     color: #fff;
     text-shadow: none;
+  }
+
+  span.highlight {
+
+    color: #c0392b;
+
+    font-size: 5vh;
+
   }
 
   /*
