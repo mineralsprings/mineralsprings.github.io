@@ -12,7 +12,7 @@ function checkGoogleAuthVerificationExists() {
 }
 
 function haveJS () {
-
+  //alert("javascript");
   document.getElementById('alert').style.display = 'none';
   document.getElementById('buttonWrapper').style.display = 'inherit';
 
