@@ -13,6 +13,7 @@
   }
 
   div.bodyWrapper {
+
     /* ??? nothing to put here right now */
   }
 
@@ -26,7 +27,7 @@
 
     margin-bottom: 2vh;
     margin-left: 1vh;
-    margin-right: 1vh
+    margin-right: 1vh;
 
     transition-duration: 0.75s;
 
@@ -45,7 +46,8 @@
 
     background-color: inherit;
 
-    width: 85vw;
+    text-align: center;
+    width: 83.2vw;
   }
 
   div.authorTag {
