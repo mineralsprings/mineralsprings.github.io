@@ -28,7 +28,7 @@ function checkCatnipCDNStatusOk() {
     "http://catnipcdn.pagekite.me",
     function (repsonse) {
       //console.log(response);
-      if (JSON.parse(response)["reply"] === "ok") {
+      if (JSON.parse(response)["pingback"] === "ok") {
         console.log("catnip ok");
         document.getElementById("cdn-api-check").style.color = "green";
         document.getElementById("cdn-api-check").innerHTML += "OK";
