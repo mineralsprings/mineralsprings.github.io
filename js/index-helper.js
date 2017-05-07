@@ -47,7 +47,7 @@ function checkCatnipCDNStatusOk() {
     },
 
     JSON.stringify(
-      {"ping": "hello"}
+      {'ping': 'hello'}
     )
   );
 }
