@@ -26,7 +26,7 @@ function checkGoogleAuthVerificationExists() {
 function checkCatnipCDNStatusOk() {
   httpPostAsync(
     "https://catnipcdn.pagekite.me",
-    function (repsonse) {
+    function (response) {
       //console.log(response);
       if (JSON.parse(response)["pingback"] === "ok") {
         console.log("catnip ok");
