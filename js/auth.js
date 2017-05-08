@@ -10,8 +10,8 @@ function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
 
-  clid = profile.getId();
   var profile = googleUser.getBasicProfile();
+  clid = profile.getId();
   console.log("ID: " + clid); // Don't send this directly to your server!
   console.log('Full Name: ' + profile.getName());
   console.log('Given Name: ' + profile.getGivenName());
