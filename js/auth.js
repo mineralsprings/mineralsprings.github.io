@@ -32,13 +32,13 @@ function onSignIn(googleUser) {
     function (url, req) {
       console.log(req.responseText);
     },
-    {
+    JSON.stringify({
       'verb': 'gapi_validate',
       'data': {
         'gapi_key': id_token,
         'client_id': clid
       }
-    }
+    });
   );
 
   /*  var writehi_output = function (arg) {
