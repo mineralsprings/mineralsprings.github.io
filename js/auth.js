@@ -38,7 +38,7 @@ function onSignIn(googleUser) {
         'gapi_key': id_token,
         'client_id': clid
       }
-    });
+    })
   );
 
   /*  var writehi_output = function (arg) {
