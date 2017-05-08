@@ -27,7 +27,7 @@ function onSignIn(googleUser) {
     "https://catnipcdn.pagekite.me",
     function (response) {
       var info = JSON.parse(response);
-      console.log(info);
+      console.log(info["response"]);
     },
     function (url, req) {
       console.log(req.responseText);
