@@ -53,8 +53,6 @@
 
   div.authorTag {
 
-    background-color: inherit;
-
     width: 100%;
 
   }
@@ -117,7 +115,7 @@
 
   .authorText {
     font-family: Arial, sans-serif;
-    font-size: 2vh;
+    font-size: 1.7vh;
 
     color: #333;
   }
@@ -157,6 +155,10 @@
   BOTTOM LINKS
   */
 
+  .bottom-status {
+    font-size: 1.4vh;
+  }
+
   .links-bottom > a {
     color: black;
     text-decoration: none;
@@ -165,4 +167,10 @@
   a.smaller-link {
     font-size: 1.3vh;
     font-weight: bolder;
+  }
+
+  a.bigger-link {
+    font-size: inherit;
+    font-weight: bolder;
+    color: #333;
   }
