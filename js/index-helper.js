@@ -28,7 +28,12 @@ function checkCatnipCDNStatusOk() {
     "https://catnipcdn.pagekite.me",
     function (response) {
       //console.log(response);
-      if (JSON.parse(response)["pingback"] === "ok") {
+      var rsp = JSON.parse(response);
+      console.log(rsp);
+      if (
+          (rsp["response"]         === "ping_reply") &&
+          (rsp["data"]["pingback"] === true)
+      ) {
         console.log("catnip ok");
         document.getElementById("cdn-api-check").style.color = "green";
         document.getElementById("cdn-api-check").innerHTML += "OK";
@@ -47,7 +52,10 @@ function checkCatnipCDNStatusOk() {
     },
 
     JSON.stringify(
-      {'ping': 'hello'}
+      {
+        "verb": "ping",
+        "data": { "ping": "hello" }
+      }
     )
   );
 }

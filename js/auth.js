@@ -12,16 +12,9 @@ function onSignIn(googleUser) {
 
   var profile = googleUser.getBasicProfile();
   clid = profile.getId();
-  console.log("ID: " + clid); // Don't send this directly to your server!
-  console.log('Full Name: ' + profile.getName());
-  console.log('Given Name: ' + profile.getGivenName());
-  console.log('Family Name: ' + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
   // The ID token you need to pass to your backend:
   var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
+  //console.log("ID Token: " + id_token);
 
   httpPostAsync(
     "https://catnipcdn.pagekite.me",
@@ -40,6 +33,13 @@ function onSignIn(googleUser) {
     })
   );
 
+  /*console.log("ID: " + clid); // Don't send this directly to your server!
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log("Image URL: " + profile.getImageUrl());
+  console.log("Email: " + profile.getEmail());
+  */
   /*  var writehi_output = function (arg) {
       console.log(arg);
       var acc = JSON.parse(arg);
