@@ -107,13 +107,12 @@
   }
 
   p.aboutText {
-
-    font-size: 4vh;
+    font-size: 3vh;
+    font-weight: 200;
 
     color: #000;
 
     text-align: justify;
-
   }
 
   .authorText {
@@ -149,11 +148,9 @@
   }
 
   span.highlight {
-
     color: #c0392b;
 
-    font-size: 5vh;
-
+    font-size: 4vh;
   }
 
   /*
