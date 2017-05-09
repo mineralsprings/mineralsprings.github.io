@@ -52,19 +52,25 @@
 
       <div id="buttonWrapper" style="display: none;">
 
-        <div class="block" onclick="window.location = 'place.html'">
+        <!--
+          TODO: NOTE: use jQuery to load content here with animations
+          also need to add a back button in the top left when the buttons are
+          poofed away
+        -->
+
+        <div class="block" onclick="javascript:loadContent('order')">
           <p class="blockText">Place an Order</p>
         </div>
 
-        <div class="block" onclick="window.location = 'menu.html'">
+        <div class="block" onclick="javascript:loadContent('menu')">
           <p class="blockText">View the Menu</p>
         </div>
 
-        <div class="block" onclick="window.location = 'auth.html'">
+        <div class="block" onclick="javascript:loadContent('auth')">
           <p class="blockText">Edit the Menu</p>
         </div>
 
-        <div class="block" onclick="window.location = 'about.html'">
+        <div class="block" onclick="javascript:loadContent('about')">
           <p class="blockText">About Us</p>
         </div>
 
@@ -89,11 +95,18 @@
         </p>
       </div class="authorTag">
 
-      <div class="google-auth-holder links-bottom">
+      <div class="bottom-status links-bottom">
         <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >
           Google API Registration Token
         </a>
+
+        <br />
+
+        <a class="smaller-link" target="_blank" href="http://catnipcdn.pagekite.me" id="cdn-api-check" >
+          CatnipCDN API
+        </a>
       </div>
+
 
     </div>
 

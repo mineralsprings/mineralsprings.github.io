@@ -13,6 +13,7 @@
   }
 
   div.bodyWrapper {
+
     /* ??? nothing to put here right now */
   }
 
@@ -37,9 +38,23 @@
     background: #a63326;
     color: #f2f2f2;
 
-    transition-duration: 0.75;
+    transition-duration: 0.75s;
 
   }
 
+  div.headerWrapper {
+
+    background-color: inherit;
+
+    text-align: center;
+    width: 83.2vw;
+  }
+
+  div.authorTag {
+
+    background-color: inherit;
+
+    width: 100%;
+  }
 
 }
