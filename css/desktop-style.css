@@ -1,21 +1,25 @@
 @media only screen and (min-width: 791px) {
 
+
   body {
     text-align: center;
     background: #fafafa;
+
   }
 
   /*
   DIV THINGS
   */
   div {
+
     display: inline-block;
+
   }
 
   div.bodyWrapper {
 
     /* ??? nothing to put here right now */
-    
+
   }
 
   div.block {
@@ -70,8 +74,6 @@
   div.buttonWrapper {
 
     padding: 0;
-
-
 
   }
 
