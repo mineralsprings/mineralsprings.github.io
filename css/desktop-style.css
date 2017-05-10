@@ -62,6 +62,7 @@
 
     text-align: center;
     width: 83.2vw;
+    
   }
 
   div.authorTag {
@@ -69,6 +70,7 @@
     background-color: inherit;
 
     width: 100%;
+
   }
 
   div.buttonWrapper {

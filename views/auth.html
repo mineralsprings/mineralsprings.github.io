@@ -1,52 +1,9 @@
-<!DOCTYPE html5>
-<html lang='en'>
-  <head>
-    <!--
-    NOTE: ignored except for file:/// urls
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    -->
-    <meta name="google-signin-scope"     content="profile email">
-    <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
+<!-- NOTE: LOAD THIS PART AFTER A FORM SUBMISSION -->
 
-    <!-- EXTERNAL RESOURCES -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway|Playfair+Display" >
+<div style="display: inline-block;" class="g-signin2" data-onsuccess="onSignIn" data-theme="light"></div>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<p id="output" style="font-family: arial, sans-serif">
 
-    <!--maybe one of these will work as a favico-->
-    <link rel="icon"          type="x-icon" href="../img/icon.png">
-    <link rel="shortcut icon" type="x-icon" href="../img/icon.png">
-    <link rel='stylesheet'                  href='../css/style.css'>
+</p>
 
-    <title>Mineral Springs Order Placement | mineralsprings.github.io</title>
-
-    <script type="text/javascript" src="../js/common_funcs.js" ></script>
-    <script type="text/javascript" src="../js/index-helper.js" ></script>
-
-    <!--NOTE: THIS PAGE ONLY -->
-    <script type="text/javascript" src="https://apis.google.com/js/platform.js" async defer></script>
-    <script type="text/javascript" src="../js/auth.js" ></script>
-
-  </head>
-
-    <body>
-
-      <!-- NOTE: LOAD THIS PART AFTER A FORM SUBMISSION -->
-      <div style="display: inline-block;" class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-
-      <p id="output" style="font-family: arial, sans-serif">
-
-      </p>
-
-      <a href="#" onclick="signOut();" >Sign out</a>
-
-  </body>
-
-</html>
-
-
+<a href="#" onclick="signOut();" >Sign out</a>

@@ -1,19 +1,25 @@
 @media only screen and (max-width: 790px) {
 
   body {
+
     text-align: center;
     background: #fafafa;
+
   }
 
   /*
   DIV THINGS
   */
   div {
+
     display: inline-block;
+
   }
 
   div.bodyWrapper {
+
     /* ??? nothing to put here right now */
+    
   }
 
   div.block {
