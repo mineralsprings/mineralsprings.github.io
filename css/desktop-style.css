@@ -1,20 +1,25 @@
 @media only screen and (min-width: 791px) {
 
+
   body {
     text-align: center;
     background: #fafafa;
+
   }
 
   /*
   DIV THINGS
   */
   div {
+
     display: inline-block;
+
   }
 
   div.bodyWrapper {
 
     /* ??? nothing to put here right now */
+
   }
 
   div.block {
@@ -25,11 +30,20 @@
     width: 41vw;
     height: 25vh;
 
-    margin-bottom: 2vh;
-    margin-left: 1vh;
+    margin-bottom: 2.5vh;
+    transition-duration: 0.75s;
+
+  }
+
+  .leftBlock {
+
     margin-right: 1vh;
 
-    transition-duration: 0.75s;
+  }
+
+  .rightBlock {
+
+    margin-left:  1vh;
 
   }
 
@@ -55,6 +69,12 @@
     background-color: inherit;
 
     width: 100%;
+  }
+
+  div.buttonWrapper {
+
+    padding: 0;
+
   }
 
 }
