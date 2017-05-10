@@ -11,7 +11,9 @@
   }
 
   div.bodyWrapper {
-    /* ??? nothing to put here right now */
+
+    width: 100vw;
+
   }
 
 /*
@@ -49,6 +51,7 @@
     background-color: inherit;
 
     width: 85vw;
+
   }
 
   div.authorTag {
@@ -59,9 +62,11 @@
 
   div.textBox {
 
-    width: 85vw;
+  }
 
-    background-color: ;
+  #buttonWrapper {
+
+    width: 84vw;  
 
   }
 
