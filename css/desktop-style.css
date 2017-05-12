@@ -27,8 +27,8 @@
     background: #c0392b;
     color: #e6e6e6;
 
-    width: 41vw;
-    height: 25vh;
+    width: 18vw;
+    height: 30vh;
 
     margin-bottom: 2.5vh;
     transition-duration: 0.75s;
@@ -37,13 +37,15 @@
 
   .leftBlock {
 
-    margin-right: 1vh;
+    margin-left:  0.5vw;
+    margin-right: 0.5vw;
 
   }
 
   .rightBlock {
 
-    margin-left:  1vh;
+    margin-left:  0.5vw;
+    margin-right: 0.5vw;
 
   }
 
@@ -62,7 +64,7 @@
 
     text-align: center;
     width: 83.2vw;
-    
+
   }
 
   div.authorTag {
@@ -76,6 +78,44 @@
   div.buttonWrapper {
 
     padding: 0;
+
+  }
+
+  div.hoverButton {
+
+    width: 50%;
+    height: 0%;
+
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+
+  div.block:hover > div.hoverButton {
+
+    width: 50%;
+    height: 25%;
+
+  }
+
+  /*
+  TEXT THINGS
+  */
+
+  div.block:hover > p.blockText {
+
+    transition-duration: 0.33s;
+
+    top: 45%;
+
+  }
+
+  p.hoverButtonText {
+
+    color: #fff;
+
+    font-size: 2vh;
+    font-family: "Playfair Display", Georgia, Serif;
 
   }
 
