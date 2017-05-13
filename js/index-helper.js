@@ -46,7 +46,7 @@ function checkCatnipCDNStatusOk() {
       console.log(rsp);
 
       if (
-          (rsp["response"]         === "ping_reply") &&
+          (rsp["response"]         === "reply_ping") &&
           (rsp["data"]["pingback"] === true)
       ) {
         console.log("catnip ok");
