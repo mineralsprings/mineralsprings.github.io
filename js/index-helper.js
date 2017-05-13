@@ -42,7 +42,7 @@ function checkCatnipCDNStatusOk() {
       //console.log(response);
       var rsp = JSON.parse(response),
           elt = document.getElementById("cdn-api-check");
-
+      rsp["time"]["conn_finish"] = +new Date();
       console.log(rsp);
 
       if (
