@@ -108,10 +108,65 @@ function showGLogin() {
   document.getElementById("glogin").style.display    = "inline-block";
 }
 
+function onSignIn(googleUser) {
+  // Useful data for your client-side scripts:
+  console.log("clicked sign in");
+  document.getElementById("signout-button").style.display = "inline-block";
+
+  var profile = googleUser.getBasicProfile();
+  clid = profile.getId();
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  //console.log("ID Token: " + id_token);
+
+  httpPostAsync(
+    "https://catnipcdn.pagekite.me",
+    function (response) {
+      var info = JSON.parse(response);
+      console.log(info);
+    },
+    function (url, req) {
+      console.log(req.responseText);
+    },
+    JSON.stringify({
+      'verb': 'gapi_validate',
+      'data': {
+        'gapi_key': id_token
+      },
+      "time": {
+        "conn_init": +new Date(),
+        "conn_finish": null
+      }
+    })
+  );
+};
+function onFailure(error) {
+  console.log(error);
+}
+function renderButton() {
+  gapi.signin2.render('glogin', {
+    'scope': 'profile email',
+    'width': 240,
+    'height': 50,
+    'longtitle': true,
+    'theme': 'dark',
+    'onsuccess': onSignIn,
+    'onfailure': onFailure
+  });
+}
+function signOut() {
+  var auth2 = gapi.auth2.getAuthInstance();
+  auth2.signOut().then(function () {
+    console.log('User signed out.');
+    document.getElementById("google-signin").style.display = "none";
+  });
+}
+
+
 function haveJS () {
   console.log("have JS (duh)");
-  document.getElementById('alert').style.display = 'none';
-  document.getElementById('buttonWrapper').style.display = 'inherit';
+  document.getElementById("alert").style.display = "none";
+  document.getElementById("buttonWrapper").style.display = "inherit";
 }
 
 function bodyLoader() {

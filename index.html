@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200,400|Playfair+Display" >
 
-    <meta name="google-signin-scope"     content="profile email">
     <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
-
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"    ></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
@@ -30,6 +27,8 @@
 
     <script type="text/javascript" src="js/common_funcs.js" ></script>
     <script type="text/javascript" src="js/index-helper.js" ></script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
   </head>
 
@@ -69,43 +68,50 @@
           <p class="blockText">
             Login to Google
           </p>
+          <div class="clearfix">
+
+          </div>
           <p class="hoverButtonText">
-            to use the app.
+            to use this app
           </p>
         </div>
 
-        <div class="loginBlock g-signin2" id="glogin" data-onsuccess="onSignIn" data-theme="light" style="display: none;">
+        <div class="google-signin" id="glogin" style="display: none;">
         </div>
 
         <div class="block leftBlock" onclick="javascript:loadContent('order')" hidden>
           <p class="blockText">Order</p>
             <p class="hoverButtonText">
-              Place an Order
+              make an order ahead of time
             </p>
         </div>
 
         <div class="block rightBlock" onclick="javascript:loadContent('menu')" hidden>
           <p class="blockText">Menu</p>
             <p class="hoverButtonText">
-              View the Menu
+              see what's hot
             </p>
         </div>
 
         <div class="block leftBlock" onclick="javascript:loadContent('auth')" hidden>
           <p class="blockText">Login</p>
             <p class="hoverButtonText">
-              Login to Google
+              why does this button exist
             </p>
         </div>
 
         <div class="block rightBlock" onclick="javascript:loadContent('about')" hidden>
           <p class="blockText">About</p>
             <p class="hoverButtonText">
-              About Us
+              about Mineral Springs Cafe
             </p>
           </p>
         </div>
 
+      </div>
+
+      <div class="signout-button" id="signout-button" style="display: none;">
+        Sign Out
       </div>
 
       <div class="authorTag">
