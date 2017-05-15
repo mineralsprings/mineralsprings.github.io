@@ -10,6 +10,8 @@
     <meta name="google-signin-scope"     content="profile email">
     <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
 
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"    ></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
 
@@ -63,13 +65,16 @@
           poofed away
         -->
 
-        <div class="block loginBlock g-signin2" data-onsuccess="onSignIn" data-theme="light">
+        <div class="block" id="bigcircle" onclick="javascript:showGLogin()">
           <p class="blockText">
             Login to Google
           </p>
           <p class="hoverButtonText">
             to use the app.
           </p>
+        </div>
+
+        <div class="loginBlock g-signin2" id="glogin" data-onsuccess="onSignIn" data-theme="light" style="display: none;">
         </div>
 
         <div class="block leftBlock" onclick="javascript:loadContent('order')" hidden>

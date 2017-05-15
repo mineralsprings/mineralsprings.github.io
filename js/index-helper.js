@@ -103,6 +103,11 @@ function loadContent(page) {
 
 }
 
+function showGLogin() {
+  document.getElementById("bigcircle").style.display = "none";
+  document.getElementById("glogin").style.display    = "inline-block";
+}
+
 function haveJS () {
   console.log("have JS (duh)");
   document.getElementById('alert').style.display = 'none';
@@ -116,3 +121,4 @@ function bodyLoader() {
   });
   //haveJS(); checkGoogleAuthVerificationExists();
 }
+
