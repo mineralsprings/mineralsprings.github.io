@@ -63,28 +63,37 @@
           poofed away
         -->
 
-        <div class="block leftBlock" onclick="javascript:loadContent('order')">
+        <div class="block loginBlock g-signin2" data-onsuccess="onSignIn" data-theme="light">
+          <p class="blockText">
+            Login to Google
+          </p>
+          <p class="hoverButtonText">
+            to use the app.
+          </p>
+        </div>
+
+        <div class="block leftBlock" onclick="javascript:loadContent('order')" hidden>
           <p class="blockText">Order</p>
             <p class="hoverButtonText">
               Place an Order
             </p>
         </div>
 
-        <div class="block rightBlock" onclick="javascript:loadContent('menu')">
+        <div class="block rightBlock" onclick="javascript:loadContent('menu')" hidden>
           <p class="blockText">Menu</p>
             <p class="hoverButtonText">
               View the Menu
             </p>
         </div>
 
-        <div class="block leftBlock" onclick="javascript:loadContent('auth')">
+        <div class="block leftBlock" onclick="javascript:loadContent('auth')" hidden>
           <p class="blockText">Login</p>
             <p class="hoverButtonText">
               Login to Google
             </p>
         </div>
 
-        <div class="block rightBlock" onclick="javascript:loadContent('about')">
+        <div class="block rightBlock" onclick="javascript:loadContent('about')" hidden>
           <p class="blockText">About</p>
             <p class="hoverButtonText">
               About Us

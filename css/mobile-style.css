@@ -36,6 +36,20 @@
 
   }
 
+  div.loginBlock {
+
+    background: #c0392b;
+    color: #e6e6e6;
+
+    width: 85vw;
+    height: 14vh;
+
+    margin-bottom: 2vh;
+
+    transition-duration: 0.75s;
+
+  }
+
   div.block:hover {
 
     background: #a63326;

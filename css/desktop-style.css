@@ -35,6 +35,15 @@
 
   }
 
+  div.loginBlock {
+
+    width: 40vh;
+    height: 40vh;
+
+    border-radius: 40vh;
+
+  }
+
   .leftBlock {
 
     margin-left:  0.5vw;
@@ -117,9 +126,13 @@
     font-size: 2vh;
     font-family: "Raleway", Arial, Sans-serif;
 
-    background-color: inherit;
-
     margin-top: 25%;
+
+  }
+
+  div.loginBlock > p.hoverButtonText {
+
+    margin-top: 37%;
 
   }
 
