@@ -1,11 +1,3 @@
-// NOTE: this is going away in the future, to get the server to supply the validation and the edit.html page
-var ID_LIST = {
-  "1742119": true,
-  "1858067": true,
-  "d_richardi": true,
-  "v_schrader": true,
-};
-
 function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
@@ -29,6 +21,10 @@ function onSignIn(googleUser) {
       'verb': 'gapi_validate',
       'data': {
         'gapi_key': id_token
+      },
+      "time": {
+        "conn_init": +new Date(),
+        "conn_finish": null
       }
     })
   );
