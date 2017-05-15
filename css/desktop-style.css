@@ -106,16 +106,29 @@
 
     transition-duration: 0.33s;
 
-    top: 45%;
+    top: 40%;
 
   }
 
   p.hoverButtonText {
 
-    color: #fff;
+    color: rgba(255, 255, 255, 0);
 
     font-size: 2vh;
-    font-family: "Playfair Display", Georgia, Serif;
+    font-family: "Raleway", Arial, Sans-serif;
+
+    background-color: inherit;
+
+    margin-top: 25%;
+
+  }
+
+  div.block:hover > p.hoverButtonText {
+
+    color: rgba(255, 255, 255, 255);
+
+    transition-property: color;
+    transition-duration: 0.33s;
 
   }
 
