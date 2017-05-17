@@ -18,7 +18,8 @@
 
   div.bodyWrapper {
 
-    /* ??? nothing to put here right now */
+    height: 80vh;
+    width: auto;
 
   }
 
@@ -88,6 +89,13 @@
 
     padding: 0;
 
+    margin-top: auto;
+    margin-bottom: auto;
+
+    vertical-align: middle;
+
+    height: 44vh;
+
   }
 
   div.hoverButton {
@@ -104,6 +112,12 @@
 
     width: 50%;
     height: 25%;
+
+  }
+
+  footer {
+
+    height: 20vh;
 
   }
 
