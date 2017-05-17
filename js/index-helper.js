@@ -113,19 +113,6 @@ function onSignIn(googleUser) {
   console.log("clicked sign in");
   document.getElementById("signout-button").style.display = "inline-block";
 
-  //This is to make the new buttons appear~
-  function showButtons() {
-
-    var i = document.getElementsByClassName("block").length;
-
-    for(var x = 0; x < i; x++) {
-      document.getElementsByClassName("block")[x].removeAttribute = ("hidden");
-      console.log("unhid block " + x);
-    }
-
-  }
-  //
-
   var profile = googleUser.getBasicProfile();
   clid = profile.getId();
   // The ID token you need to pass to your backend:
