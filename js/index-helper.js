@@ -114,9 +114,16 @@ function onSignIn(googleUser) {
   document.getElementById("signout-button").style.display = "inline-block";
 
   //This is to make the new buttons appear~
+  function showButtons() {
 
-  document.getElementsByClassName("block").removeAttribute = ("hidden");
+    var i = document.getElementsByClassName("block").length;
 
+    for(int x = 0; x <= i; x++) {
+      document.getElementsByClassName("block")[x].removeAttribute = ("hidden");
+      console.log("unhid block " + x);
+    }
+
+  }
   //
 
   var profile = googleUser.getBasicProfile();
