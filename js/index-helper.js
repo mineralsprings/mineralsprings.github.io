@@ -118,7 +118,7 @@ function onSignIn(googleUser) {
 
     var i = document.getElementsByClassName("block").length;
 
-    for(int x = 0; x <= i; x++) {
+    for(var x = 0; x < i; x++) {
       document.getElementsByClassName("block")[x].removeAttribute = ("hidden");
       console.log("unhid block " + x);
     }
