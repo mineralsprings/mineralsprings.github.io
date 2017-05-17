@@ -43,6 +43,14 @@
 
     border-radius: 40vh;
 
+    position: relative;
+    top: 50%;
+
+    transform: translateY(13%);
+
+    margin-top: auto;
+    margin-bottom: auto;
+
   }
 
   .leftBlock {
