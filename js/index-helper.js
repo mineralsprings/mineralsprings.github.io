@@ -113,6 +113,12 @@ function onSignIn(googleUser) {
   console.log("clicked sign in");
   document.getElementById("signout-button").style.display = "inline-block";
 
+  //This is to make the new buttons appear~
+
+  document.getElementsByClassName("block").removeAttribute = ("hidden");
+
+  //
+
   var profile = googleUser.getBasicProfile();
   clid = profile.getId();
   // The ID token you need to pass to your backend:
@@ -176,4 +182,3 @@ function bodyLoader() {
   });
   //haveJS(); checkGoogleAuthVerificationExists();
 }
-
