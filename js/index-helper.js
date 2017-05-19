@@ -1,30 +1,10 @@
-window.currentGoogleUser = null;
+currentGoogleUser = null;
 
 function checkGoogleAuthVerificationExists() {
   httpGetAsync(
     "googlebb7e3fa23640d3b2.html",
-
-    function (response) {
-      var elt = document.getElementById("google-auth-check");
-      //console.log(response);
-      if (response === "google-site-verification: googlebb7e3fa23640d3b2.html") {
-        console.log("auth ok");
-        elt.style.color = "green";
-        elt.innerHTML += "OK";
-      } else {
-        console.log("auth no good");
-        elt.style.color = "red";
-        elt.innerHTML += "missing";
-      }
-    },
-
-    function(url, resp) {
-      var elt = document.getElementById("google-auth-check");
-      console.log("failed to GET " + url + " returned " + resp.status.toString());
-      console.log("auth no good");
-      elt.style.color = "red";
-      elt.innerHTML += "missing";
-    }
+    googleAPIFile.ok,
+    googleAPIFile.err
   );
 }
 
@@ -35,58 +15,14 @@ function writeConnTimeStats(time) {
 
 function checkCatnipCDNStatusOk() {
   httpPostAsync(
-    /* developer env vs production server */
-    null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
-    ? "http://localhost:8080"
-    : "https://catnipcdn.pagekite.me",
-
-    function (response) {
-      //console.log(response);
-      var rsp = JSON.parse(response),
-          elt = document.getElementById("cdn-api-check");
-      rsp["time"]["conn_finish"] = +new Date();
-      console.log(rsp);
-
-      if (
-          (rsp["response"]         === "reply_ping") &&
-          (rsp["data"]["pingback"] === true)
-      ) {
-        console.log("catnip ok");
-        writeConnTimeStats(rsp["time"]);
-        elt.style.color = "green";
-        elt.innerHTML += "OK";
-
-      } else {
-        console.log("catnip no good");
-        elt.style.color = "red";
-        elt.innerHTML += "missing";
-      }
-    },
-
-    function (url, resp) {
-      var elt = document.getElementById("cdn-api-check");
-      console.log("failed to POST to " + url + " returned " + resp.status.toString());
-      console.log("catnip no good");
-      elt.style.color = "red";
-      elt.innerHTML += "missing";
-    },
-
-    JSON.stringify(
-      {
-        "verb": "ping",
-        "data": {
-          "ping": "hello",
-        },
-        "time": {
-          "conn_init": +new Date(),
-          "conn_finish": null
-        }
-      }
-    )
+    getServerHostForEnv(),
+    catnipCDNUp.ok,
+    catnipCDNUp.err,
+    JSON.stringify(defaultJSONObjs.ping)
   );
 }
 
-function loadContent(page) {
+/*function loadContent(page) {
   httpGetAsync(
     "views/" + page + ".html",
 
@@ -103,7 +39,7 @@ function loadContent(page) {
 
   );
 
-}
+}*/
 
 function showGLogin() {
   document.getElementById("bigcircle").style.display = "none";
@@ -114,12 +50,12 @@ function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
   document.getElementById("signout-button").style.display = "inline-block";
+
   currentGoogleUser = googleUser;
-  var profile = googleUser.getBasicProfile();
-  clid = profile.getId();
-  // The ID token you need to pass to your backend:
+
+
   var id_token = googleUser.getAuthResponse().id_token;
-  //console.log("ID Token: " + id_token);
+
 
   httpPostAsync(
     "https://catnipcdn.pagekite.me",
@@ -130,21 +66,10 @@ function onSignIn(googleUser) {
     function (url, req) {
       console.log(req.responseText);
     },
-    JSON.stringify({
-      'verb': 'gapi_validate',
-      'data': {
-        'gapi_key': id_token
-      },
-      "time": {
-        "conn_init": +new Date(),
-        "conn_finish": null
-      }
-    })
+    JSON.stringify(defaultJSONObjs.initial_gapi_validate)
   );
-};
-function onFailure(error) {
-  console.log(error);
 }
+
 function renderButton() {
   gapi.signin2.render('glogin', {
     'scope': 'profile email',
@@ -153,11 +78,14 @@ function renderButton() {
     'longtitle': true,
     'theme': 'dark',
     'onsuccess': onSignIn,
-    'onfailure': onFailure
+    'onfailure': function (error) { console.log(error); }
+
   });
 }
+
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
+
   auth2.signOut().then(function () {
     console.log('User signed out.');
     document.getElementById("google-signin").style.display = "none";

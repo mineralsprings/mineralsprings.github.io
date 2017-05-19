@@ -1,7 +1,7 @@
 function async(your_function, callback) {
     setTimeout(function() {
         your_function();
-        if (callback) {callback();}
+        if (callback) { callback(); }
     }, 0);
 }
 
@@ -23,10 +23,19 @@ function getXHRCallable() {
   // ????
   } else {
     console.log("no way to XMLHttpRequest, giving up");
-    throw new Exception();
+    // you're drunk
+    throw new Error("don't know how internet works HTTP anymore?????");
   }
 
   return xmlHttp;
+}
+
+/* developer env vs production server */
+function getServerHostForEnv() {
+  return
+    null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
+    ? "http://localhost:8080"
+    : "https://catnipcdn.pagekite.me" ;
 }
 
 function httpGetAsync(theUrl, callback, failfun) {
@@ -47,23 +56,17 @@ function httpGetAsync(theUrl, callback, failfun) {
 }
 
 function httpPostAsync(theUrl, callback, failfun, data) {
-    var xmlHttp;
-    // Mozilla/Safari/Chrome
-    if (window.XMLHttpRequest) {
-        xmlHttpReq = new XMLHttpRequest();
-    }
-    // IE
-    else if (window.ActiveXObject) {
-        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    xmlHttpReq.open('POST', theUrl, true);
-    xmlHttpReq.setRequestHeader('Content-Type', 'application/json');
-    xmlHttpReq.onreadystatechange = function() {
-      if (xmlHttpReq.readyState === 4) {
-        if (xmlHttpReq.status === 200) {
-          callback(xmlHttpReq.responseText);
+    var xmlHttp = getXHRCallable();
+
+    xmlHttp.open('POST', theUrl, true);
+    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+
+    xmlHttp.onreadystatechange = function() {
+      if (xmlHttp.readyState === 4) {
+        if (xmlHttp.status === 200) {
+          callback(xmlHttp.responseText);
         } else {
-          failfun(theUrl, xmlHttpReq);
+          failfun(theUrl, xmlHttp);
         }
       }
     }
