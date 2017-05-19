@@ -63,5 +63,5 @@ function httpPostAsync(theUrl, callback, failfun, data) {
         }
       }
     }
-    xmlHttpReq.send(data);
+    xmlHttp.send(data);
 }
