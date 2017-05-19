@@ -1,3 +1,5 @@
+window.currentGoogleUser = null;
+
 function checkGoogleAuthVerificationExists() {
   httpGetAsync(
     "googlebb7e3fa23640d3b2.html",
@@ -112,7 +114,7 @@ function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
   document.getElementById("signout-button").style.display = "inline-block";
-
+  currentGoogleUser = googleUser;
   var profile = googleUser.getBasicProfile();
   clid = profile.getId();
   // The ID token you need to pass to your backend:
