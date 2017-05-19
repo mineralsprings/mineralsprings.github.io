@@ -60,6 +60,11 @@ function onSignIn(googleUser) {
 
   currentGoogleUser = googleUser;
 
+  for(var x = 0; x < document.getElementsByClassName("block").length; x++) {
+
+    document.getElementsByClassName("block")[x].removeAttribute("hidden");
+
+  }
 
   var id_token = googleUser.getAuthResponse().id_token;
 
