@@ -106,23 +106,6 @@
 
   }
 
-  div.hoverButton {
-
-    width: 50%;
-    height: 0%;
-
-    margin-left: auto;
-    margin-right: auto;
-
-  }
-
-  div.block:hover > div.hoverButton {
-
-    width: 50%;
-    height: 25%;
-
-  }
-
   footer {
 
     height: 20vh;
@@ -133,7 +116,7 @@
   TEXT THINGS
   */
 
-  div.block:hover > p.blockText {
+  #bigcircle:hover > p.blockText {
 
     transition-duration: 0.33s;
 
@@ -161,8 +144,25 @@
 
     transition-property: margin;
     transition-duration: 0.33s;
-    margin-top: 35%;
 
   }
+
+  #bigcircle > p.hoverButtonText {
+
+    margin-top: 35%;
+
+    transition-property: margin;
+    transition-duration: 0.33s;
+
+  }
+
+  div.block:hover > p.blockText {
+
+    transition-duration: 0.33s;
+
+    top: 40%;
+
+  }
+
 
 }
