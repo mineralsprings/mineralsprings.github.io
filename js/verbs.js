@@ -21,7 +21,7 @@ googleAPIFile = {
       elt.style.color = "red";
       elt.innerHTML += "missing";
     }
-}
+};
 
 catnipCDNUp = {
   ok:
@@ -55,7 +55,7 @@ catnipCDNUp = {
       elt.style.color = "red";
       elt.innerHTML += "missing";
     }
-}
+};
 
 defaultJSONObjs = {
   ping: {
@@ -68,15 +68,17 @@ defaultJSONObjs = {
       "conn_finish": null
     }
   },
-  
-  initial_gapi_validate: {
-    'verb': 'gapi_validate',
-    'data': {
-      'gapi_key': id_token
-    },
-    "time": {
-      "conn_init": +new Date(),
-      "conn_finish": null
+
+  initial_gapi_validate: function(tok) {
+    return {
+      'verb': 'gapi_validate',
+      'data': {
+        'gapi_key': tok
+      },
+      "time": {
+        "conn_init": +new Date(),
+        "conn_finish": null
+      }
     }
   }
-}
+};

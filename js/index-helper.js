@@ -41,6 +41,13 @@ function checkCatnipCDNStatusOk() {
 
 }*/
 
+/* developer env vs production server */
+function getServerHostForEnv() {
+  return null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
+    ? "http://localhost:8080"
+    : "https://catnipcdn.pagekite.me" ;
+}
+
 function showGLogin() {
   document.getElementById("bigcircle").style.display = "none";
   document.getElementById("glogin").style.display    = "inline-block";
@@ -58,7 +65,7 @@ function onSignIn(googleUser) {
 
 
   httpPostAsync(
-    "https://catnipcdn.pagekite.me",
+    getServerHostForEnv(),
     function (response) {
       var info = JSON.parse(response);
       console.log(info);
@@ -66,7 +73,7 @@ function onSignIn(googleUser) {
     function (url, req) {
       console.log(req.responseText);
     },
-    JSON.stringify(defaultJSONObjs.initial_gapi_validate)
+    JSON.stringify(defaultJSONObjs.initial_gapi_validate(id_token))
   );
 }
 

@@ -30,13 +30,6 @@ function getXHRCallable() {
   return xmlHttp;
 }
 
-/* developer env vs production server */
-function getServerHostForEnv() {
-  return
-    null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
-    ? "http://localhost:8080"
-    : "https://catnipcdn.pagekite.me" ;
-}
 
 function httpGetAsync(theUrl, callback, failfun) {
 
