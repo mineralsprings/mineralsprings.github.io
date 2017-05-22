@@ -2,11 +2,8 @@
 
 
   body {
-
     text-align: center;
     background: #fafafa;
-
-    height: 70vh;
 
   }
 
@@ -16,6 +13,13 @@
   div {
 
     display: inline-block;
+
+  }
+
+  div.bodyWrapper {
+
+    height: 80vh;
+    width: auto;
 
   }
 
@@ -70,42 +74,12 @@
 
   }
 
-  header {
+  div.headerWrapper {
 
-    background-color: #fafafa;
+    background-color: inherit;
 
     text-align: center;
-
-    width: 79.8vw;
-    height: 20vh;
-
-    display: inline-block;
-
-  }
-
-  #profileButton {
-
-    width: 10vw
-    height: 10vw;
-
-    vertical-align: middle;
-
-    display: inline-block;
-
-    background-color: #0000ff;
-
-  }
-
-  #backButton {
-
-    width: 10vw
-    height: 10vw;
-
-    vertical-align: middle;
-
-    display: inline-block;
-
-    background-color: #ff0000;
+    width: 83.2vw;
 
   }
 
@@ -121,13 +95,12 @@
 
     padding: 0;
 
-    margin-left: auto;
-    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
 
     vertical-align: middle;
 
-    height: auto;
-    width: auto;
+    height: 44vh;
 
   }
 

@@ -76,10 +76,9 @@
 
   @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
-  #headerText {
-
+  p.titleText {
     font-family: "Playfair Display", Georgia, Serif;
-    font-size: 10vh;
+    font-size: 90px;
     font-stretch: expanded;
 
     text-align: center;
