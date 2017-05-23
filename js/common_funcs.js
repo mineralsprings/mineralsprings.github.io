@@ -49,19 +49,19 @@ function httpGetAsync(theUrl, callback, failfun) {
 }
 
 function httpPostAsync(theUrl, callback, failfun, data) {
-    var xmlHttp = getXHRCallable();
+  var xmlHttp = getXHRCallable();
 
-    xmlHttp.open('POST', theUrl, true);
-    xmlHttp.setRequestHeader('Content-Type', 'application/json');
+  xmlHttp.open('POST', theUrl, true);
+  xmlHttp.setRequestHeader('Content-Type', 'application/json');
 
-    xmlHttp.onreadystatechange = function() {
-      if (xmlHttp.readyState === 4) {
-        if (xmlHttp.status === 200) {
-          callback(xmlHttp.responseText);
-        } else {
-          failfun(theUrl, xmlHttp);
-        }
+  xmlHttp.onreadystatechange = function() {
+    if (xmlHttp.readyState === 4) {
+      if (xmlHttp.status === 200) {
+        callback(xmlHttp.responseText);
+      } else {
+        failfun(xmlHttp, theUrl);
       }
     }
-    xmlHttp.send(data);
+  }
+  xmlHttp.send(data);
 }
