@@ -66,6 +66,8 @@ function onSignIn(googleUser) {
 
   }
 
+  document.getElementById("googleSignIn").style.display = "none";
+
   var id_token = googleUser.getAuthResponse().id_token;
 
 
