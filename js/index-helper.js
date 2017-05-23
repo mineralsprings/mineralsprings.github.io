@@ -56,7 +56,6 @@ function showGLogin() {
 function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
-  document.getElementById("signout-button").style.display = "inline-block";
 
   currentGoogleUser = googleUser;
 
