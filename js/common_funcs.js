@@ -55,7 +55,7 @@ function httpPostAsync(theUrl, callback, failfun, data) {
   xmlHttp.setRequestHeader('Content-Type', 'application/json');
 
   xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState === 4) {
+    if (xmlHttp.readyState === 4) {``
       if (xmlHttp.status === 200) {
         callback(xmlHttp.responseText);
       } else {
