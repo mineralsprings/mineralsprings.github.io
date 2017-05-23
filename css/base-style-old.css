@@ -1,20 +1,13 @@
   body {
-
     text-align: center;
     background: #fafafa;
-
-    width: 100vw;
-    height: 100vh;
-
   }
 
   /*
   DIV THINGS
   */
   div {
-
     display: inline-block;
-
   }
 
   div.bodyWrapper {
@@ -67,24 +60,13 @@
 
   }
 
-  #buttonWrapper {
-
-    width: 84vw;
-
-    margin-left: auto;
-    margin-right: auto;
+  div.textBox {
 
   }
 
-  footer {
+  #buttonWrapper {
 
-    width: 100vw;
-    height: 20vh;
-
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    width: 84vw;
 
   }
 
@@ -94,10 +76,9 @@
 
   @import url('https://fonts.googleapis.com/css?family=Playfair+Display');
 
-  #headerText {
-
+  p.titleText {
     font-family: "Playfair Display", Georgia, Serif;
-    font-size: 10vh;
+    font-size: 90px;
     font-stretch: expanded;
 
     text-align: center;
@@ -105,17 +86,16 @@
 
     color: #c0392b;
 
+
     border: 0px;
     border-bottom-width: 1px;
     border-bottom-color: #c0392b;
     border-style: solid;
 
     margin-bottom: 2vh;
-
   }
 
   p.blockText {
-
     text-decoration: none;
     font-family: "Raleway", Arial, Sans-serif;
     font-size: 4vh;
@@ -133,27 +113,19 @@
   }
 
   p.aboutText {
-
     font-size: 3vh;
     font-weight: 200;
 
     color: #000;
 
     text-align: justify;
-
   }
 
   .authorText {
-
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-
     font-family: Arial, sans-serif;
     font-size: 1.7vh;
 
     color: #333;
-
   }
 
   /*
