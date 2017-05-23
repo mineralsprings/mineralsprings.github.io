@@ -145,10 +145,6 @@
 
   .authorText {
 
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-
     font-family: Arial, sans-serif;
     font-size: 1.7vh;
 
