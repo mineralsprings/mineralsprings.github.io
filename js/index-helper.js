@@ -56,7 +56,6 @@ function showGLogin() {
 function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
-  document.getElementById("signout-button").style.display = "inline-block";
 
   currentGoogleUser = googleUser;
 
@@ -65,6 +64,8 @@ function onSignIn(googleUser) {
     document.getElementsByClassName("block")[x].removeAttribute("hidden");
 
   }
+
+  document.getElementById("googleSignInWrapper").createAttribute("hidden");
 
   var id_token = googleUser.getAuthResponse().id_token;
 
