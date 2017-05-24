@@ -65,8 +65,6 @@ function onSignIn(googleUser) {
 
   }
 
-  document.getElementById("googleSignInWrapper").createAttribute("hidden");
-
   var signInButton = document.getElementById("googleSignInWrapper");
   var att = document.createAttribute("hidden");
   signInButton.setAttributeNode(att);
