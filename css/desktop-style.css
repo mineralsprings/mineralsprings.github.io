@@ -76,7 +76,7 @@
 
     text-align: center;
 
-    width: 79.8vw;
+    width: 100vw;
     height: 20vh;
 
     display: inline-block;
@@ -94,6 +94,9 @@
 
     background-color: #0000ff;
 
+    margin-left: auto;
+    margin-right: auto;
+
   }
 
   #backButton {
@@ -106,6 +109,9 @@
     display: inline-block;
 
     background-color: #ff0000;
+
+    margin-left: auto;
+    margin-right: auto;
 
   }
 
