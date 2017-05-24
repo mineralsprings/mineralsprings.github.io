@@ -34,17 +34,17 @@ function getXHRCallable() {
 function httpGetAsync(theUrl, callback, failfun) {
 
   var xmlHttp = getXHRCallable();
+  xmlHttp.open("GET", theUrl, true); // true for asynchronous
 
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === 4) {
       if (xmlHttp.status === 200) {
         callback(xmlHttp.responseText);
       } else {
-        failfun(theUrl, xmlHttp);
+        failfun(xmlHttp, theUrl);
       }
     }
   }
-  xmlHttp.open("GET", theUrl, true); // true for asynchronous
   xmlHttp.send(null); // connection close
 }
 

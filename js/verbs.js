@@ -6,11 +6,11 @@ googleAPIFile = {
       if (response === "google-site-verification: googlebb7e3fa23640d3b2.html") {
         console.log("auth ok");
         elt.style.color = "green";
-        elt.innerHTML += "OK";
+        elt.innerHTML += " OK";
       } else {
         console.log("auth no good");
         elt.style.color = "red";
-        elt.innerHTML += "missing";
+        elt.innerHTML += " missing";
       }
     },
   err:
@@ -19,7 +19,7 @@ googleAPIFile = {
       console.log("failed to GET " + url + " returned " + resp.status.toString());
       console.log("auth no good");
       elt.style.color = "red";
-      elt.innerHTML += "missing";
+      elt.innerHTML += " missing";
     }
 };
 
@@ -39,12 +39,12 @@ catnipCDNUp = {
         console.log("catnip ok");
         writeConnTimeStats(rsp["time"]);
         elt.style.color = "green";
-        elt.innerHTML += "OK";
+        elt.innerHTML += " OK";
 
       } else {
         console.log("catnip no good");
         elt.style.color = "red";
-        elt.innerHTML += "missing";
+        elt.innerHTML += " missing";
       }
     },
   err:
@@ -53,7 +53,7 @@ catnipCDNUp = {
       console.log("failed to POST to " + url + " returned " + resp.status.toString());
       console.log("catnip no good");
       elt.style.color = "red";
-      elt.innerHTML += "missing";
+      elt.innerHTML += " missing";
     }
 };
 

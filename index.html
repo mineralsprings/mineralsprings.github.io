@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang='en'>
 
-<head>
+  <head>
 
-  <!-- EXTERNAL RESOURCES -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200,400|Playfair+Display" >
+    <!-- EXTERNAL RESOURCES -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200,400|Playfair+Display" >
 
-  <!-- GOOGLE SIGNIN -->
-  <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
+    <!-- GOOGLE SIGNIN -->
+    <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
 
-  <!-- SCRIPTS -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"    ></script>
-  <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"    ></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" async></script>
 
-  <script type="text/javascript" src="js/common_funcs.js" ></script>
-  <script type="text/javascript" src="js/verbs.js" ></script>
-  <script type="text/javascript" src="js/index-helper.js" ></script>
+    <script type="text/javascript" src="js/common_funcs.js" ></script>
+    <script type="text/javascript" src="js/verbs.js" ></script>
+    <script type="text/javascript" src="js/index-helper.js" ></script>
 
-  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+    <script type="text/javascript" src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
-  <!-- ICONS -->
-  <link rel="icon"          type="x-icon" href="img/icon.png">
-  <link rel="shortcut icon" type="x-icon" href="img/icon.png">
+    <!-- ICONS -->
+    <link rel="icon"          type="x-icon" href="img/icon.png">
+    <link rel="shortcut icon" type="x-icon" href="img/icon.png">
 
-  <!-- CSS -->
-  <link rel='stylesheet'                  href='css/mobile-style.css'>
-  <link rel='stylesheet'                  href='css/desktop-style.css'>
-  <link rel='stylesheet'                  href='css/base-style.css'>
-  <link rel='stylesheet'                  href='css/fadein.css'>
+    <!-- CSS -->
+    <link rel='stylesheet'                  href='css/mobile-style.css'>
+    <link rel='stylesheet'                  href='css/desktop-style.css'>
+    <link rel='stylesheet'                  href='css/base-style.css'>
+    <link rel='stylesheet'                  href='css/fadein.css'>
 
-  <!-- TITLE -->
-  <title>Mineral Springs Order Placement | mineralsprings.github.io</title>
+    <!-- TITLE -->
+    <title>Mineral Springs Order Placement | mineralsprings.github.io</title>
 
-</head>
+  </head>
 
   <header>
     <div id='backButton'>
-
+      go Back
     </div>
     <p id='headerText'>
       Mineral Springs
     </p>
     <div id='profileButton'>
-
+      YOU
     </div>
-  </div>
+
   </header>
 
   <body onload='bodyLoader();'>
@@ -65,22 +65,9 @@
         <p class="hoverButtonText">to use this app</p>
       </div>
 
-      <div class="block leftBlock" onclick="javascript:loadContent('order')" hidden>
-        <p class="blockText">Order</p>
-        <p class="hoverButtonText">make an order ahead of time</p>
-      </div>
-      <div class="block rightBlock" onclick="javascript:loadContent('menu')" hidden>
-        <p class="blockText">Menu</p>
-        <p class="hoverButtonText">see what's hot</p>
-      </div>
-
       <div id="googleSignIn">
         <div class="google-signin" id="glogin" style="display: none;">
         </div>
-      </div>
-
-      <div class="signout-button" id="signout-button" style="display: none;">
-        Sign Out
       </div>
 
     </div>
