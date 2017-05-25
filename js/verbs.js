@@ -58,16 +58,14 @@ catnipCDNUp = {
 };
 
 defaultJSONObjs = {
-  ping: function () {
-    return {
-      "verb": "ping",
-      "data": {
-        "ping": "hello",
-      },
-      "time": {
-        "conn_init": microTime(),
-        "conn_finish": null
-      }
+  ping: {
+    "verb": "ping",
+    "data": {
+      "ping": "hello",
+    },
+    "time": {
+      "conn_init": microTime(),
+      "conn_finish": null
     }
   },
 

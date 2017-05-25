@@ -38,7 +38,7 @@ function onSignIn(googleUser) {
   currentGoogleUser = googleUser;
 
   afterGLoginWriter();
-  
+
 
   var id_token = googleUser.getAuthResponse().id_token;
 

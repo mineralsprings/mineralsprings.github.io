@@ -14,7 +14,7 @@ function loadContent(page) {
     function (response) {
       // need to animate this somehow
       var inject = response;
-      document.getElementsbyTagName("body").innerHTML = inject;
+      document.getElementsByTagName("body")[0].innerHTML += inject;
     },
 
     function (url, req) {
@@ -27,7 +27,7 @@ function loadContent(page) {
 }
 
 function afterGLoginWriter() {
-  var fnames = [ "aboutbutton", "bigbuttons", "updatebuttons" ];
+  var fnames = [ "aboutbutton", "bigbuttons", "updatebutton" ];
   for (var i = 0; i < fnames.length; i++) {
     var abspath = "views/pre_" + fnames[i] + ".html";
     httpGetAsync(
@@ -35,11 +35,11 @@ function afterGLoginWriter() {
       function (response) {
         // need to animate this somehow
         var inject = response;
-        document.getElementsbyTagName("body").innerHTML = inject;
+        document.getElementsByTagName("body")[0].innerHTML += inject;
       },
 
       function (url, req) {
-        console.log("failed to inject " + pname);
+        console.log("failed to inject elt " + abspath);
         // well this ocurrence is a developer screw up so idk what else to put here
       }
 

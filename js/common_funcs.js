@@ -14,7 +14,7 @@ function parseAndWrite(json, key, elm_id, lead, foll) {
 
 function hideElements(className) {
   var blocks = document.getElementsByClassName(className);
-  for (var i = 0; i < .length; i++) {
+  for (var i = 0; i < blocks.length; i++) {
     blocks[i].style.display = "none";
   }
 
