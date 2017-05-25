@@ -5,10 +5,26 @@ function async(your_function, callback) {
     }, 0);
 }
 
+
 function parseAndWrite(json, key, elm_id, lead, foll) {
   console.log(json);
   document.getElementById(elm_id).innerHTML = lead + JSON.parse(json)[key] + foll;
 }
+
+
+function hideElements(className) {
+  var blocks = document.getElementsByClassName(className);
+  for (var i = 0; i < .length; i++) {
+    blocks[i].style.display = "none";
+  }
+
+}
+
+
+function microTime() {
+  return 1000 * new Date();
+}
+
 
 function getXHRCallable() {
   var xmlHttp;
@@ -25,6 +41,7 @@ function getXHRCallable() {
     console.log("no way to XMLHttpRequest, giving up");
     // you're drunk
     throw new Error("don't know how internet works HTTP anymore?????");
+    alert("don't know how internet works HTTP anymore?????");
   }
 
   return xmlHttp;
@@ -47,6 +64,7 @@ function httpGetAsync(theUrl, callback, failfun) {
   }
   xmlHttp.send(null); // connection close
 }
+
 
 function httpPostAsync(theUrl, callback, failfun, data) {
   var xmlHttp = getXHRCallable();

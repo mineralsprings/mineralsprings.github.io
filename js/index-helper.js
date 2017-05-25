@@ -10,7 +10,7 @@ function checkGoogleAuthVerificationExists() {
 
 function writeConnTimeStats(time) {
   var diff = Math.abs(time["conn_init"] - time["conn_finish"]);
-  console.log("connection to the CDN took " + diff.toString() + "msec");
+  console.log("connection to the CDN took " + diff.toString() + "usec");
 }
 
 function checkCatnipCDNStatusOk() {
@@ -22,24 +22,6 @@ function checkCatnipCDNStatusOk() {
   );
 }
 
-/*function loadContent(page) {
-  httpGetAsync(
-    "views/" + page + ".html",
-
-    function (response) {
-      // need to animate this somehow
-      var inject = response;
-      document.getElementById("buttonWrapper").innerHTML = inject;
-    },
-
-    function (url, req) {
-      console.log("failed to inject " + page + ".html");
-      // well this ocurrence is a developer screw up so idk what else to put here
-    }
-
-  );
-
-}*/
 
 /* developer env vs production server */
 function getServerHostForEnv() {
@@ -48,10 +30,6 @@ function getServerHostForEnv() {
     : "https://catnipcdn.pagekite.me" ;
 }
 
-function showGLogin() {
-  document.getElementById("bigcircle").style.display = "none";
-  document.getElementById("glogin").style.display    = "inline-block";
-}
 
 function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
@@ -59,16 +37,10 @@ function onSignIn(googleUser) {
 
   currentGoogleUser = googleUser;
 
-  for(var x = 0; x < document.getElementsByClassName("block").length; x++) {
-
-    document.getElementsByClassName("block")[x].removeAttribute("hidden");
-
-  }
-
-  document.getElementById("googleSignInWrapper").createAttribute("hidden");
+  afterGLoginWriter();
+  
 
   var id_token = googleUser.getAuthResponse().id_token;
-
 
   httpPostAsync(
     getServerHostForEnv(),
@@ -104,7 +76,6 @@ function signOut() {
     document.getElementById("google-signin").style.display = "none";
   });
 }
-
 
 function haveJS () {
   console.log("have JS (duh)");

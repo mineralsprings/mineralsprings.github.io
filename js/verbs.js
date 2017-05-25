@@ -29,7 +29,7 @@ catnipCDNUp = {
       //console.log(response);
       var rsp = JSON.parse(response),
           elt = document.getElementById("cdn-api-check");
-      rsp["time"]["conn_finish"] = +new Date();
+      rsp["time"]["conn_finish"] = microTime();
       console.log(rsp);
 
       if (
@@ -58,14 +58,16 @@ catnipCDNUp = {
 };
 
 defaultJSONObjs = {
-  ping: {
-    "verb": "ping",
-    "data": {
-      "ping": "hello",
-    },
-    "time": {
-      "conn_init": +new Date(),
-      "conn_finish": null
+  ping: function () {
+    return {
+      "verb": "ping",
+      "data": {
+        "ping": "hello",
+      },
+      "time": {
+        "conn_init": microTime(),
+        "conn_finish": null
+      }
     }
   },
 
@@ -76,7 +78,7 @@ defaultJSONObjs = {
         'gapi_key': tok
       },
       "time": {
-        "conn_init": +new Date(),
+        "conn_init": microTime(),
         "conn_finish": null
       }
     }
