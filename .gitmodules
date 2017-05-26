@@ -1,0 +1,3 @@
+[submodule "jsonform"]
+	path = jsonform
+	url = https://github.com/ulion/jsonform
