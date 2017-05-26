@@ -111,6 +111,8 @@
     margin-left: auto;
     margin-right: auto;
 
+    background-size: 10vw 10vw;
+
   }
 
   div.authorTag {
@@ -138,6 +140,32 @@
   footer {
 
     height: 20vh;
+
+  }
+
+  /*
+  IMAGE THINGS
+  */
+
+  #backButton > img {
+
+    height: 4vw;
+    width: 4vw;
+
+    transform: translateX(-80%);
+
+    transition-duration: 0.66s;
+
+  }
+
+  #backButton > img:hover {
+
+    height: 4vw;
+    width: 4vw;
+
+    transform: translateX(-90%);
+
+    transition-duration: 0.66s;
 
   }
 
