@@ -29,14 +29,13 @@ function onSignIn(googleUser) {
 
   currentGoogleUser = googleUser;
 
-  afterGLoginWriter();
-
   var id_token = googleUser.getAuthResponse().id_token;
 
   httpPostAsync(
     getServerHostForEnv(),
     function (response) {
       var info = JSON.parse(response);
+      afterGLoginWriter();
       console.log(info);
     },
     function (url, req) {

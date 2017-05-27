@@ -1,7 +1,7 @@
 function loadContent(page) {
   var pmap = {
     "menu": "menuviewer",
-    "edit": "menuinput",
+    "edit": "editinput",
     "order": "orderinput",
     "about": "aboutpage"
   };
@@ -14,7 +14,7 @@ function loadContent(page) {
     function (response) {
       // need to animate this somehow
       var inject = response;
-      document.getElementsByTagName("buttonWrapper")[0].innerHTML += inject;
+      document.getElementById("buttonWrapper")[0].innerHTML += inject;
     },
 
     function (url, req) {
@@ -35,7 +35,7 @@ function afterGLoginWriter() {
       function (response) {
         // need to animate this somehow
         var inject = response;
-        document.getElementsByTagName("buttonWrapper")[0].innerHTML += inject;
+        document.getElementById("buttonWrapper")[0].innerHTML += inject;
       },
 
       function (url, req) {
@@ -46,6 +46,7 @@ function afterGLoginWriter() {
     );
   }
 
+  document.getElementById("googleSignInWrapper").style.display = "none";
 
 /*  var blocks = document.getElementsByClassName("block");
 
@@ -54,7 +55,6 @@ function afterGLoginWriter() {
 
   }
 */
-  document.getElementById("googleSignInWrapper").style.display = "none";
 }
 
 function showGLogin() {
