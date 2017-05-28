@@ -42,7 +42,7 @@ function onSignIn(googleUser) {
       console.log(info);
     },
     function (url, req) {
-      console.log(req.responseText);
+      console.log("failed " + req);
     },
     JSON.stringify(defaultJSONObjs.initial_gapi_validate(id_token))
   );
