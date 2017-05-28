@@ -5,12 +5,12 @@ function async(your_function, callback) {
     }, 0);
 }
 
-
+/*
 function parseAndWrite(json, key, elm_id, lead, foll) {
   console.log(json);
   document.getElementById(elm_id).innerHTML = lead + JSON.parse(json)[key] + foll;
 }
-
+*/
 
 function hideElements(className) {
   var blocks = document.getElementsByClassName(className);

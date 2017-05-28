@@ -1,52 +1,11 @@
-<!doctype html>
-<html>
-<head>
+<form id="edit-form">
+  <button type="button" name="button" onclick="javascript:formResizer.addItem();">Add an item</button>
+  <button type="button" name="button" onclick="javascript:formResizer.removeLast();">Remove last item</button>
 
-</head>
-<body>
+  <input type="checkbox" default="false" name="is_buffet" id="is_buffet">Is this a buffet menu?</input>
+  <fieldset name="default" id="field-default">
+    <input type="text" name="default.text-default" style="width: 20em;"/>
+  </fieldset>
+  <button type="button" onclick="javascript:formExtract('edit-form')" />
 
-  <form id="edit-form">
-    <button type="button" name="button" onclick="javascript:formMan.addItem();">Add an item</button>
-    <button type="button" name="button" onclick="javascript:formMan.removeItem();">Remove last item</button>
-
-    <fieldset id="field-default">
-      <input type="text" style="width: 20em;"/>
-    </fieldset>
-
-  </form>
-
-  <script >
-    var formMan = {
-
-      counter: 1,
-
-      addItem: function () {
-        document.getElementById("edit-form").innerHTML += `<fieldset class"field" id="field-`
-        + formMan.counter + `">
-        <input type="text" style="width: 20em;"/>
-        <button type="button" name="button" onclick="javascript:formMan.removeItem(`
-          + formMan.counter + `);">Remove this item</button>
-        </fieldset>`;
-        ++formMan.counter;
-      },
-
-      removeItem: function (n) {
-        if (typeof n === 'undefined') {
-          var fields    = document.getElementsByTagName("fieldset");
-          var lastfield = fields.item(fields.length - 1);
-          lastfield.parentNode.removeChild(lastfield);
-          return;
-        }
-        --formMan.counter;
-        if (0 === n) { return; }
-        var elem = document.getElementById("field-" + n);
-        elem.parentNode.removeChild(elem);
-      }
-    }
-  </script>
-
-</body>
-</html>
-
-
-
+</form>

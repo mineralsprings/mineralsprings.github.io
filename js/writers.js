@@ -14,7 +14,7 @@ function loadContent(page) {
     function (response) {
       // need to animate this somehow
       var inject = response;
-      document.getElementById("buttonWrapper")[0].innerHTML += inject;
+      document.getElementById("buttonWrapper").innerHTML += inject;
     },
 
     function (url, req) {
@@ -27,34 +27,42 @@ function loadContent(page) {
 }
 
 function afterGLoginWriter() {
-  var fnames = [ "aboutbutton", "bigbuttons", "updatebutton" ];
-  for (var i = 0; i < fnames.length; i++) {
-    var abspath = "views/pre_" + fnames[i] + ".html";
-    httpGetAsync(
-      abspath,
-      function (response) {
-        // need to animate this somehow
-        var inject = response;
-        document.getElementById("buttonWrapper")[0].innerHTML += inject;
-      },
+  async(
+    function() {
+      document.getElementById("googleSignInWrapper").style.display = "none";
+      document.getElementById("bigcircle").style.display = "none";
+    },
 
-      function (url, req) {
-        console.log("failed to inject elt " + abspath);
-        // well this ocurrence is a developer screw up so idk what else to put here
+    function () {
+
+      var fnames = [ "bigbuttons" ];
+
+      if (null !== currentGoogleUser) {
+        fnames.push(
+          [ "aboutbutton", "updatebutton" ][ + currentGoogleUser.nih_info.is_elevated ]
+        );
       }
 
-    );
-  }
+      for (var i = 0; i < fnames.length; i++) {
+        var abspath = "views/pre_" + fnames[i] + ".html";
+        httpGetAsync(
+          abspath,
+          function (response) {
+            // need to animate this somehow
+            var inject = response;
+            document.getElementById("buttonWrapper").innerHTML += inject;
+          },
 
-  document.getElementById("googleSignInWrapper").style.display = "none";
+          function (url, req) {
+            console.log("failed to inject elt " + abspath);
+            // well this ocurrence is a developer screw up so idk what else to put here
+          }
 
-/*  var blocks = document.getElementsByClassName("block");
+        );
+      }
+    }
+  );
 
-  for(var x = 0; x < blocks.length; x++) {
-    blocks[x].style.display = "inline-block";
-
-  }
-*/
 }
 
 function showGLogin() {

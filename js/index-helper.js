@@ -1,4 +1,4 @@
-currentGoogleUser = null;
+var currentGoogleUser = null;
 
 function checkGoogleAuthVerificationExists() {
   httpGetAsync(
@@ -27,7 +27,8 @@ function onSignIn(googleUser) {
   // Useful data for your client-side scripts:
   console.log("clicked sign in");
 
-  currentGoogleUser = googleUser;
+  currentGoogleUser = {};
+  currentGoogleUser.vendor = googleUser;
 
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -35,6 +36,8 @@ function onSignIn(googleUser) {
     getServerHostForEnv(),
     function (response) {
       var info = JSON.parse(response);
+      // NOTE: VALIDATE THIS!!!!
+      currentGoogleUser.nih_info = info.data.gapi_info;
       afterGLoginWriter();
       console.log(info);
     },
