@@ -10,9 +10,9 @@
 
 <form id="edit-form">
 
-  <button type="button" onclick="javascript:formExtract('edit-form')"> Submit </button>
-  <button type="button" name="button" onclick="javascript:formResizer.addItem();"> Add an item </button>
-  <button type="button" name="button" onclick="javascript:formResizer.removeLast();"> Remove last item </button>
+  <button type="button" onclick="javascript:formExtract(this)"> Submit </button>
+  <button type="button" name="button" onclick="javascript:formResizer.addItem(this);"> Add an item </button>
+  <button type="button" name="button" onclick="javascript:formResizer.removeLast(this);"> Remove last item </button>
 
   <input type="checkbox" default="false" name="is_buffet" id="is_buffet">Is this a buffet menu?</input>
 
@@ -29,7 +29,7 @@
       Price:
       <input type="number" name="default-price" value=""/>
     </label>
-    <label>
+    <label onclick="javascript:doSpecialCheckBox(this)">
       Options?
       <input type="checkbox" name="default-options" value=""/>
     </label>

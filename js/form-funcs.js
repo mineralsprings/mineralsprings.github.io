@@ -27,7 +27,7 @@ var formResizer = {
           Price:
           <input type="number" name="` + newname + `-price" value=""/>
         </label>
-        <label>
+        <label onclick="javascript:doSpecialCheckBox(this)">
           Options?
           <input type="checkbox" name="` + newname + `-options" value=""/>
         </label>`;
@@ -66,4 +66,34 @@ function formExtract(name) {
     items[fs.id] = res;
   }
   console.log(items)
+}
+
+function doSpecialCheckBox(ctx) {
+  var cbox    = ctx.getElementsByTagName("input")[0],
+      checked = cbox.checked,
+      parent  = ctx.parentNode;
+
+  var optform =
+    `<fieldset
+      class='options-field'
+      id='` + cbox.name + `-fieldset'
+      name='` + cbox.name + `-fieldset'
+    >
+      <label>
+        Name:
+        <input type='text' name='` + cbox.name + `-fieldset-name'/>
+      </label>
+    </fieldset>`
+    ;
+
+  if (checked) {
+    parent.insertAdjacentHTML("beforeend", optform);
+  } else {
+    parent.removeChild(document.getElementById(cbox.name + "-fieldset"))
+  }
+}
+
+function testFormsOffline(elv) {
+  currentGoogleUser = { nih_info: {is_elevated: true } };
+  afterGLoginWriter();
 }
