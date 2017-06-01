@@ -14,7 +14,7 @@ function loadContent(page) {
     function (response) {
       // need to animate this somehow
       var inject = response;
-      document.getElementById("buttonWrapper").innerHTML += inject;
+      document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", inject);
     },
 
     function (url, req) {
@@ -50,7 +50,7 @@ function afterGLoginWriter() {
           function (response) {
             // need to animate this somehow
             var inject = response;
-            document.getElementById("buttonWrapper").innerHTML += inject;
+            document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", inject);
           },
 
           function (url, req) {

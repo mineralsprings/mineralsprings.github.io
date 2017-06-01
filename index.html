@@ -39,23 +39,24 @@
 
   </head>
 
-  <header>
+  <body onload='mainLoader();'>
 
-    <div id='backButton'>
-      <img src='img/back-arrow.svg' style="height: 3em;"/>
-    </div>
+    <header>
 
-    <div id='headerText'>
-      <p>
-        Mineral Springs
-      </p>
-    </div>
+      <div id='backButton'>
+        <img src='img/back-arrow.svg' style="height: 3em;"> </img>
+      </div>
 
-    <div id='profileButton'>
-    </div>
+      <div id='headerText'>
+        <p>
+          Mineral Springs
+        </p>
+      </div>
 
-  </header>
-  <body onload='bodyLoader();'>
+      <div id='profileButton'>
+      </div>
+
+    </header>
 
     <div id="alert" >
       The web client requires client-side JavaScript to work.
@@ -73,34 +74,34 @@
       </div>
 
       <div id="googleSignInWrapper">
-        <div class="google-signin" id="glogin" style="display: none;">
+        <div class="google-signin" id="glogin" style="display: none;"> </div>
       </div>
 
     </div>
 
     <img src="img/cat-icon.svg" class="ld ld-flip-h" style="animation-duration:2.0s; display: none;"/>
+
+    <footer>
+      <span class="bottom-status links-bottom">
+        the
+        <a class="authorText links-bottom" href="//github.com/mineralsprings/mineralsprings.github.io">open source Mineral Springs Webapp</a>
+        | courtesy of
+        <a class="authorText links-bottom" href="//github.com/mattb0t">Matthew Ballou</a>
+        &amp;
+        <a class="authorText links-bottom" href="//github.com/catb0t">Cat Stevens</a>
+
+        | hosting for this project is graciously provided for free by
+        <a class="bigger-link" target="_blank" href="//pagekite.net">PageKite.net</a>
+        and
+        <a class="bigger-link"  target="_blank" href="//github.io">GitHub Pages </a>
+        <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >
+          | Google API Registration Token&nbsp;
+        </a>
+        <a class="smaller-link" target="_blank" href="//catnipcdn.pagekite.me" id="cdn-api-check" >
+          | CatnipCDN API
+        </a>
+      </p>
+    </footer>
   </body>
-
-  <footer>
-    <span class="bottom-status links-bottom">
-      the
-      <a class="authorText links-bottom" href="//github.com/mineralsprings/mineralsprings.github.io">open source Mineral Springs Webapp</a>
-      | courtesy of
-      <a class="authorText links-bottom" href="//github.com/mattb0t">Matthew Ballou</a>
-      &amp;
-      <a class="authorText links-bottom" href="//github.com/catb0t">Cat Stevens</a>
-
-      | hosting for this project is graciously provided for free by
-      <a class="bigger-link" target="_blank" href="//pagekite.net">PageKite.net</a>
-      and
-      <a class="bigger-link"  target="_blank" href="//github.io">GitHub Pages </a>
-      <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >
-        | Google API Registration Token&nbsp;
-      </a>
-      <a class="smaller-link" target="_blank" href="//catnipcdn.pagekite.me" id="cdn-api-check" >
-        | CatnipCDN API
-      </a>
-    </p>
-  </footer>
 
 </html>

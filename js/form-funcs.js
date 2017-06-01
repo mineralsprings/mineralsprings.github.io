@@ -73,18 +73,41 @@ function doSpecialCheckBox(ctx) {
       checked = cbox.checked,
       parent  = ctx.parentNode;
 
-  var optform =
-    `<fieldset
-      class='options-field'
-      id='` + cbox.name + `-fieldset'
-      name='` + cbox.name + `-fieldset'
-    >
-      <label>
+  var optform = `
+      <label class='options-label'>
         Name:
-        <input type='text' name='` + cbox.name + `-fieldset-name'/>
+        <input type='text' name='` + cbox.name + `-options0-name'/>
       </label>
-    </fieldset>`
-    ;
+
+      <label class='options-label'>
+        Price:
+        <input type='number' name='` + cbox.name + `-options0-price'/>
+      </label>
+
+      <br>
+
+      <label class='options-label'>
+        Name:
+        <input type='text' name='` + cbox.name + `-options1-name'/>
+      </label>
+
+      <label class='options-label'>
+        Price:
+        <input type='number' name='` + cbox.name + `-options1-price'/>
+      </label>
+
+      <br>
+
+      <label class='options-label'>
+        Name:
+        <input type='text' name='` + cbox.name + `-options2-name'/>
+      </label>
+
+      <label class='options-label'>
+        Price:
+        <input type='number' name='` + cbox.name + `-options2-price'/>
+      </label>
+    `;
 
   if (checked) {
     parent.insertAdjacentHTML("beforeend", optform);

@@ -66,7 +66,7 @@ function signOut() {
 
   auth2.signOut().then(function () {
     console.log('User signed out.');
-    document.getElementById("google-signin").style.display = "none";
+    //document.getElementById("google-signin").style.display = "none";
   });
 }
 
@@ -76,7 +76,7 @@ function haveJS () {
   document.getElementById("buttonWrapper").style.display = "inherit";
 }
 
-function bodyLoader() {
+function mainLoader() {
   // faster
   async(haveJS, function () {
     async(checkGoogleAuthVerificationExists, checkCatnipCDNStatusOk);
