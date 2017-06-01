@@ -94,6 +94,6 @@ function doSpecialCheckBox(ctx) {
 }
 
 function testFormsOffline(elv) {
-  currentGoogleUser = { nih_info: {is_elevated: true } };
+  currentGoogleUser = { nih_info: { is_elevated: elv } };
   afterGLoginWriter();
 }
