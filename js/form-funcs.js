@@ -42,7 +42,7 @@ var formResizer = {
 
   removeLast: function () {
     var lastfield = formResizer._getLastFieldSet();
-    if (null === lastfield) { return; }
+    if (null === lastfield || lastfield.id.match(/^default/)) { return; }
     lastfield.parentNode.removeChild(lastfield);
   },
 
