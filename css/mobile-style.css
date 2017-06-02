@@ -59,6 +59,26 @@
 
   }
 
+  #profileButton {
+
+    vertical-align: middle;
+
+    display: inline-block;
+
+    background-color: #c0392b;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 9vw;
+
+    width: 9vw;
+    height: 9vw;
+
+    background-color: #ccc;
+
+  }
+
   /*
 
   */
