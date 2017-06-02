@@ -42,7 +42,8 @@ var formResizer = {
 
   removeLast: function () {
     var lastfield = formResizer._getLastFieldSet();
-    if (null === lastfield || lastfield.id.match(/^default/)) { return; }
+    if ( null === lastfield || lastfield.id.match(/default/) ) { return; }
+    // don't modify the counter
     lastfield.parentNode.removeChild(lastfield);
   },
 
