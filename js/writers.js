@@ -34,7 +34,7 @@ function afterGLoginWriter() {
         document.getElementById("googleSignInWrapper"),
         document.getElementById("bigcircle")
       ];
-      
+
       for (e of elems) {
         if (e) {
           e.parentNode.removeChild(e);
