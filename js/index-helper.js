@@ -72,14 +72,31 @@ function signOut() {
 
 function haveJS () {
   console.log("have JS (duh)");
-  document.getElementById("alert").style.display = "none";
-  document.getElementById("buttonWrapper").style.display = "inherit";
+  var alert = document.getElementById("alert");
+  alert.parentNode.removeChild(alert);
+  /*document.getElementById("buttonWrapper").style.display = "inherit";*/
 }
 
 function mainLoader() {
   // faster
-  async(haveJS, function () {
-    async(checkGoogleAuthVerificationExists, checkCatnipCDNStatusOk);
-  });
-  //haveJS(); checkGoogleAuthVerificationExists();
+  async(
+    haveJS,
+    async(
+      function () {
+        async(checkGoogleAuthVerificationExists, checkCatnipCDNStatusOk);
+      },
+      initialLoader
+    )
+  );
+}
+
+function doLoadingIconToggle (state, name) {
+  console.log("loading " + (state ? "on" : "off") + " caller: " + name);
+  document.getElementById("loading").style.display = state ? "inline-block" : "none";
+}
+
+function callLoader(fun) {
+  doLoadingIconToggle(true, fun.name);
+  fun();
+  doLoadingIconToggle(false, fun.name);
 }

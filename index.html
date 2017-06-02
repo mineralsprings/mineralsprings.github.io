@@ -3,6 +3,8 @@
 
   <head>
 
+    <meta charset="utf-8">
+
     <!-- EXTERNAL RESOURCES -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:200,400|Playfair+Display" >
@@ -18,8 +20,6 @@
     <script type="text/javascript" src="js/verbs.js" ></script>
     <script type="text/javascript" src="js/writers.js" ></script>
     <script type="text/javascript" src="js/index-helper.js" ></script>
-
-    <script type="text/javascript" src="js/jquery.serialize-object.min.js" ></script>
     <script type="text/javascript" src="js/form-funcs.js" ></script>
 
     <script type="text/javascript" src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
@@ -43,8 +43,8 @@
 
     <header>
 
-      <div id='backButton'>
-        <img src='img/back-arrow.svg' style="height: 3em;"> </img>
+      <div id='backButton' onclick="javascript:tryRenderMain()">
+        <img src='img/back-arrow.svg' style="height: 3em;" />
       </div>
 
       <div id='headerText'>
@@ -68,10 +68,7 @@
 
     <div id='buttonWrapper'>
 
-      <div class="block" id="bigcircle" onclick="javascript:showGLogin()">
-        <p class="blockText">Login to Google</p>
-        <p class="hoverButtonText">to use this app</p>
-      </div>
+      <!-- write things here ok -->
 
       <div id="googleSignInWrapper">
         <div class="google-signin" id="glogin" style="display: none;"> </div>
@@ -79,7 +76,8 @@
 
     </div>
 
-    <img src="img/cat-icon.svg" class="ld ld-flip-h" style="animation-duration: 4.0s; display: none;"/>
+    <!-- TODO: remove this inline css -->
+    <img src="img/cat-icon.svg" id="loading" class="ld ld-flip-h" style="animation-duration:2.0s; display: none; height: 10vh; width: 10vh;"/>
 
     <footer>
       <div class="bottom-status links-bottom">
