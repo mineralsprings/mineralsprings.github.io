@@ -1,0 +1,31 @@
+<!-- for testing individually -->
+<script type="text/javascript" src="../js/form-funcs.js"></script>
+
+<form id="edit-form">
+
+  <button type="button" onclick="javascript:formExtract(this)"> Submit </button>
+  <button type="button" name="button" onclick="javascript:formResizer.addItem(this);"> Add an item </button>
+  <button type="button" name="button" onclick="javascript:formResizer.removeLast(this);"> Remove last item </button>
+
+  <input type="checkbox" default="false" name="is_buffet" id="is_buffet">Is this a buffet menu?</input>
+
+  <fieldset class="field" name="default" name="field-default" id="field-default">
+    <label>
+      Item name:
+      <input type="text" name="default-name" value=""/>
+    </label>
+    <label>
+      Description:
+      <input type="textarea" name="default-desc" value=""/>
+    </label>
+    <label>
+      Price:
+      <input type="number" name="default-price" value=""/>
+    </label>
+    <label onclick="javascript:doSpecialCheckBox(this)">
+      Options?
+      <input type="checkbox" name="default-options" value=""/>
+    </label>
+  </fieldset>
+
+</form>
