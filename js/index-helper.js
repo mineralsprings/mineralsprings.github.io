@@ -77,7 +77,7 @@ function haveJS () {
   /*document.getElementById("buttonWrapper").style.display = "inherit";*/
 }
 
-function mainLoader() {
+function firstLoader() {
   // faster
   async(
     haveJS,

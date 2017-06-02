@@ -34,43 +34,50 @@ function afterGLoginWriter() {
         document.getElementById("googleSignInWrapper"),
         document.getElementById("bigcircle")
       ];
-      
+
       for (e of elems) {
         if (e) {
           e.parentNode.removeChild(e);
         }
       }
     },
-
-    function () {
-
-      var fnames = [ "bigbuttons" ];
-
-      if (null !== currentGoogleUser) {
-        fnames.push(
-          [ "aboutbutton", "updatebutton" ][ + currentGoogleUser.nih_info.is_elevated ]
-        );
-      }
-
-      for (fn of fnames) {
-        var abspath = "views/pre_" + fn + ".html";
-        httpGetAsync(
-          abspath,
-          function (response) {
-            document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
-          },
-
-          function (url, req) {
-            console.log("failed to inject elt " + abspath);
-            // well this ocurrence is a developer screw up so idk what else to put here
-          }
-
-        );
-      }
-    }
+    mainPageLoader
   );
+
 }
 
+function mainPageLoader () {
+
+  var fnames = [ "bigbuttons" ];
+
+  if (null !== currentGoogleUser) {
+    fnames.push(
+      [ "aboutbutton", "updatebutton" ][ + currentGoogleUser.nih_info.is_elevated ]
+    );
+  }
+
+  var btnWrp = document.getElementById("buttonWrapper");
+
+  while (btnWrp.firstChild) {
+    btnWrp.removeChild(btnWrp.firstChild);
+  }
+
+  for (fn of fnames) {
+    var abspath = "views/pre_" + fn + ".html";
+    httpGetAsync(
+      abspath,
+      function (response) {
+        document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
+      },
+
+      function (url, req) {
+        console.log("failed to inject elt " + abspath);
+        // well this ocurrence is a developer screw up so idk what else to put here
+      }
+
+    );
+  }
+}
 
 function showGLogin() {
   callLoader(function () {
