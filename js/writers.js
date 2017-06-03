@@ -41,7 +41,13 @@ function afterGLoginWriter() {
         }
       }
     },
-    mainPageLoader
+    async(mainPageLoader,
+      function () {
+        var probutton = document.getElementById("profileButton");
+        probutton.style.backgroundImage = "url(" + currentGoogleUser.nih_info.picture + ")";
+        probutton.style.display = "inline-block";
+      }
+    )
   );
 
 }

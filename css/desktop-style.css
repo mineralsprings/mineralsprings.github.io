@@ -87,7 +87,7 @@
 
     vertical-align: middle;
 
-    display: inline-block;
+    display: none;
 
     background-color: #c0392b;
 
@@ -96,17 +96,36 @@
 
     border-radius: 4vw;
 
-    width: 4vw;
-    height: 4vw;
+    width: 5vw;
+    height: 5vw;
 
 /*    background-image: url(../img/cat-icon.svg);
     background-size: cover;*/
-    background-color: #ccc;
 
-    transform: translateX(55%);
 
+    transform: translateX(55%) translateY(-20%);
+    transition-duration: 1s;
 
   }
+
+  #profileButton:hover {
+    border-radius: 0.5vw;
+
+    border: 3px solid #a63326;
+
+    transition-duration: .5s;
+
+  }
+
+/*
+  #profileButton:hover + #signout-div  {
+    height: 2vh;
+    width: 3vw;
+    position: relative;
+    background-color: blue;
+    display: inline-block;
+  }
+*/
 
   #backButton {
 
@@ -121,6 +140,8 @@
     margin-right: auto;
 
     background-size: 10vw 10vw;
+
+    transform: translateY(-20%);
 
   }
 
