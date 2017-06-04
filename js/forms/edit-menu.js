@@ -73,12 +73,16 @@ var editMenuForm = {
     console.log(items)
   },
 
-  doSpecialCheckBox: function (ctx) {
-    var cbox    = ctx.getElementsByTagName("input")[0],
-        checked = cbox.checked,
-        parent  = ctx.parentNode;
+  doSpecialCheckBox: function (label) {
+    var cbox     = label.getElementsByTagName("input")[0],
+        checked  = cbox.checked,
+        topfield = label.parentElement;
+
+    console.log(checked);
+    return;
 
     var optform = `
+      <fieldset class="field" name="` + cbox.name + `-fieldset" id="` + cbox.name + `-fieldset">
         <label class='options-label'>
           Name:
           <input type='text' name='` + cbox.name + `-options0-name'/>
@@ -112,12 +116,16 @@ var editMenuForm = {
           Price:
           <input type='number' name='` + cbox.name + `-options2-price'/>
         </label>
-      `;
+      </fieldset>`;
 
     if (checked) {
-      parent.insertAdjacentHTML("beforeend", optform);
+      topfield.insertAdjacentHTML("beforeend", optform);
     } else {
-      parent.removeChild(document.getElementById(cbox.name + "-fieldset"))
+      var optfs_name = cbox.name + "-fieldset",
+               optfs = document.getElementById(optfs_name);
+               console.log(optfs_name);
+      console.log(optfs);
+      topfield.removeChild(optfs);
     }
   },
 
