@@ -94,7 +94,7 @@ footer {
   left: 0;
   padding-bottom: 1%;
   padding-top: 1%;
-  background-color: #aaa;
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 /*
@@ -157,7 +157,7 @@ p.aboutText {
 .authorText {
 
   font-family: Arial, sans-serif;
-  font-size: 1.7vh;
+  font-size: 1.5vh;
 
   color: #333;
 
@@ -222,7 +222,7 @@ BOTTOM LINKS
 
 a.smaller-link {
   flex: 1;
-  font-size: 1.3vh;
+  font-size: 1.25vh;
   font-weight: bolder;
 }
 

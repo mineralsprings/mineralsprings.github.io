@@ -42,19 +42,25 @@ catnipCDNUp = {
         elt.innerHTML += " OK";
 
       } else {
-        console.log("catnip no good");
-        elt.style.color = "red";
-        elt.innerHTML += " missing";
+        catnipCDNUp.cdn_no_good()
       }
     },
   err:
     function (url, resp) {
-      var elt = document.getElementById("cdn-api-check");
-      console.log("failed to POST to " + url + " returned " + resp.status.toString());
-      console.log("catnip no good");
-      elt.style.color = "red";
-      elt.innerHTML += " missing";
-    }
+      /*console.log("failed to POST to " + url + " returned " + resp.status.toString());*/
+      catnipCDNUp.cdn_no_good()
+    },
+
+  cdn_no_good: function() {
+    console.log("catnip no good");
+
+    var elt = document.getElementById("cdn-api-check");
+    elt.style.color = "red";
+    elt.innerHTML += " missing";
+    document.getElementById("bigcircle").addEventListener("mousedown", function() {
+      alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
+    });
+  }
 };
 
 defaultJSONObjs = {
@@ -65,7 +71,6 @@ defaultJSONObjs = {
     },
     "time": {
       "conn_init": microTime(),
-      "conn_finish": null
     }
   },
 
@@ -77,8 +82,17 @@ defaultJSONObjs = {
       },
       "time": {
         "conn_init": microTime(),
-        "conn_finish": null
       }
+    }
+  },
+  view_menu: function () {
+    return {
+      "verb": "view_menu",
+      "data": {},
+      "time": {
+        "conn_init": microTime()
+      },
+      "anticsrf": anticsrf.tok
     }
   }
 };

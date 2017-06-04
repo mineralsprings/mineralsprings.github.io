@@ -1,11 +1,11 @@
 <!-- for testing individually -->
-<script type="text/javascript" src="../js/form-funcs.js"></script>
+<script type="text/javascript" src="../js/forms/edit-order.js"></script>
 
 <form id="edit-form">
 
-  <button type="button" onclick="javascript:formExtract(this)"> Submit </button>
-  <button type="button" name="button" onclick="javascript:formResizer.addItem(this);"> Add an item </button>
-  <button type="button" name="button" onclick="javascript:formResizer.removeLast(this);"> Remove last item </button>
+  <button type="button" onclick="editOrderForm.formExtract(this)"> Submit </button>
+  <button type="button" name="button" onclick="editOrderForm.formResizer.addItem(this);"> Add an item </button>
+  <button type="button" name="button" onclick="editOrderForm.formResizer.removeLast(this);"> Remove last item </button>
 
   <input type="checkbox" default="false" name="is_buffet" id="is_buffet">Is this a buffet menu?</input>
 
@@ -22,7 +22,7 @@
       Price:
       <input type="number" name="default-price" value=""/>
     </label>
-    <label onclick="javascript:doSpecialCheckBox(this)">
+    <label onclick="editOrderForm.doSpecialCheckBox(this)">
       Options?
       <input type="checkbox" name="default-options" value=""/>
     </label>

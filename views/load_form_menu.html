@@ -1,13 +1,16 @@
 <!-- for testing individually -->
-<script type="text/javascript" src="../js/form-funcs.js"></script>
+<script type="text/javascript" src="../js/forms/edit-menu.js"></script>
 
 <form id="edit-form">
 
-  <button type="button" onclick="javascript:formExtract(this)"> Submit </button>
-  <button type="button" name="button" onclick="javascript:formResizer.addItem(this);"> Add an item </button>
-  <button type="button" name="button" onclick="javascript:formResizer.removeLast(this);"> Remove last item </button>
+  <button type="button" onclick="editMenuForm.formExtract(this)"> Submit </button>
+  <button type="button" name="button" onclick="editMenuForm.formResizer.addItem(this);"> Add an item </button>
+  <button type="button" name="button" onclick="editMenuForm.formResizer.removeLast(this);"> Remove last item </button>
 
-  <input type="checkbox" default="false" name="is_buffet" id="is_buffet">Is this a buffet menu?</input>
+  <label onclick="editMenuForm.doBuffetBox()">
+    Is this a buffet menu?
+    <input type="checkbox" default="false" name="is_buffet" id="is_buffet"/>
+  </label>
 
   <fieldset class="field" name="default" name="field-default" id="field-default">
     <label>
@@ -22,7 +25,7 @@
       Price:
       <input type="number" name="default-price" value=""/>
     </label>
-    <label onclick="javascript:doSpecialCheckBox(this)">
+    <label onclick="editMenuForm.doSpecialCheckBox(this)">
       Options?
       <input type="checkbox" name="default-options" value=""/>
     </label>

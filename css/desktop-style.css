@@ -10,6 +10,19 @@
 
   }
 
+  header {
+
+    background-color: #fafafa;
+
+    text-align: center;
+
+    width: 100vw;
+    height: 20vh;
+
+    display: inline-block;
+
+  }
+
   /*
   DIV THINGS
   */
@@ -28,36 +41,10 @@
     height: 30vh;
 
     margin-bottom: 2.5vh;
+    margin-left:  1vw;
+    margin-right: 1vw;
+
     transition-duration: 0.75s;
-
-  }
-
-  #bigcircle {
-
-    width: 40vh;
-    height: 40vh;
-
-    border-radius: 40vh;
-
-    position: relative;
-    top: 50%;
-
-    margin-top: auto;
-    margin-bottom: auto;
-
-  }
-
-  .leftBlock {
-
-    margin-left:  0.5vw;
-    margin-right: 0.5vw;
-
-  }
-
-  .rightBlock {
-
-    margin-left:  0.5vw;
-    margin-right: 0.5vw;
 
   }
 
@@ -70,18 +57,25 @@
 
   }
 
-  header {
+  div.smallBlock {
+    height: 22vh;
+  }
 
-    background-color: #fafafa;
+  #bigcircle {
 
-    text-align: center;
+    width:  40vh;
+    height: 40vh;
 
-    width: 100vw;
-    height: 20vh;
+    border-radius: 40vh;
 
-    display: inline-block;
+    position: relative;
+    top: 50%;
+
+    margin-top: auto;
+    margin-bottom: auto;
 
   }
+
 
   #profileButton {
 
@@ -96,24 +90,25 @@
 
     border-radius: 4vw;
 
-    width: 5vw;
-    height: 5vw;
+    width: 4.5vw;
+    height: 4.5vw;
 
 /*    background-image: url(../img/cat-icon.svg);
-    background-size: cover;*/
+*/
+    background-size: cover;
 
 
     transform: translateX(55%) translateY(-20%);
-    transition-duration: 1s;
+    transition-duration: .5s;
 
   }
 
   #profileButton:hover {
-    border-radius: 0.5vw;
+    border-radius: 1vw;
 
-    border: 3px solid #a63326;
+    border: 5px solid #c0392b;
 
-    transition-duration: .5s;
+    transition-duration: .3s;
 
   }
 
@@ -164,12 +159,6 @@
 
     height: auto;
     width: auto;
-
-  }
-
-  footer {
-/*
-    height: 20vh;*/
 
   }
 

@@ -1,4 +1,6 @@
 var currentGoogleUser = null;
+var viewIsHome = false;
+var anticsrf = {};
 
 function checkGoogleAuthVerificationExists() {
   httpGetAsync(
@@ -36,10 +38,14 @@ function onSignIn(googleUser) {
     getServerHostForEnv(),
     function (response) {
       var info = JSON.parse(response);
+      console.log(info);
+
+      anticsrf = info.data.anticsrf;
+
       // NOTE: VALIDATE THIS!!!!
       currentGoogleUser.nih_info = info.data.gapi_info;
+
       afterGLoginWriter();
-      console.log(info);
     },
     function (url, req) {
       console.log("failed " + req);
@@ -99,4 +105,9 @@ function callLoader(fun) {
   doLoadingIconToggle(true, fun.name);
   fun();
   doLoadingIconToggle(false, fun.name);
+}
+
+window.onbeforeunload = function () {
+  mainPageLoader();
+  return true;
 }

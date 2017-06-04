@@ -8,7 +8,7 @@
     <!-- GOOGLE SIGNIN -->
     <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
 
-    <script type="text/javascript" src="vendor/jquery-3.2.1.min.js" async></script>
+    <script type="text/javascript" src="vendor/jquery-3.2.1.min.js" ></script>
     <script type="text/javascript" src="vendor/bootstrap.min.js" async defer></script>
 
     <!-- EXTERNAL RESOURCES -->
@@ -19,7 +19,6 @@
     <script type="text/javascript" src="js/verbs.js" ></script>
     <script type="text/javascript" src="js/writers.js" ></script>
     <script type="text/javascript" src="js/index-helper.js" ></script>
-    <script type="text/javascript" src="js/form-funcs.js" ></script>
 
     <script type="text/javascript" src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
@@ -42,7 +41,7 @@
 
     <header>
 
-      <div id='backButton' onclick="javascript:mainPageLoader()">
+      <div title="Go Back" id='backButton' onclick="javascript:mainPageLoader()">
         <img src='img/back-arrow.svg' style="height: 3em;" alt="Go Back"/>
       </div>
 
@@ -52,8 +51,8 @@
         </p>
       </div>
 
-      <div id='profileButton'> </div>
-      <div class='signout' id="signout-div"> </div>
+      <div id='profileButton' title="Sign Out of Mineral Springs Webapp" onclick="javascript:doSignOut()"> </div>
+      <!--<div class='signout' id="signout-div"> </div>-->
 
     </header>
 
@@ -92,7 +91,7 @@
         <a class="bigger-link"  target="_blank" href="//github.io">GitHub Pages </a>
         |
         <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >
-          Google API Registration Token&nbsp;
+          Google API Registration Token
         </a>
         |
         <a class="smaller-link" target="_blank" href="//catnipcdn.pagekite.me" id="cdn-api-check" >
