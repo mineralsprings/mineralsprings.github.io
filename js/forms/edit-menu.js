@@ -78,8 +78,6 @@ var editMenuForm = {
         checked  = cbox.checked,
         topfield = label.parentElement;
 
-    console.log(checked);
-    return;
 
     var optform = `
       <fieldset class="field" name="` + cbox.name + `-fieldset" id="` + cbox.name + `-fieldset">
@@ -123,8 +121,7 @@ var editMenuForm = {
     } else {
       var optfs_name = cbox.name + "-fieldset",
                optfs = document.getElementById(optfs_name);
-               console.log(optfs_name);
-      console.log(optfs);
+
       topfield.removeChild(optfs);
     }
   },

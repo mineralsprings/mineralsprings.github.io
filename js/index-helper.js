@@ -106,8 +106,3 @@ function callLoader(fun) {
   fun();
   doLoadingIconToggle(false, fun.name);
 }
-
-window.onbeforeunload = function () {
-  mainPageLoader();
-  return true;
-}

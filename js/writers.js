@@ -21,6 +21,14 @@ function loadContent(page) {
         removeChildren(btnwrp);
 
         btnwrp.insertAdjacentHTML("beforeend", inject);
+
+        if ("form_menu" === page) {
+          document.getElementById("special-checkbox").addEventListener("click", function (e) {
+            if (e.target.nodeName === "INPUT") {
+              editMenuForm.doSpecialCheckBox(e.target.parentElement);
+            }
+          })
+        }
       },
 
       function (url, req) {
