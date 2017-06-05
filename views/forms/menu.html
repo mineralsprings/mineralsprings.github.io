@@ -1,0 +1,34 @@
+<!-- for testing individually -->
+<script type="text/javascript" src="../js/forms/edit-menu.js"></script>
+
+<form id="menu-form">
+
+  <button class="fc-button" id="fc-submit" type="button" onclick="editMenuForm.formExtract(this)"> Submit </button>
+  <button class="fc-button" id="fc-add"    type="button" name="button" onclick="editMenuForm.formResizer.addItem(this);"> Add an item </button>
+  <button class="fc-button" id="fc-rmlast" type="button" name="button" onclick="editMenuForm.formResizer.removeLast(this);"> Remove last item </button>
+
+  <label class="fc-checkbox" id="fc-buffet" onclick="editMenuForm.doBuffetBox()" title="Price values are ignored for buffets">
+    Is this a buffet menu?
+    <input type="checkbox" default="false" name="is_buffet" id="is_buffet"/>
+    <span id="buffet_warn" hidden>Price values are ignored for buffets</span>
+  </label>
+
+  <fieldset class="menu-field" name="default" name="field-default" id="field-default">
+    <label class="menu-itemname">
+      Item name:
+      <input class="menu-itemname-input" type="text" name="default-name" value=""/>
+    </label>
+    <label class="menu-itemdesc">
+      Description:
+      <textarea class="menu-itemdesc-input" type="text" name="default-desc" value=""/></textarea>
+    </label>
+    <label class="menu-itemprice">
+      Price:
+      <input class="menu-itemprice-input" type="number" name="default-price" value=""/>
+    </label>
+    <label class="menu-itemoptions" id="default-special-checkbox" name="special-checkbox">
+      Options?
+      <input class="menu-itemoptions-input" type="checkbox" name="default-options" value=""/>
+    </label>
+  </fieldset>
+</form>

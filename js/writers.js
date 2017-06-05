@@ -9,7 +9,7 @@ function loadContent(page) {
 
   hideElements("block");
 
-  var pname = "views/load_" + page + ".html";
+  var pname = "views/" + page + ".html";
   httpGetAsync(
     pname,
     function (response) {
@@ -22,7 +22,7 @@ function loadContent(page) {
       btnwrp.insertAdjacentHTML("beforeend", inject);
 
       if ("form_menu" === page) {
-        document.getElementById("special-checkbox").addEventListener("click", function (e) {
+        document.getElementById("default-special-checkbox").addEventListener("click", function (e) {
           if (e.target.nodeName === "INPUT") {
             editMenuForm.doSpecialCheckBox(e.target.parentElement);
           }
@@ -67,7 +67,7 @@ function mainPageLoader () {
 
     viewIsHome = true;
 
-    var fnames = [ "big" ];
+    var fnames = [ "big2" ];
 
     if (null !== currentGoogleUser) {
       fnames.push(
@@ -80,7 +80,7 @@ function mainPageLoader () {
     removeChildren(btnWrp);
 
     for (fn of fnames) {
-      var abspath = "views/pre_btn_" + fn + ".html";
+      var abspath = "views/btns/" + fn + ".html";
       httpGetAsync(
         abspath,
         function (response) {
@@ -105,7 +105,7 @@ function showGLogin() {
 
 function initialLoader() {
   httpGetAsync(
-    "views/init_btn_bigcircle.html",
+    "views/btns/bigcircle.html",
     function (response) {
       document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
     },
@@ -117,13 +117,17 @@ function initialLoader() {
   );
 }
 
-function doSignOut () {
-  if (! confirm("Are you sure you would like to sign out of Mineral Springs?")) {
-    return;
+function enableBigButton() {
+  var circle  = document.getElementById("bigcircle");
+  circle.setAttribute("onclick", "showGLogin()");
+
+  var hidemes = document.getElementsByClassName("hideme");
+  for (var h of hidemes) {
+    h.style.display = "none";
   }
-  var btnwrp = document.getElementById("buttonWrapper");
-  removeChildren(btnwrp);
-  signOut();
-  /*firstLoader(); trigger a refresh instead */
-  window.location.reload();
+
+  var showmes = document.getElementsByClassName("showme");
+  for (var s of showmes) {
+    s.style.display = "inline-block";
+  }
 }

@@ -36,11 +36,11 @@ catnipCDNUp = {
           (rsp["response"]         === "reply_ping") &&
           (rsp["data"]["pingback"] === true)
       ) {
+        enableBigButton();
         console.log("catnip ok");
         writeConnTimeStats(rsp["time"]);
         elt.style.color = "green";
         elt.innerHTML += " OK";
-
       } else {
         catnipCDNUp.cdn_no_good()
       }
@@ -51,16 +51,17 @@ catnipCDNUp = {
       catnipCDNUp.cdn_no_good()
     },
 
-  cdn_no_good: function() {
-    console.log("catnip no good");
+  cdn_no_good:
+    function () {
+      console.log("catnip no good");
 
-    var elt = document.getElementById("cdn-api-check");
-    elt.style.color = "red";
-    elt.innerHTML += " missing";
-    document.getElementById("bigcircle").addEventListener("mousedown", function() {
-      alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
-    });
-  }
+      var elt = document.getElementById("cdn-api-check");
+      elt.style.color = "red";
+      elt.innerHTML += " missing";
+      document.getElementById("bigcircle").addEventListener("mousedown", function() {
+        alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
+      });
+    }
 };
 
 defaultJSONObjs = {
