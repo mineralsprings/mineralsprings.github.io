@@ -45,7 +45,7 @@ var editMenuForm = {
       ++editMenuForm.formResizer.counter;
 
       document.getElementById(newname + "-special-checkbox").addEventListener("click", function (e) {
-        if (e.target.nodeName === "INPUT") {
+        if ("INPUT" === e.target.nodeName) {
           editMenuForm.doSpecialCheckBox(e.target.parentElement);
         }
       })
@@ -73,13 +73,17 @@ var editMenuForm = {
     var items = {};
     for (fs of document.getElementsByTagName("fieldset")) {
       var res = {};
-      for (intag of fs.getElementsByTagName("input")) {
+      var rlvnt_tags = [].concat(fs.getElementsByTagName("input"), fs.getElementsByTagName("textarea"));
+      console.log(rlvnt_tags);
+
+      for (intag of rlvnt_tags ) {
         var val = intag.type === "checkbox" ? intag.checked : intag.value;
         var nme = intag.name;
         res[nme] = val;
       }
       items[fs.id] = res;
     }
+    items.is_buffet = document.getElementById("is_buffet").checked;
     console.log(items)
   },
 

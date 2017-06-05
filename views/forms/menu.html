@@ -1,15 +1,15 @@
 <!-- for testing individually -->
-<script type="text/javascript" src="../js/forms/edit-menu.js"></script>
+<script type="text/javascript" src="../../js/forms/edit-menu.js"></script>
 
 <form id="menu-form">
 
-  <button class="fc-button" id="fc-submit" type="button" onclick="editMenuForm.formExtract(this)"> Submit </button>
+  <button class="fc-button" id="fc-submit" type="button" onclick="editMenuForm.formExtract(this.id)"> Submit </button>
   <button class="fc-button" id="fc-add"    type="button" name="button" onclick="editMenuForm.formResizer.addItem(this);"> Add an item </button>
   <button class="fc-button" id="fc-rmlast" type="button" name="button" onclick="editMenuForm.formResizer.removeLast(this);"> Remove last item </button>
 
   <label class="fc-checkbox" id="fc-buffet" onclick="editMenuForm.doBuffetBox()" title="Price values are ignored for buffets">
     Is this a buffet menu?
-    <input type="checkbox" default="false" name="is_buffet" id="is_buffet"/>
+    <input type="checkbox" default="false" value="" name="is_buffet" id="is_buffet"/>
     <span id="buffet_warn" hidden>Price values are ignored for buffets</span>
   </label>
 
@@ -32,3 +32,5 @@
     </label>
   </fieldset>
 </form>
+
+<script>try{document.getElementById("default-special-checkbox").addEventListener("click",function(e){if("INPUT" === e.target.nodeName)editMenuForm.doSpecialCheckBox(e.target.parentElement)})}finally{}</script>

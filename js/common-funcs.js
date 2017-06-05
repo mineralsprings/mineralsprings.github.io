@@ -5,12 +5,15 @@ function async(your_function, callback) {
     }, 0);
 }
 
-/*
-function parseAndWrite(json, key, elm_id, lead, foll) {
-  console.log(json);
-  document.getElementById(elm_id).innerHTML = lead + JSON.parse(json)[key] + foll;
+function listenClick(id, fn) {
+  document.getElementById(id).addEventListener("click", fn);
 }
-*/
+
+function doOptionsCheckBox (e) {
+  if (e.target.nodeName === "INPUT") { // prevent event bubbling / chrome's duplication
+    editMenuForm.doSpecialCheckBox(e.target.parentElement);
+  }
+}
 
 function hideElements(className) {
   var blocks = document.getElementsByClassName(className);

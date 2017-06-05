@@ -21,9 +21,9 @@ function loadContent(page) {
 
       btnwrp.insertAdjacentHTML("beforeend", inject);
 
-      if ("form_menu" === page) {
+      if ("forms/menu" === page) {
         document.getElementById("default-special-checkbox").addEventListener("click", function (e) {
-          if (e.target.nodeName === "INPUT") {
+          if ("INPUT" === e.target.nodeName) {
             editMenuForm.doSpecialCheckBox(e.target.parentElement);
           }
         })
@@ -79,7 +79,7 @@ function mainPageLoader () {
 
     removeChildren(btnWrp);
 
-    for (fn of fnames) {
+    for (var fn of fnames) {
       var abspath = "views/btns/" + fn + ".html";
       httpGetAsync(
         abspath,
