@@ -242,6 +242,10 @@ a.bigger-link {
   color: #333;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 /* LOADING */
 
 #loading {
@@ -249,4 +253,36 @@ a.bigger-link {
   display: none;
   height: 10vh;
   width: 10vh;
+}
+
+#profileButton {
+
+  vertical-align: middle;
+
+  display: none;
+
+  background-color: #c0392b;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  border-radius: 4vw;
+
+  width: 4.5vw;
+  height: 4.5vw;
+
+  background-size: cover;
+
+  transform: translateX(55%) translateY(-20%);
+  transition-duration: .5s;
+
+}
+
+#profileButton:hover {
+  border-radius: 1vw;
+
+  border: 5px solid #c0392b;
+
+  transition-duration: .3s;
+
 }

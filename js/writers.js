@@ -6,37 +6,35 @@ function removeChildren(elt) {
 
 function loadContent(page) {
   viewIsHome = false;
-  callLoader(function () {
 
-    hideElements("block");
+  hideElements("block");
 
-    var pname = "views/load_" + page + ".html";
-    httpGetAsync(
-      pname,
-      function (response) {
-        // need to animate this somehow
-        var inject = response;
-        btnwrp = document.getElementById("buttonWrapper");
+  var pname = "views/load_" + page + ".html";
+  httpGetAsync(
+    pname,
+    function (response) {
+      // need to animate this somehow
+      var inject = response;
+      btnwrp = document.getElementById("buttonWrapper");
 
-        removeChildren(btnwrp);
+      removeChildren(btnwrp);
 
-        btnwrp.insertAdjacentHTML("beforeend", inject);
+      btnwrp.insertAdjacentHTML("beforeend", inject);
 
-        if ("form_menu" === page) {
-          document.getElementById("special-checkbox").addEventListener("click", function (e) {
-            if (e.target.nodeName === "INPUT") {
-              editMenuForm.doSpecialCheckBox(e.target.parentElement);
-            }
-          })
-        }
-      },
-
-      function (url, req) {
-        console.log("failed to inject " + pname);
-        // well this ocurrence is a developer screw up so idk what else to put here
+      if ("form_menu" === page) {
+        document.getElementById("special-checkbox").addEventListener("click", function (e) {
+          if (e.target.nodeName === "INPUT") {
+            editMenuForm.doSpecialCheckBox(e.target.parentElement);
+          }
+        })
       }
-    );
-  })
+    },
+
+    function (url, req) {
+      console.log("failed to inject " + pname);
+      // well this ocurrence is a developer screw up so idk what else to put here
+    }
+  );
 }
 
 function afterGLoginWriter() {
@@ -61,7 +59,6 @@ function afterGLoginWriter() {
       }
     )
   );
-
 }
 
 function mainPageLoader () {
@@ -101,11 +98,9 @@ function mainPageLoader () {
 }
 
 function showGLogin() {
-  callLoader(function () {
-    var circle = document.getElementById("bigcircle");
-    circle.parentNode.removeChild(circle);
-    document.getElementById("glogin").style.display = "inline-block";
-  });
+  var circle = document.getElementById("bigcircle");
+  circle.parentNode.removeChild(circle);
+  document.getElementById("glogin").style.display = "inline-block";
 }
 
 function initialLoader() {
@@ -119,9 +114,7 @@ function initialLoader() {
       console.log("failed to inject elt " + abspath);
       // well this ocurrence is a developer screw up so idk what else to put here
     }
-
   );
-
 }
 
 function doSignOut () {

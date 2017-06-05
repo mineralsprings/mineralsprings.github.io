@@ -1,3 +1,5 @@
+is_buffet = false;
+
 var editMenuForm = {
   formResizer: {
 
@@ -22,13 +24,15 @@ var editMenuForm = {
           </label>
           <label>
             Description:
-            <input type="textarea" name="` + newname + `-desc" value=""/>
-          </label>
+            <textarea type="text" name="` + newname + `-desc" value=""/></textarea>
+          </label>`
+          +/* (is_buffet ? `` : */`
           <label>
             Price:
             <input type="number" name="` + newname + `-price" value=""/>
           </label>
-          <label onclick="editMenuForm.doSpecialCheckBox(this)">
+          `/*)*/ +
+          `<label onclick="editMenuForm.doSpecialCheckBox(this)">
             Options?
             <input type="checkbox" name="` + newname + `-options" value=""/>
           </label>`;
@@ -37,7 +41,7 @@ var editMenuForm = {
                   ');">Remove this item</button>\n';
 
       newfield += '</fieldset>';
-      document.getElementById("edit-form").insertAdjacentHTML('beforeend', newfield);
+      document.getElementById("menu-form").insertAdjacentHTML('beforeend', newfield);
       ++editMenuForm.formResizer.counter;
     },
 
@@ -78,6 +82,7 @@ var editMenuForm = {
         checked  = cbox.checked,
         topfield = label.parentElement;
 
+    console.log(cbox.name);
 
     var optform = `
       <fieldset class="field" name="` + cbox.name + `-fieldset" id="` + cbox.name + `-fieldset">
@@ -122,18 +127,24 @@ var editMenuForm = {
       var optfs_name = cbox.name + "-fieldset",
                optfs = document.getElementById(optfs_name);
 
-      topfield.removeChild(optfs);
+      console.log(optfs_name);
+
+      optfs.parentElement.removeChild(optfs);
     }
   },
 
-  testFormsOffline: function (elv) {
-    currentGoogleUser = { nih_info: { is_elevated: elv } };
-    afterGLoginWriter();
-  },
-
   doBuffetBox: function () {
-    var box = document.getElementById("is_buffet");
-    checked = box.checked;
+    var box   = document.getElementById("is_buffet"),
+    checked   = box.checked;
+    is_buffet = checked;
+
+    var warn = document.getElementById("buffet_warn");
+    if (checked) {
+      warn.removeAttribute("hidden")
+    } else {
+      warn.setAttribute("hidden", true)
+    }
+
     var inputs = document.getElementsByTagName("input");
     for (i of inputs) {
       if (i.name.match(/price$/)) {

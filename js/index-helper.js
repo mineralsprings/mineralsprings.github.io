@@ -31,6 +31,7 @@ function onSignIn(googleUser) {
 
   currentGoogleUser = {};
   currentGoogleUser.vendor = googleUser;
+  currentGoogleUser.reload = googleUser.reloadAuthResponse;
 
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -57,13 +58,12 @@ function onSignIn(googleUser) {
 function renderButton() {
   gapi.signin2.render('glogin', {
     'scope': 'profile email',
-    'width': 240,
-    'height': 50,
+    'width': 400,
+    'height': 100,
     'longtitle': true,
     'theme': 'dark',
     'onsuccess': onSignIn,
     'onfailure': function (error) { console.log(error); }
-
   });
 }
 
@@ -105,4 +105,9 @@ function callLoader(fun) {
   doLoadingIconToggle(true, fun.name);
   fun();
   doLoadingIconToggle(false, fun.name);
+}
+
+function testFormsOffline (elv) {
+  currentGoogleUser = { nih_info: { is_elevated: elv } };
+  afterGLoginWriter();
 }

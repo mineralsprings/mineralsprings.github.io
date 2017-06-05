@@ -15,16 +15,14 @@
     <link rel="stylesheet" href="vendor/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/raleway_playfair_display.css" >
 
-    <script type="text/javascript" src="js/common-funcs.js" ></script>
-    <script type="text/javascript" src="js/verbs.js" ></script>
-    <script type="text/javascript" src="js/writers.js" ></script>
-    <script type="text/javascript" src="js/index-helper.js" ></script>
-
-    <script type="text/javascript" src="../js/forms/edit-menu.js"></script>
-    <script type="text/javascript" src="../js/forms/edit-order.js"></script>
-
-    <script type="text/javascript" src="../js/viewers/menu.js"></script>
-    <script type="text/javascript" src="../js/viewers/order.js"></script>
+    <script type="text/javascript" src="js/common-funcs.js"        async defer></script>
+    <script type="text/javascript" src="js/verbs.js"               async defer></script>
+    <script type="text/javascript" src="js/writers.js"             async defer></script>
+    <script type="text/javascript" src="js/index-helper.js"        async defer></script>
+    <script type="text/javascript" src="../js/forms/edit-menu.js"  async defer></script>
+    <script type="text/javascript" src="../js/forms/edit-order.js" async defer></script>
+    <script type="text/javascript" src="../js/viewers/menu.js"     async defer></script>
+    <script type="text/javascript" src="../js/viewers/order.js"    async defer></script>
 
     <script type="text/javascript" src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
@@ -47,18 +45,20 @@
 
     <header>
 
-      <div title="Go Back" id='backButton' onclick="javascript:mainPageLoader()">
+      <div title="Go Back" id='backButton' onclick="mainPageLoader()"
+        style="cursor: pointer">
         <img src='img/back-arrow.svg' style="height: 3em;" alt="Go Back"/>
       </div>
 
-      <div id='headerText'>
+      <div id='headerText' title="Go Home" onclick="mainPageLoader()"
+        style="cursor: pointer">
         <p>
           Mineral Springs
         </p>
       </div>
 
-      <div id='profileButton' title="Sign Out of Mineral Springs Webapp" onclick="javascript:doSignOut()"> </div>
-      <!--<div class='signout' id="signout-div"> </div>-->
+      <div id='profileButton' title="Sign Out of Mineral Springs Webapp"
+        onclick="doSignOut()" style="cursor: pointer"> </div>
 
     </header>
 
@@ -85,22 +85,40 @@
     <footer>
       <div class="bottom-status links-bottom">
         the
-        <a class="authorText links-bottom" href="//github.com/mineralsprings/mineralsprings.github.io">open source Mineral Springs Webapp</a>
-        | courtesy of
-        <a class="authorText links-bottom" href="//github.com/mattb0t">Matthew Ballou</a>
-        &amp;
-        <a class="authorText links-bottom" href="//github.com/catb0t">Cat Stevens</a>
-
-        | hosting for this project is graciously provided for free by
-        <a class="bigger-link" target="_blank" href="//pagekite.net">PageKite.net</a>
-        and
-        <a class="bigger-link"  target="_blank" href="//github.io">GitHub Pages </a>
-        |
-        <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html" id="google-auth-check" >
-          Google API Registration Token
+        <a class="authorText links-bottom"
+          href="//github.com/mineralsprings/mineralsprings.github.io"
+          title="Fork me on GitHub" target="_blank">
+          open source Mineral Springs Webapp
         </a>
         |
-        <a class="smaller-link" target="_blank" href="//catnipcdn.pagekite.me" id="cdn-api-check" >
+        <div title="crafted with ♥ by">
+          courtesy of
+        </div>
+        <a class="authorText links-bottom" href="//github.com/catb0t"
+          title="catb0t" target="_blank">
+          Cat Stevens
+        </a>
+        &amp;
+        <a class="authorText links-bottom" href="//github.com/mattb0t"
+          title="mattb0t" target="_blank">
+          Matthew Ballou
+        </a>
+
+        |
+        <div title="free + libre software for a freer society">
+          hosting for this project is graciously provided for free by
+          <a class="bigger-link" target="_blank" href="//pagekite.net">PageKite.net</a>
+          and
+          <a class="bigger-link" target="_blank" href="//github.io">GitHub Pages </a>
+        </div>
+        |
+        <a class="smaller-link" target="_blank" href="googlebb7e3fa23640d3b2.html"
+          id="google-auth-check" title="the google connexion">
+          Google API Registration
+        </a>
+        |
+        <a class="smaller-link" target="_blank" href="//catnipcdn.pagekite.me"
+          id="cdn-api-check" title="the database server">
           CatnipCDN API
         </a>
       </div>

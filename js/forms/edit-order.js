@@ -121,8 +121,4 @@ var editOrderForm = {
     }
   },
 
-  testFormsOffline: function (elv) {
-    currentGoogleUser = { nih_info: { is_elevated: elv } };
-    afterGLoginWriter();
-  }
 }

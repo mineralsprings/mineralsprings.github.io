@@ -7,9 +7,10 @@
   <button type="button" name="button" onclick="editMenuForm.formResizer.addItem(this);"> Add an item </button>
   <button type="button" name="button" onclick="editMenuForm.formResizer.removeLast(this);"> Remove last item </button>
 
-  <label onclick="editMenuForm.doBuffetBox()">
+  <label onclick="editMenuForm.doBuffetBox()" title="Price values are ignored for buffets">
     Is this a buffet menu?
     <input type="checkbox" default="false" name="is_buffet" id="is_buffet"/>
+    <span id="buffet_warn" hidden>Price values are ignored for buffets</span>
   </label>
 
   <fieldset class="field" name="default" name="field-default" id="field-default">
@@ -19,14 +20,13 @@
     </label>
     <label>
       Description:
-      <input type="textarea" name="default-desc" value=""/>
+      <textarea type="text" name="default-desc" value=""/></textarea>
     </label>
     <label>
       Price:
       <input type="number" name="default-price" value=""/>
     </label>
-    <label id="special-checkbox">
-    <!-- onclick="editMenuForm.doSpecialCheckBox(this)" -->
+    <label id="special-checkbox" onclick="editMenuForm.doSpecialCheckBox(this)">
       Options?
       <input type="checkbox" name="default-options" value=""/>
     </label>
