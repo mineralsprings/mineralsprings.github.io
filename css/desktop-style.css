@@ -121,9 +121,6 @@
 
   #backButton {
 
-    width: 10vw
-    height: 10vw;
-
     vertical-align: middle;
 
     display: inline-block;
@@ -182,7 +179,6 @@
     transform: translateX(-90%);
 
     transition-duration: 0.66s;
-
   }
 
   /*

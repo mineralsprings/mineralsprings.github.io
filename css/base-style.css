@@ -110,7 +110,7 @@ footer {
 TEXT THINGS
 */
 
-@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+/*@import url(https://fonts.googleapis.com/css?family=Playfair+Display);*/
 
 #headerText {
 
@@ -201,8 +201,7 @@ MISC
   margin: 0px;
 }
 
-::-moz-selection,
-::selection{
+::-moz-selection, ::selection{
   background: #fafafa;
   color: #fff;
   text-shadow: none;

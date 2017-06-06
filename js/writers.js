@@ -119,15 +119,8 @@ function initialLoader() {
 
 function enableBigButton() {
   var circle  = document.getElementById("bigcircle");
-  circle.setAttribute("onclick", "showGLogin()");
+  circle.addEventListener("click", showGLogin);
 
-  var hidemes = document.getElementsByClassName("hideme");
-  for (var h of hidemes) {
-    h.style.display = "none";
-  }
-
-  var showmes = document.getElementsByClassName("showme");
-  for (var s of showmes) {
-    s.style.display = "inline-block";
-  }
+  document.getElementById("c_bigtext").innerHTML = "Login to Google";
+  document.getElementById("c_liltext").innerHTML = "login to use this app";
 }
