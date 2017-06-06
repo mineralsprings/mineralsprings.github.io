@@ -12,31 +12,26 @@ var editMenuForm = {
 
     addItem: function () {
       var newname =  'field-' + editMenuForm.formResizer.counter;
-      var newfield = "";
+      var newfield = '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n';
 
-      newfield = '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n';
+      newfield +=
+          '<label class="menu-itemname"> Item name:' +
+            '<input class="menu-itemname-input" type="text" name="' + newname + '-name" value=""/>' +
+          '</label>' +
 
-      newfield += `
-          <label class="menu-itemname">
-            Item name:
-            <input class="menu-itemname-input" type="text" name="` + newname + `-name" value=""/>
-          </label>
+          '<label class="menu-itemdesc"> Description:' +
+            '<textarea class="menu-itemdesc-input" type="text" name="' + newname + '-desc" value=""/>' +
+          '</textarea></label>'
+          +
+          '<label class="menu-itemprice" style="display: ' + (is_buffet ? "none" : "inline") + ';">'
+          + 'Price:' +
+            '<input class="menu-itemprice-input" type="number" name="' + newname + '-price" value="" />' +
+          '</label>' +
 
-          <label class="menu-itemdesc">
-            Description:
-            <textarea class="menu-itemdesc-input" type="text" name="` + newname + `-desc" value=""/></textarea>
-          </label>
-
-          <label class="menu-itemprice" style="display: ` + (is_buffet ? "none" : "inline") + `;">
-            Price:
-            <input class="menu-itemprice-input" type="number" name="` + newname + `-price"
-            value="" />
-          </label>
-
-          <label class="menu-itemoptions" id="` + newname + `-special-checkbox">
-            Options?
-            <input class="menu-itemoptions-input" type="checkbox" name="` + newname + `-options" value=""/>
-          </label>`;
+          '<label class="menu-itemoptions" id="' + newname + '-special-checkbox">' +
+            'Options?' +
+            '<input class="menu-itemoptions-input" type="checkbox" name="' + newname + '-options" value=""/>' +
+          '</label>';
 
       newfield += '<button type="button" onclick="editMenuForm.formResizer.removeItem('
                   + editMenuForm.formResizer.counter + ');">Remove this item</button>\n';
@@ -72,17 +67,21 @@ var editMenuForm = {
 
   formExtract: function (name) {
     var items = {};
-    for (fs of document.getElementsByTagName("fieldset")) {
+    var formfs = document.getElementsByTagName("fieldset");
+    for (var j = 0; j < formfs.length; j++) {
+      var fs = formfs[i];
       var res = {};
-      var rlvnt_tags = Array(
-        ...fs.getElementsByTagName("input"),
-        ...fs.getElementsByTagName("textarea")
+      var rlvnt_tags = Object.assign(
+        {},
+        fs.getElementsByTagName("input"),
+        fs.getElementsByTagName("textarea")
       );
 
-      for (intag of rlvnt_tags ) {
-        var val = intag.type === "checkbox" ? intag.checked : intag.value;
-        var nme = intag.name;
-        res[nme] = val;
+      for (var i = 0; i < rlvnt_tags.length; i++) {
+        var intag = rlvnt_tags[i],
+              val = intag.type === "checkbox" ? intag.checked : intag.value;
+              nme = intag.name;
+        res[nme]  = val;
       }
       items[fs.id] = res;
     }
@@ -95,20 +94,18 @@ var editMenuForm = {
         checked  = cbox.checked,
         topfield = label.parentElement;
 
-    var optform = `<fieldset class="options-field" name="`
-                  + cbox.name + `-fieldset" id="` + cbox.name + `-fieldset">`;
+    var optform = '<fieldset class="options-field" name="'
+                  + cbox.name + '-fieldset" id="' + cbox.name + '-fieldset">';
 
     for (var i = 0; i < 3; i++) {
-      optform += `<label class='options-name'>
-          Name:
-          <input type='text' name='` + cbox.name + `-options` + i + `-name'/>
-        </label>`;
+      optform += "<label class='options-name'>Name:" +
+                    "<input type='text' name='" + cbox.name + "-options" + i + "-name'/>" +
+                  "</label>";
 
       if (! is_buffet) {
-        optform += `<label class='options-price'>
-              Price:
-              <input type='number' name='` + cbox.name + `-options` + i + `-price'/>
-            </label>`;
+        optform += "<label class='options-price'>Price:" +
+                      "<input type='number' name='" + cbox.name + "-options" + i + "-price'/>" +
+                    "</label>";
       }
       optform += "<br>\n";
     }
@@ -139,9 +136,10 @@ var editMenuForm = {
     }
 
     var inputs = document.getElementsByTagName("input");
-    for (i of inputs) {
-      if (i.name.match(/price$/)) {
-        i.parentNode.style.display = checked ? "none" : "inline";
+    for (var j = 0; j < inputs.length; j++) {
+      var ip = inputs[j];
+      if (ip.name.match(/price$/)) {
+        ip.parentNode.style.display = checked ? "none" : "inline";
       }
     }
   }

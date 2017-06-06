@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# do js
+cat js/common-funcs.js js/goo.js js/verbs.js js/writers.js \
+  js/index-helper.js js/forms/edit-menu.js js/forms/edit-order.js \
+  js/viewers/menu.js js/viewers/order.js > js/built/all_tmp_unc.js
+
+uglifyjs --compress --mangle --source-map --output js//built/all_compressed.js -- js/built/all_tmp_unc.js
+
+# do css
+cat css/common.css css/desktop.css css/mobile.css css/forms/*.css css/viewers/*.css > css/built/all_tmp_unc.css
+csso css/built/all_tmp_unc.css --map file --output css/built/all_compressed.css

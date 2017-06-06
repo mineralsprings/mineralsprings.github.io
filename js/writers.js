@@ -45,7 +45,8 @@ function afterGLoginWriter() {
         document.getElementById("bigcircle")
       ];
 
-      for (e of elems) {
+      for (var i = 0; i < elems.length; i++) {
+        var e = elems[i];
         if (e) {
           e.parentNode.removeChild(e);
         }
@@ -78,7 +79,8 @@ function mainPageLoader () {
 
     removeChildren(btnWrp);
 
-    for (var fn of fnames) {
+    for (var i = 0; i < fnames.length; i++) {
+      var fn = fnames[i];
       var abspath = "views/btns/" + fn + ".html";
       httpGetAsync(
         abspath,
