@@ -91,7 +91,7 @@ div.authorTag {
   margin-right: auto;
 
   overflow: hidden;
-  position: relative;;
+  position: relative;
 }
 
 footer {
@@ -111,8 +111,6 @@ footer {
 /*
 TEXT THINGS
 */
-
-/*@import url(https://fonts.googleapis.com/css?family=Playfair+Display);*/
 
 #headerText {
 
@@ -151,17 +149,6 @@ p.blockText {
   transform: translateY(-50%);
 
   transition-duration: 0.33s;
-
-}
-
-p.aboutText {
-
-  font-size: 3vh;
-  font-weight: 200;
-
-  color: #000;
-
-  text-align: justify;
 
 }
 
@@ -288,19 +275,6 @@ a:hover {
 
 }
 
-/*
-FORM STUFF
-*/
-
-#menu-form {
-
-  width: 80vw;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  border: 1px solid #c0392b;
-
-  padding: 5vh;
-
+.click {
+  cursor: pointer;
 }

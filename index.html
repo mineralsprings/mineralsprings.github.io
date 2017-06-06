@@ -8,13 +8,9 @@
     <!-- GOOGLE SIGNIN -->
     <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
 
-    <!-- EXTERNAL RESOURCES -->
-    <script type="text/javascript" src="vendor/jquery-3.2.1.min.js"      ></script>
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="vendor/jquery-3.2.1.min.js" async></script>
     <script type="text/javascript" src="vendor/bootstrap.min.js"    async></script>
-
-    <link rel="stylesheet" href="vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="vendor/raleway_playfair_display.css" >
-
     <script type="text/javascript" src="js/common-funcs.js"     async></script>
     <script type="text/javascript" src="js/goo.js"              async></script>
     <script type="text/javascript" src="js/verbs.js"            async></script>
@@ -24,7 +20,7 @@
     <script type="text/javascript" src="js/forms/edit-order.js" async></script>
     <script type="text/javascript" src="js/viewers/menu.js"     async></script>
     <script type="text/javascript" src="js/viewers/order.js"    async></script>
-
+    <!-- load this last -->
     <script type="text/javascript" src="vendor/platform.js"     async></script>
 
     <!-- ICONS -->
@@ -32,38 +28,42 @@
     <link rel="shortcut icon" type="image/x-icon" href="img/icon.png">
 
     <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="vendor/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="vendor/raleway_playfair_display.css">
     <link rel="stylesheet" type="text/css" href="css/loading.css">
-    <link rel='stylesheet' type="text/css" href='css/base-style.css'>
-    <link rel='stylesheet' type="text/css" href='css/desktop-style.css'>
-    <link rel='stylesheet' type="text/css" href='css/mobile-style.css'>
+    <link rel='stylesheet' type="text/css" href='css/common.css'>
+    <link rel='stylesheet' type="text/css" href='css/desktop.css'>
+    <link rel='stylesheet' type="text/css" href='css/mobile.css'>
+    <link rel='stylesheet' type="text/css" href='css/forms/menu.css'>
+    <link rel='stylesheet' type="text/css" href='css/forms/order.css'>
 
     <!-- TITLE -->
     <title>Mineral Springs Order Placement | mineralsprings.github.io</title>
 
   </head>
 
-  <body onload='firstLoader();'>
+  <body onload='firstLoader()'>
 
     <header>
 
-      <div title="Go Back" id='backButton' onclick="mainPageLoader()"
-        style="cursor: pointer">
+      <div title="Go Home" id='backButton' onclick="mainPageLoader()"
+        class="click">
         <img src='img/back-arrow.svg' style="height: 3em;" alt="Go Back"/>
       </div>
 
       <div id='headerText' title="Go Home" onclick="mainPageLoader()"
-        style="cursor: pointer">
+        class="click">
         <p>
           Mineral Springs
         </p>
       </div>
 
       <div id='profileButton' title="Sign Out of Mineral Springs Webapp"
-        onclick="doSignOut()" style="cursor: pointer"> </div>
+        onclick="doSignOut()" class="click"> </div>
 
     </header>
 
-    <div id="alert" >
+    <div id="alert">
       The web client requires client-side JavaScript to work.
       <br>
       Your browser does not have JavaScript, or it is disabled.
@@ -71,11 +71,11 @@
       Use a modern browser, or allow JavaScript on mineralsprings.github.io.
     </div>
 
-    <div id='buttonWrapper'>
+    <div id="buttonWrapper">
 
       <!-- write things here ok -->
 
-      <div id="googleSignInWrapper" style="display: none;">
+      <div id="googleSignInWrapper" style="display: none;" class="click">
         <div class="google-signin" id="glogin"> </div>
       </div>
 

@@ -7,8 +7,7 @@ var editMenuForm = {
 
     _getLastFieldSet: function () {
       var fields    = document.getElementsByTagName("fieldset");
-      var lastfield = fields.item(fields.length - 1);
-      return lastfield;
+      return fields.item(fields.length - 1);
     },
 
     addItem: function () {
@@ -22,23 +21,25 @@ var editMenuForm = {
             Item name:
             <input class="menu-itemname-input" type="text" name="` + newname + `-name" value=""/>
           </label>
+
           <label class="menu-itemdesc">
             Description:
             <textarea class="menu-itemdesc-input" type="text" name="` + newname + `-desc" value=""/></textarea>
-          </label>`
-          + /* (is_buffet ? `` : */
-          `<label class="menu-itemprice">
+          </label>
+
+          <label class="menu-itemprice" style="display: ` + (is_buffet ? "none" : "inline") + `;">
             Price:
-            <input class="menu-itemprice-input" type="number" name="` + newname + `-price" value=""/>
-          </label>`/*)*/
-          +
-          `<label class="menu-itemoptions" id="` + newname + `-special-checkbox">
+            <input class="menu-itemprice-input" type="number" name="` + newname + `-price"
+            value="" />
+          </label>
+
+          <label class="menu-itemoptions" id="` + newname + `-special-checkbox">
             Options?
             <input class="menu-itemoptions-input" type="checkbox" name="` + newname + `-options" value=""/>
           </label>`;
 
-      newfield += '<button type="button" onclick="editMenuForm.formResizer.removeItem(' + editMenuForm.formResizer.counter +
-                  ');">Remove this item</button>\n';
+      newfield += '<button type="button" onclick="editMenuForm.formResizer.removeItem('
+                  + editMenuForm.formResizer.counter + ');">Remove this item</button>\n';
 
       newfield += '</fieldset>';
       document.getElementById("menu-form").insertAdjacentHTML('beforeend', newfield);
@@ -73,8 +74,10 @@ var editMenuForm = {
     var items = {};
     for (fs of document.getElementsByTagName("fieldset")) {
       var res = {};
-      var rlvnt_tags = [].concat(fs.getElementsByTagName("input"), fs.getElementsByTagName("textarea"));
-      console.log(rlvnt_tags);
+      var rlvnt_tags = Array(
+        ...fs.getElementsByTagName("input"),
+        ...fs.getElementsByTagName("textarea")
+      );
 
       for (intag of rlvnt_tags ) {
         var val = intag.type === "checkbox" ? intag.checked : intag.value;
@@ -92,42 +95,25 @@ var editMenuForm = {
         checked  = cbox.checked,
         topfield = label.parentElement;
 
-    var optform = `
-      <fieldset class="options-field" name="` + cbox.name + `-fieldset" id="` + cbox.name + `-fieldset">
-        <label class='options-name'>
+    var optform = `<fieldset class="options-field" name="`
+                  + cbox.name + `-fieldset" id="` + cbox.name + `-fieldset">`;
+
+    for (var i = 0; i < 3; i++) {
+      optform += `<label class='options-name'>
           Name:
-          <input type='text' name='` + cbox.name + `-options0-name'/>
-        </label>
+          <input type='text' name='` + cbox.name + `-options` + i + `-name'/>
+        </label>`;
 
-        <label class='options-price'>
-          Price:
-          <input type='number' name='` + cbox.name + `-options0-price'/>
-        </label>
+      if (! is_buffet) {
+        optform += `<label class='options-price'>
+              Price:
+              <input type='number' name='` + cbox.name + `-options` + i + `-price'/>
+            </label>`;
+      }
+      optform += "<br>\n";
+    }
 
-        <br>
-
-        <label class='options-name'>
-          Name:
-          <input type='text' name='` + cbox.name + `-options1-name'/>
-        </label>
-
-        <label class='options-price'>
-          Price:
-          <input type='number' name='` + cbox.name + `-options1-price'/>
-        </label>
-
-        <br>
-
-        <label class='options-name'>
-          Name:
-          <input type='text' name='` + cbox.name + `-options2-name'/>
-        </label>
-
-        <label class='options-price'>
-          Price:
-          <input type='number' name='` + cbox.name + `-options2-price'/>
-        </label>
-      </fieldset>`;
+    optform += "</fieldset>";
 
     if (checked) {
       topfield.insertAdjacentHTML("beforeend", optform);

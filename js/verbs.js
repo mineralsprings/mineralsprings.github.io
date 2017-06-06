@@ -25,11 +25,10 @@ googleAPIFile = {
 catnipCDNUp = {
   ok:
     function (response) {
-      //console.log(response);
       var rsp = JSON.parse(response),
           elt = document.getElementById("cdn-api-check");
       rsp["time"]["conn_finish"] = microTime();
-      console.log(rsp);
+      /*console.log(rsp);*/
 
       if (
           (rsp["response"]         === "reply_ping") &&
@@ -92,7 +91,7 @@ defaultJSONObjs = {
       "time": {
         "conn_init": microTime()
       },
-      "anticsrf": anticsrf.tok
+      "anticsrf": (anticsrf.tok || "")
     }
   }
 };

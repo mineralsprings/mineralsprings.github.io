@@ -69,11 +69,10 @@ function mainPageLoader () {
 
     var fnames = [ "big2" ];
 
-    if (null !== currentGoogleUser) {
-      fnames.push(
-        [ "user", "admin" ][ + currentGoogleUser.nih_info.is_elevated ]
-      );
-    }
+
+    fnames.push(
+      [ "user", "admin" ][ + ((currentGoogleUser || {}).nih_info || {}).is_elevated || 0  ]
+    );
 
     var btnWrp = document.getElementById("buttonWrapper");
 
@@ -101,7 +100,7 @@ function showGLogin() {
   var circle = document.getElementById("bigcircle");
   circle.parentNode.removeChild(circle);
   var glogin = document.getElementById("googleSignInWrapper");
-  glogin.style.display = "none";
+  glogin.style.display = "inline-block";
 }
 
 function initialLoader() {
