@@ -100,7 +100,8 @@ function mainPageLoader () {
 function showGLogin() {
   var circle = document.getElementById("bigcircle");
   circle.parentNode.removeChild(circle);
-  document.getElementById("glogin").style.display = "inline-block";
+  var glogin = document.getElementById("googleSignInWrapper");
+  glogin.style.display = "none";
 }
 
 function initialLoader() {

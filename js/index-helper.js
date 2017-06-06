@@ -33,14 +33,12 @@ function haveJS () {
 
 function firstLoader() {
   // faster
+  haveJS();
   async(
-    haveJS,
-    async(
-      function () {
-        async(checkGoogleAuthVerificationExists, checkCatnipCDNStatusOk);
-      },
-      initialLoader
-    )
+    initialLoader,
+    function () {
+      async(checkGoogleAuthVerificationExists, checkCatnipCDNStatusOk);
+    }
   );
 }
 

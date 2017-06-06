@@ -90,6 +90,8 @@ div.authorTag {
   margin-left: auto;
   margin-right: auto;
 
+  overflow: hidden;
+  position: relative;;
 }
 
 footer {

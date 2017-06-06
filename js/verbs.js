@@ -4,7 +4,6 @@ googleAPIFile = {
       var elt = document.getElementById("google-auth-check");
       //console.log(response);
       if (response === "google-site-verification: googlebb7e3fa23640d3b2.html") {
-        console.log("auth ok");
         elt.style.color = "green";
         elt.innerHTML += " OK";
       } else {
