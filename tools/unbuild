@@ -1,0 +1,3 @@
+#!/bin/bash
+echo unbuilding {css,js}/built/*
+rm {css,js}/built/*

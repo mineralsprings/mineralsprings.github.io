@@ -1,0 +1,12 @@
+language: node_js
+
+install: npm install csso-cli uglify-js
+
+script: tools/build node_modules{/uglify-js/bin/uglifyjs,/csso-cli/bin/csso}
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  on:
+    branch: master
