@@ -4,6 +4,8 @@ install: npm install csso-cli uglify-js
 
 script: tools/build node_modules{/uglify-js/bin/uglifyjs,/csso-cli/bin/csso}
 
+before_deploy: "rm -rf node_modules"
+
 deploy:
   provider: pages
   skip_cleanup: true
@@ -11,6 +13,3 @@ deploy:
   on:
     branch: master
   branch: master
-
-after_deploy:
-  - "rm -rf node_modules"
