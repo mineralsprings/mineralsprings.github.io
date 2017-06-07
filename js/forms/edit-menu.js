@@ -71,18 +71,19 @@ var editMenuForm = {
     for (var j = 0; j < top_forms.length; j++) {
       var local_result = {};
       var fs = top_forms[j];
-      var need_tags = spread(fs.getElementsByTagName("input"), fs.getElementsByTagName("textarea"));
+      var need_tags = spread(
+        fs.getElementsByTagName("input"),
+        fs.getElementsByTagName("textarea")
+      );
 
       for (var i = 0; i < need_tags.length; i++) {
-        var intag = need_tags[i],
-              val = (intag.type === "checkbox" ? intag.checked : intag.value),
-              nme = intag.name;
-        local_result[nme]  = val;
+        var intag = need_tags[i];
+        local_result[intag.name] = intag.type === "checkbox" ? intag.checked : intag.value;
       }
       all_items[fs.id] = local_result;
     }
     all_items.is_buffet = document.getElementById("is_buffet").checked;
-    console.log(all_items)
+    return all_items;
   },
 
   doSpecialCheckBox: function (label) {

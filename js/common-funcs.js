@@ -30,7 +30,7 @@ function spread () {
   for (var i = 1; i < arguments.length; i++) {
     out = [].concat.apply(out, arguments[i]);
   }
-  
+
   return out;
 }
 
