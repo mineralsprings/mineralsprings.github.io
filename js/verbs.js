@@ -111,5 +111,19 @@ defaultJSONObjs = {
       },
       "anticsrf": (anticsrf.tok || "")
     }
+  },
+
+  edit_menu: function (formdata, gapi_info) {
+    return {
+      "verb": "edit_menu",
+      "data": {
+        "menu_data": formdata || {},
+        "gapi_token": currentGoogleUser.vendor.Zi.id_token || ""
+      },
+      "time": {
+        "conn_init": microTime()
+      },
+      "anticsrf": (anticsrf.tok || "")
+    }
   }
 };

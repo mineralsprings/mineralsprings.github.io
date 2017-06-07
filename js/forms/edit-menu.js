@@ -11,7 +11,7 @@ var editMenuForm = {
     },
 
     addItem: function () {
-      var newname =  'field-' + editMenuForm.formResizer.counter;
+      var newname =  'field-' + this.formResizer.counter;
       var newfield = '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n';
 
       newfield +=
@@ -39,19 +39,19 @@ var editMenuForm = {
 
       newfield += '</fieldset>';
       document.getElementById("menu-wrapper").insertAdjacentHTML('beforeend', newfield);
-      ++editMenuForm.formResizer.counter;
+      ++this.formResizer.counter;
 
       document.getElementById(newname + "-special-checkbox").addEventListener("click", function (e) {
         if ("INPUT" === e.target.nodeName) {
-          editMenuForm.doSpecialCheckBox(e.target.parentElement);
+          this.doSpecialCheckBox(e.target.parentElement);
         }
       })
     },
 
     removeLast: function () {
-      var lastfield = editMenuForm.formResizer._getLastFieldSet();
+      var lastfield = this.formResizer._getLastFieldSet();
       if ( null === lastfield || lastfield.id.match(/default/) ) {
-        editMenuForm.formResizer.counter = 1;
+        this.formResizer.counter = 1;
         return;
       }
       // don't modify the counter here though
@@ -64,27 +64,6 @@ var editMenuForm = {
       var elem = document.getElementById("field-" + n);
       elem.parentNode.removeChild(elem);
     }
-  },
-
-  formExtract: function () {
-    var all_items = {};
-    var top_forms = document.getElementsByTagName("fieldset");
-    for (var j = 0; j < top_forms.length; j++) {
-      var local_result = {};
-      var fs = top_forms[j];
-      var need_tags = spread(
-        fs.getElementsByTagName("input"),
-        fs.getElementsByTagName("textarea")
-      );
-
-      for (var i = 0; i < need_tags.length; i++) {
-        var intag = need_tags[i];
-        local_result[intag.name] = intag.type === "checkbox" ? intag.checked : intag.value;
-      }
-      all_items[fs.id] = local_result;
-    }
-    all_items.is_buffet = document.getElementById("is_buffet").checked;
-    console.log(all_items);
   },
 
   doSpecialCheckBox: function (label) {
@@ -122,9 +101,8 @@ var editMenuForm = {
   },
 
   doBuffetBox: function () {
-    var box   = document.getElementById("is_buffet"),
-    checked   = box.checked;
-    is_buffet = checked;
+    var checked = document.getElementById("is_buffet").checked;
+    /* global */ is_buffet = checked;
 
     var warn = document.getElementById("buffet_warn");
     if (checked) {
@@ -140,5 +118,41 @@ var editMenuForm = {
         ip.parentNode.style.display = checked ? "none" : "inline";
       }
     }
+  },
+
+  formExtract: function () {
+    var all_items = {};
+    var top_forms = document.getElementsByTagName("fieldset");
+    for (var j = 0; j < top_forms.length; j++) {
+      var local_result = {};
+      var fs = top_forms[j];
+      var need_tags = spread(
+        fs.getElementsByTagName("input"),
+        fs.getElementsByTagName("textarea")
+      );
+
+      for (var i = 0; i < need_tags.length; i++) {
+        var intag = need_tags[i];
+        local_result[intag.name] =
+          intag.type === "checkbox"
+            ? intag.checked.toString()
+            : intag.value;
+      }
+      all_items[fs.id] = local_result;
+    }
+    all_items.is_buffet = document.getElementById("is_buffet").checked.toString();
+    //console.log(all_items);
+    return all_items;
+  },
+
+  doProcessMenuForm: function () {
+    var items = this.formExtract();
+    console.log(JSON.stringify(items));
+    httpPostAsync(
+      getServerHostForEnv(),
+      function (r) { console.log(r); },
+      function () { console.log("form not ok"); },
+      JSON.stringify(defaultJSONObjs.edit_menu(items))
+    );
   }
 }
