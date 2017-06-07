@@ -2,16 +2,32 @@
 uglify=$1
 cs2o=$2
 
+calc() { awk "BEGIN { print $* }"; }
+
 set -o errexit
 # do js
 cat js/common-funcs.js js/goo.js js/verbs.js js/writers.js \
   js/index-helper.js js/forms/edit-menu.js js/forms/edit-order.js \
   js/viewers/menu.js js/viewers/order.js > js/built/all_tmp_unc.js
 
-${uglify:-uglifyjs} --compress --mangle --source-map --output js//built/all_compressed.js -- js/built/all_tmp_unc.js
-echo built the javascript component
+${uglify:-uglifyjs} --verbose --warn --timings -ie8 --compress --mangle \
+  --source-map --output js//built/all_compressed.js -- js/built/all_tmp_unc.js
+old_js=$(wc -c < js/built/all_tmp_unc.js)
+new_js=$(wc -c < js/built/all_compressed.js)
+saved_js=$((old_js - new_js))
+echo -e "\n !! built the javascript component to save $saved_js B = $(calc "$saved_js / $old_js * 100")%\n"
 
 # do css
-cat css/common.css css/desktop.css css/mobile.css css/forms/*.css css/viewers/*.css > css/built/all_tmp_unc.css
-${cs2o:-csso} css/built/all_tmp_unc.css --map file --output css/built/all_compressed.css
-echo built the stylesheet component
+cat css/common.css css/desktop.css css/mobile.css css/forms/*.css \
+  css/viewers/*.css > css/built/all_tmp_unc.css
+
+${cs2o:-csso} css/built/all_tmp_unc.css --map file --stat --output \
+  css/built/all_compressed.css
+old_css=$(wc -c < css/built/all_tmp_unc.css)
+new_css=$(wc -c < css/built/all_compressed.css)
+saved_css=$((old_css - new_css))
+echo -e "\n !! built the stylesheet component to save $saved_css B = $(calc "$saved_css / $old_css * 100")%\n"
+
+total_saved=$((saved_css + saved_js))
+total_uncmp=$((old_css + old_js))
+echo -e " !! built all components to save overall $total_saved B = $(calc "$total_saved / $total_uncmp * 100" )%\n"
