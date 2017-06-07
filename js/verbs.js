@@ -63,13 +63,15 @@ catnipCDNUp = {
 };
 
 defaultJSONObjs = {
-  ping: {
-    "verb": "ping",
-    "data": {
-      "ping": "hello",
-    },
-    "time": {
-      "conn_init": microTime(),
+  ping: function () {
+    return {
+      "verb": "ping",
+      "data": {
+        "ping": "hello",
+      },
+      "time": {
+        "conn_init": microTime(),
+      }
     }
   },
 
@@ -77,17 +79,33 @@ defaultJSONObjs = {
     return {
       'verb': 'gapi_validate',
       'data': {
-        'gapi_key': tok
+        'gapi_key': (tok || "")
       },
       "time": {
         "conn_init": microTime(),
       }
     }
   },
+
   view_menu: function () {
     return {
       "verb": "view_menu",
       "data": {},
+      "time": {
+        "conn_init": microTime()
+      },
+      "anticsrf": (anticsrf.tok || "")
+    }
+  },
+
+  view_orders: function (age, count, from_end) {
+    return {
+      "verb": "view_orders",
+      "data": {
+        "age": age || "new",           // or old
+        "count": count || 10,          // default
+        "from_end": from_end || "head" // or tail
+      },
       "time": {
         "conn_init": microTime()
       },

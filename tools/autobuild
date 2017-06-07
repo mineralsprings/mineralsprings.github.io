@@ -1,2 +1,2 @@
 #!/bin/bash
-ls js/*.js js/forms/* js/viewers/* js/tlators/* css/*.css css/forms/* css/viewers/* | entr tools/build
+ls js/*.js js/forms/* js/viewers/* js/tlators/* css/*.css css/forms/* css/viewers/* | entr -r bash -c 'tools/build'

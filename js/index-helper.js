@@ -20,7 +20,7 @@ function checkCatnipCDNStatusOk() {
     getServerHostForEnv(),
     catnipCDNUp.ok,
     catnipCDNUp.err,
-    JSON.stringify(defaultJSONObjs.ping)
+    JSON.stringify(defaultJSONObjs.ping())
   );
 }
 

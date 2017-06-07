@@ -15,16 +15,16 @@ var editMenuForm = {
       var newfield = '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n';
 
       newfield +=
-          '<label class="menu-itemname"> Item name:' +
+          '<label class="menu-itemname"> Item name' +
             '<input class="menu-itemname-input" type="text" name="' + newname + '-name" value=""/>' +
           '</label>' +
 
-          '<label class="menu-itemdesc"> Description:' +
+          '<label class="menu-itemdesc"> Description' +
             '<textarea class="menu-itemdesc-input" type="text" name="' + newname + '-desc" value=""/>' +
           '</textarea></label>'
           +
           '<label class="menu-itemprice" style="display: ' + (is_buffet ? "none" : "inline") + ';">'
-          + 'Price:' +
+          + 'Price' +
             '<input class="menu-itemprice-input" type="number" name="' + newname + '-price" value="" />' +
           '</label>' +
 
@@ -33,11 +33,12 @@ var editMenuForm = {
             '<input class="menu-itemoptions-input" type="checkbox" name="' + newname + '-options" value=""/>' +
           '</label>';
 
-      newfield += '<button type="button" onclick="editMenuForm.formResizer.removeItem('
-                  + editMenuForm.formResizer.counter + ');">Remove this item</button>\n';
+      newfield += '<button class="fc-button" type="button" id="fc-removethis"' +
+                  ' onclick="editMenuForm.formResizer.removeItem('
+                  + editMenuForm.formResizer.counter + ');">-</button>\n';
 
       newfield += '</fieldset>';
-      document.getElementById("menu-form").insertAdjacentHTML('beforeend', newfield);
+      document.getElementById("menu-wrapper").insertAdjacentHTML('beforeend', newfield);
       ++editMenuForm.formResizer.counter;
 
       document.getElementById(newname + "-special-checkbox").addEventListener("click", function (e) {
@@ -65,7 +66,7 @@ var editMenuForm = {
     }
   },
 
-  formExtract: function (name) {
+  formExtract: function () {
     var all_items = {};
     var top_forms = document.getElementsByTagName("fieldset");
     for (var j = 0; j < top_forms.length; j++) {
@@ -83,7 +84,7 @@ var editMenuForm = {
       all_items[fs.id] = local_result;
     }
     all_items.is_buffet = document.getElementById("is_buffet").checked;
-    return all_items;
+    console.log(all_items);
   },
 
   doSpecialCheckBox: function (label) {

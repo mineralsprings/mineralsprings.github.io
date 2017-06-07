@@ -1,31 +1,33 @@
-#buttonWrapper {
-
-  width: 100vw;
-
-}
-
 #menu-form {
 
-  width: 100vw;
-
-  margin-left: none;
-  margin-right: none;
-
-  float: left;
-
+  /*width: 80vw;*/
+  /*  float: left; */
 }
 
 #menu-wrapper {
 
-  width: 80vw;
+  width: 75vw;
 
   border: 1px solid #c0392b;
 
-  padding: 5vh;
+  padding: 2vh;
 
-  margin-right: 5vw;
-
+  /*margin-right: 5vw;*/
+  display: block;
 }
+
+#menu-fc-buttons-column {
+
+  width: 5vw;
+  height: 10vw;
+
+  float: left;
+}
+
+#menu-fc-buttons-bottom {
+  transform: translateX(500%);
+}
+
 
 button.fc-button {
 
@@ -35,15 +37,21 @@ button.fc-button {
   background-color: #c0392b;
 
   border: none;
-  float: left;
+
+  color: white;
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#fc-submit {
+  font-weight: normal;
+}
+
+#fc-removethis {
 
 }
 
-#menu-form-buttons-column {
-
-  width: 5vw;
-  height: 15vw;
-
-  margin-left: none;
-
+fieldset.menu-field {
+  position: relative;
 }
