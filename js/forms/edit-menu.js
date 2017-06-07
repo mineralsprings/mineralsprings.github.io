@@ -66,27 +66,23 @@ var editMenuForm = {
   },
 
   formExtract: function (name) {
-    var items = {};
-    var formfs = document.getElementsByTagName("fieldset");
-    for (var j = 0; j < formfs.length; j++) {
-      var fs = formfs[i];
-      var res = {};
-      var rlvnt_tags = Object.assign(
-        {},
-        fs.getElementsByTagName("input"),
-        fs.getElementsByTagName("textarea")
-      );
+    var all_items = {};
+    var top_forms = document.getElementsByTagName("fieldset");
+    for (var j = 0; j < top_forms.length; j++) {
+      var local_result = {};
+      var fs = top_forms[j];
+      var need_tags = spread(fs.getElementsByTagName("input"), fs.getElementsByTagName("textarea"));
 
-      for (var i = 0; i < rlvnt_tags.length; i++) {
-        var intag = rlvnt_tags[i],
-              val = intag.type === "checkbox" ? intag.checked : intag.value;
+      for (var i = 0; i < need_tags.length; i++) {
+        var intag = need_tags[i],
+              val = (intag.type === "checkbox" ? intag.checked : intag.value),
               nme = intag.name;
-        res[nme]  = val;
+        local_result[nme]  = val;
       }
-      items[fs.id] = res;
+      all_items[fs.id] = local_result;
     }
-    items.is_buffet = document.getElementById("is_buffet").checked;
-    console.log(items)
+    all_items.is_buffet = document.getElementById("is_buffet").checked;
+    console.log(all_items)
   },
 
   doSpecialCheckBox: function (label) {

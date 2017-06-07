@@ -23,6 +23,17 @@ function hideElements(className) {
 
 }
 
+function spread () {
+  var out = [];
+      out = [].concat.apply([], arguments[0]);
+
+  for (var i = 1; i < arguments.length; i++) {
+    out = [].concat.apply(out, arguments[i]);
+  }
+  
+  return out;
+}
+
 
 /* developer env vs production server */
 function getServerHostForEnv() {
@@ -51,8 +62,8 @@ function getXHRCallable() {
   } else {
     console.log("no way to XMLHttpRequest, giving up");
     // you're drunk
-    throw new Error("don't know how internet works HTTP anymore?????");
     alert("don't know how internet works HTTP anymore?????");
+    throw new Error("don't know how internet works HTTP anymore?????");
   }
 
   return xmlHttp;
