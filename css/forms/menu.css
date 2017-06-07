@@ -1,12 +1,49 @@
+#buttonWrapper {
+
+  width: 100vw;
+
+}
+
 #menu-form {
 
-  width: 80vw;
+  width: 100vw;
 
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: none;
+  margin-right: none;
+
+  float: left;
+
+}
+
+#menu-wrapper {
+
+  width: 80vw;
 
   border: 1px solid #c0392b;
 
   padding: 5vh;
+
+  margin-right: 5vw;
+
+}
+
+button.fc-button {
+
+  width: 5vw;
+  height: 5vw;
+
+  background-color: #c0392b;
+
+  border: none;
+  float: left;
+
+}
+
+#menu-form-buttons-column {
+
+  width: 5vw;
+  height: 15vw;
+
+  margin-left: none;
 
 }
