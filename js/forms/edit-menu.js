@@ -60,7 +60,7 @@ var editMenuForm = {
 
     removeItem: function (n) {
       --this.counter;
-      if (0 === n) { return; }
+      /*if (0 === n) { return; }*/
       var elem = document.getElementById("field-" + n);
       elem.parentNode.removeChild(elem);
     }

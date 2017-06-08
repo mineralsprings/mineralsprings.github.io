@@ -1,10 +1,14 @@
 function onSignIn(googleUser) {
-  // Useful data for your client-side scripts:
   console.log("clicked sign in");
 
-  currentGoogleUser = {};
-  currentGoogleUser.vendor = googleUser;
-  currentGoogleUser.reload = googleUser.reloadAuthResponse;
+  /* global */ currentGoogleUser        = {};
+  /* global */ currentGoogleUser.vendor = googleUser;
+  /* global */ currentGoogleUser.reload = googleUser.reloadAuthResponse;
+
+  var circle  = document.getElementById("bigcircle");
+  circle.removeEventListener("click", showGLogin);
+
+  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
 
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -45,7 +49,7 @@ function doSignOut () {
     return;
   }
   var btnwrp = document.getElementById("buttonWrapper");
-  removeChildren(btnwrp);
+  /*removeChildren(btnwrp);*/
   signOut();
   /*firstLoader(); trigger a refresh instead */
   window.location.reload();

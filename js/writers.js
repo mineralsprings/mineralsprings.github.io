@@ -123,6 +123,10 @@ function enableBigButton() {
   var circle  = document.getElementById("bigcircle");
   circle.addEventListener("click", showGLogin);
 
-  document.getElementById("c_bigtext").innerHTML = "Login to Google";
-  document.getElementById("c_liltext").innerHTML = "login to use this app";
+  writeBigButtonMsg("Login to Google", "login to use this app");
+}
+
+function writeBigButtonMsg(big, small) {
+  document.getElementById("c_bigtext").innerHTML = big;
+  document.getElementById("c_liltext").innerHTML = small;
 }

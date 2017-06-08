@@ -28,7 +28,6 @@ function haveJS () {
   console.log("have JS (duh)");
   var alert = document.getElementById("alert");
   alert.parentNode.removeChild(alert);
-  /*document.getElementById("buttonWrapper").style.display = "inherit";*/
 }
 
 function firstLoader() {

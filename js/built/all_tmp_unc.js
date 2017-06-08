@@ -117,12 +117,16 @@ function httpPostAsync(theUrl, callback, failfun, data) {
   xmlHttp.send(data);
 }
 function onSignIn(googleUser) {
-  // Useful data for your client-side scripts:
   console.log("clicked sign in");
 
-  currentGoogleUser = {};
-  currentGoogleUser.vendor = googleUser;
-  currentGoogleUser.reload = googleUser.reloadAuthResponse;
+  /* global */ currentGoogleUser        = {};
+  /* global */ currentGoogleUser.vendor = googleUser;
+  /* global */ currentGoogleUser.reload = googleUser.reloadAuthResponse;
+
+  var circle  = document.getElementById("bigcircle");
+  circle.removeEventListener("click", showGLogin);
+
+  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
 
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -163,7 +167,7 @@ function doSignOut () {
     return;
   }
   var btnwrp = document.getElementById("buttonWrapper");
-  removeChildren(btnwrp);
+  /*removeChildren(btnwrp);*/
   signOut();
   /*firstLoader(); trigger a refresh instead */
   window.location.reload();
@@ -432,8 +436,12 @@ function enableBigButton() {
   var circle  = document.getElementById("bigcircle");
   circle.addEventListener("click", showGLogin);
 
-  document.getElementById("c_bigtext").innerHTML = "Login to Google";
-  document.getElementById("c_liltext").innerHTML = "login to use this app";
+  writeBigButtonMsg("Login to Google", "login to use this app");
+}
+
+function writeBigButtonMsg(big, small) {
+  document.getElementById("c_bigtext").innerHTML = big;
+  document.getElementById("c_liltext").innerHTML = small;
 }
 var currentGoogleUser = null;
 var viewIsHome = false;
@@ -465,7 +473,6 @@ function haveJS () {
   console.log("have JS (duh)");
   var alert = document.getElementById("alert");
   alert.parentNode.removeChild(alert);
-  /*document.getElementById("buttonWrapper").style.display = "inherit";*/
 }
 
 function firstLoader() {
@@ -556,7 +563,7 @@ var editMenuForm = {
 
     removeItem: function (n) {
       --this.counter;
-      if (0 === n) { return; }
+      /*if (0 === n) { return; }*/
       var elem = document.getElementById("field-" + n);
       elem.parentNode.removeChild(elem);
     }
