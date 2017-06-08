@@ -6,12 +6,12 @@ var editMenuForm = {
     counter: 1,
 
     _getLastFieldSet: function () {
-      var fields    = document.getElementsByTagName("fieldset");
+      var    fields = document.getElementsByTagName("fieldset");
       return fields.item(fields.length - 1);
     },
 
     addItem: function () {
-      var newname =  'field-' + this.formResizer.counter;
+      var newname =  'field-' + this.counter;
       var newfield = '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n';
 
       newfield +=
@@ -35,11 +35,11 @@ var editMenuForm = {
 
       newfield += '<button class="fc-button" type="button" id="fc-removethis"' +
                   ' onclick="editMenuForm.formResizer.removeItem('
-                  + editMenuForm.formResizer.counter + ');">-</button>\n';
+                  + this.counter + ');">-</button>\n';
 
       newfield += '</fieldset>';
       document.getElementById("menu-wrapper").insertAdjacentHTML('beforeend', newfield);
-      ++this.formResizer.counter;
+      ++this.counter;
 
       document.getElementById(newname + "-special-checkbox").addEventListener("click", function (e) {
         if ("INPUT" === e.target.nodeName) {
@@ -51,7 +51,7 @@ var editMenuForm = {
     removeLast: function () {
       var lastfield = this.formResizer._getLastFieldSet();
       if ( null === lastfield || lastfield.id.match(/default/) ) {
-        this.formResizer.counter = 1;
+        this.counter = 1;
         return;
       }
       // don't modify the counter here though
@@ -59,7 +59,7 @@ var editMenuForm = {
     },
 
     removeItem: function (n) {
-      --editMenuForm.formResizer.counter;
+      --this.counter;
       if (0 === n) { return; }
       var elem = document.getElementById("field-" + n);
       elem.parentNode.removeChild(elem);
