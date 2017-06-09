@@ -4,4 +4,4 @@ install:
   - npm install csso-cli uglify-js html-minifier
 
 script:
-  - tools/build node_modules{uglify-js/bin/uglifyjs,csso-cli/bin/csso,html-minifier/cli.js}
+  - tools/build node_modules/{uglify-js/bin/uglifyjs,csso-cli/bin/csso,html-minifier/cli.js}
