@@ -1,14 +1,12 @@
 function onSignIn(googleUser) {
   console.log("clicked sign in");
+  var circle  = document.getElementById("bigcircle");
+  circle.removeEventListener("click", showGLogin);
+  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
 
   /* global */ currentGoogleUser        = {};
   /* global */ currentGoogleUser.vendor = googleUser;
   /* global */ currentGoogleUser.reload = googleUser.reloadAuthResponse;
-
-  var circle  = document.getElementById("bigcircle");
-  circle.removeEventListener("click", showGLogin);
-
-  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
 
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -20,7 +18,7 @@ function onSignIn(googleUser) {
 
       anticsrf = info.data.anticsrf;
 
-      // NOTE: VALIDATE THIS!!!!
+      // NOTE: VALIDATE THIS
       currentGoogleUser.nih_info = info.data.gapi_info;
 
       afterGLoginWriter();

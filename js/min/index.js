@@ -118,15 +118,13 @@ function httpPostAsync(theUrl, callback, failfun, data) {
 }
 function onSignIn(googleUser) {
   console.log("clicked sign in");
+  var circle  = document.getElementById("bigcircle");
+  circle.removeEventListener("click", showGLogin);
+  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
 
   /* global */ currentGoogleUser        = {};
   /* global */ currentGoogleUser.vendor = googleUser;
   /* global */ currentGoogleUser.reload = googleUser.reloadAuthResponse;
-
-  var circle  = document.getElementById("bigcircle");
-  circle.removeEventListener("click", showGLogin);
-
-  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
 
   var id_token = googleUser.getAuthResponse().id_token;
 
@@ -138,7 +136,7 @@ function onSignIn(googleUser) {
 
       anticsrf = info.data.anticsrf;
 
-      // NOTE: VALIDATE THIS!!!!
+      // NOTE: VALIDATE THIS
       currentGoogleUser.nih_info = info.data.gapi_info;
 
       afterGLoginWriter();
@@ -222,14 +220,13 @@ catnipCDNUp = {
         console.log("catnip ok");
         writeConnTimeStats(rsp["time"]);
         elt.style.color = "green";
-        elt.innerHTML += " OK";
+        elt.innerHTML += " UP";
       } else {
         catnipCDNUp.cdn_no_good()
       }
     },
   err:
     function (url, resp) {
-      /*console.log("failed to POST to " + url + " returned " + resp.status.toString());*/
       catnipCDNUp.cdn_no_good()
     },
 
@@ -239,7 +236,7 @@ catnipCDNUp = {
 
       var elt = document.getElementById("cdn-api-check");
       elt.style.color = "red";
-      elt.innerHTML += " missing";
+      elt.innerHTML += " DOWN";
       document.getElementById("bigcircle").addEventListener("mousedown", function() {
         alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
       });
@@ -447,14 +444,6 @@ var currentGoogleUser = null;
 var viewIsHome = false;
 var anticsrf = {};
 
-function checkGoogleAuthVerificationExists() {
-  httpGetAsync(
-    "googlebb7e3fa23640d3b2.html",
-    googleAPIFile.ok,
-    googleAPIFile.err
-  );
-}
-
 function writeConnTimeStats(time) {
   var diff = Math.abs(time["conn_init"] - time["conn_finish"]);
   console.log("connection to the CDN took " + (diff / Math.pow(10, 3)).toString() + "msec");
@@ -470,7 +459,6 @@ function checkCatnipCDNStatusOk() {
 }
 
 function haveJS () {
-  console.log("have JS (duh)");
   var alert = document.getElementById("alert");
   alert.parentNode.removeChild(alert);
 }
@@ -480,13 +468,10 @@ function firstLoader() {
   haveJS();
   async(
     initialLoader,
-    function () {
-      async(checkGoogleAuthVerificationExists, checkCatnipCDNStatusOk);
-    }
-  );
+    checkCatnipCDNStatusOk);
 }
 
-function doLoadingIconToggle (state, name) {
+/*function doLoadingIconToggle (state, name) {
   console.log("loading " + (state ? "on" : "off") + " caller: " + name);
   document.getElementById("loading").style.display = state ? "inline-block" : "none";
 }
@@ -495,7 +480,7 @@ function callLoader(fun) {
   doLoadingIconToggle(true, fun.name);
   fun();
   doLoadingIconToggle(false, fun.name);
-}
+}*/
 
 function testFormsOffline (elv) {
   currentGoogleUser = { nih_info: { is_elevated: elv } };
@@ -544,15 +529,13 @@ var editMenuForm = {
       document.getElementById("menu-wrapper").insertAdjacentHTML('beforeend', newfield);
       ++this.counter;
 
-      document.getElementById(newname + "-special-checkbox").addEventListener("click", function (e) {
-        if ("INPUT" === e.target.nodeName) {
-          this.doSpecialCheckBox(e.target.parentElement);
-        }
-      })
+      document.getElementById(
+          newname + "-special-checkbox"
+      ).addEventListener("click", doOptionsCheckBox);
     },
 
     removeLast: function () {
-      var lastfield = this.formResizer._getLastFieldSet();
+      var lastfield = this._getLastFieldSet();
       if ( null === lastfield || lastfield.id.match(/default/) ) {
         this.counter = 1;
         return;

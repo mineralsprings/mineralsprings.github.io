@@ -41,15 +41,13 @@ var editMenuForm = {
       document.getElementById("menu-wrapper").insertAdjacentHTML('beforeend', newfield);
       ++this.counter;
 
-      document.getElementById(newname + "-special-checkbox").addEventListener("click", function (e) {
-        if ("INPUT" === e.target.nodeName) {
-          this.doSpecialCheckBox(e.target.parentElement);
-        }
-      })
+      document.getElementById(
+          newname + "-special-checkbox"
+      ).addEventListener("click", doOptionsCheckBox);
     },
 
     removeLast: function () {
-      var lastfield = this.formResizer._getLastFieldSet();
+      var lastfield = this._getLastFieldSet();
       if ( null === lastfield || lastfield.id.match(/default/) ) {
         this.counter = 1;
         return;

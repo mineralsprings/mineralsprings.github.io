@@ -1,6 +1,7 @@
 #!/bin/bash
 uglify=$1
 cs2o=$2
+htmin=$3
 
 calc() { awk "BEGIN { print $* }"; }
 
@@ -12,34 +13,49 @@ old_css=0
 set -o errexit
 # do js
 js () {
-  paste --delimiter=\\n --serial vendor/js/jquery-3.2.1.min.js vendor/js/bootstrap.min.js js/common-funcs.js js/goo.js js/verbs.js js/writers.js \
-    js/index-helper.js js/forms/edit-menu.js js/forms/edit-order.js \
-    js/viewers/menu.js js/viewers/order.js vendor/js/platform.js > js/built/all_tmp_unc.js
+  local mindir='js/min'
+  paste --delimiter=\\n --serial vendor/js/jquery-3.2.1.min.js \
+    vendor/js/bootstrap.min.js js/common.js js/goo.js js/verbs.js \
+    js/writers.js js/index-helper.js js/forms/*.js js/viewers/*.js \
+    vendor/js/platform.js > $mindir/index.js
 
-  ${uglify:-uglifyjs} --mangle --ie8 --compress \
-    --source-map --output js//built/all_compressed.js -- js/built/all_tmp_unc.js
-  old_js=$(wc -c < js/built/all_tmp_unc.js)
-  new_js=$(wc -c < js/built/all_compressed.js)
+  ${uglify:-uglifyjs} --mangle --ie8 --compress --source-map --output \
+    $mindir/index.min.js -- $mindir/index.js
+  old_js=$(wc -c < $mindir/index.js)
+  new_js=$(wc -c < $mindir/index.min.js)
   saved_js=$((old_js - new_js))
   echo -e "\n !! built the javascript component to save $saved_js B = $(calc "$saved_js / $old_js * 100")%\n"
 }
 
 # do css
 css () {
+  local mindir='css/min'
   cat vendor/css/bootstrap.min.css vendor/css/raleway_playfair_display.css \
     css/common.css css/desktop.css css/mobile.css css/forms/*.css \
-    css/viewers/*.css > css/built/all_tmp_unc.css
+    css/viewers/*.css > $mindir/index.css
 
-  ${cs2o:-csso} css/built/all_tmp_unc.css --map file --output \
-    css/built/all_compressed.css
-  old_css=$(wc -c < css/built/all_tmp_unc.css)
-  new_css=$(wc -c < css/built/all_compressed.css)
+  ${cs2o:-csso} $mindir/index.css --map file --output $mindir/index.min.css
+  old_css=$(wc -c < $mindir/index.css)
+  new_css=$(wc -c < $mindir/index.min.css)
   saved_css=$((old_css - new_css))
   echo -e "\n !! built the stylesheet component to save $saved_css B = $(calc "$saved_css / $old_css * 100")%\n"
 }
 
-css &
+# do html
+html () {
+  ${htmin:-html-minifier} --html5 --collapse-whitespace --collapse-inline-tag-whitespace --conservative-collapse --remove-style-link-type-attributes --remove-script-type-attributes index.big.html > index.html
+
+  wc -c < index.big.html
+  old_ml=$(wc -c < index.big.html)
+  new_ml=$(wc -c < index.html)
+  saved_ml=$((old_ml - new_ml))
+  echo -e "\n !! built the hypertext component to save $saved_ml B = $(calc "$saved_ml / $old_ml * 100")%\n"
+}
+
+# in order of how long they might take so they finish faster
 js &
+html &
+css &
 sleep 3
 date
 # total_saved=$((saved_css + saved_js))

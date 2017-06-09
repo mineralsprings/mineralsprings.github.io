@@ -38,14 +38,13 @@ catnipCDNUp = {
         console.log("catnip ok");
         writeConnTimeStats(rsp["time"]);
         elt.style.color = "green";
-        elt.innerHTML += " OK";
+        elt.innerHTML += " UP";
       } else {
         catnipCDNUp.cdn_no_good()
       }
     },
   err:
     function (url, resp) {
-      /*console.log("failed to POST to " + url + " returned " + resp.status.toString());*/
       catnipCDNUp.cdn_no_good()
     },
 
@@ -55,7 +54,7 @@ catnipCDNUp = {
 
       var elt = document.getElementById("cdn-api-check");
       elt.style.color = "red";
-      elt.innerHTML += " missing";
+      elt.innerHTML += " DOWN";
       document.getElementById("bigcircle").addEventListener("mousedown", function() {
         alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
       });
