@@ -642,7 +642,18 @@ var editMenuForm = {
     );
   }
 }
+var editOrderForm = {
 
+  writeMenuData: function () {
+    console.log("writing menu data");
+    httpPostAsync(
+      getServerHostForEnv(),
+      function (r) {console.log(r);},
+      function () { },
+      JSON.stringify(defaultJSONObjs.view_menu())
+    );
+  }
+};
 
 
 var gapi=window.gapi=window.gapi||{};gapi._bs=new Date().getTime();(function(){var aa=function(a,b,c){return a.call.apply(a.bind,arguments)},ba=function(a,b,c){if(!a)throw Error();if(2<arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}},ca=function(a,b,c){ca=Function.prototype.bind&&-1!=Function.prototype.bind.toString().indexOf("native code")?aa:ba;return ca.apply(null,arguments)};/*

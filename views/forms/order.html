@@ -1,31 +1,17 @@
 <!-- for testing individually -->
-<script type="text/javascript" src="../../js/forms/edit-order.js"></script>
+<script type="text/javascript" src="../../js/min/index.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../css/min/index.min.css"/>
 
-<form id="edit-form">
 
-  <button type="button" onclick="editOrderForm.formExtract(this)"> Submit </button>
-  <button type="button" name="button" onclick="editOrderForm.formResizer.addItem(this);"> Add an item </button>
-  <button type="button" name="button" onclick="editOrderForm.formResizer.removeLast(this);"> Remove last item </button>
+<frame onload="editOrderForm.writeMenuData()">
 
-  <input type="checkbox" default="false" name="is_buffet" id="is_buffet">Is this a buffet menu?</input>
+  <span>Loading menu items, please wait...</span>
 
-  <fieldset class="field" name="default" name="field-default" id="field-default">
-    <label>
-      Item name:
-      <input type="text" name="default-name" value=""/>
-    </label>
-    <label>
-      Description:
-      <input type="textarea" name="default-desc" value=""/>
-    </label>
-    <label>
-      Price:
-      <input type="number" name="default-price" value=""/>
-    </label>
-    <label onclick="editOrderForm.doSpecialCheckBox(this)">
-      Options?
-      <input type="checkbox" name="default-options" value=""/>
-    </label>
-  </fieldset>
+  <form id="order-form">
 
-</form>
+    <select>
+    </select>
+
+  </form>
+
+</frame>

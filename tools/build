@@ -43,9 +43,11 @@ css () {
 
 # do html
 html () {
-  ${htmin:-html-minifier} --html5 --collapse-whitespace --collapse-inline-tag-whitespace --conservative-collapse --remove-style-link-type-attributes --remove-script-type-attributes index.big.html > index.html
+  ${htmin:-html-minifier} --html5 --collapse-whitespace \
+    --collapse-inline-tag-whitespace --remove-style-link-type-attributes \
+    --conservative-collapse --remove-script-type-attributes --remove-comments \
+    index.big.html > index.html
 
-  wc -c < index.big.html
   old_ml=$(wc -c < index.big.html)
   new_ml=$(wc -c < index.html)
   saved_ml=$((old_ml - new_ml))
@@ -56,7 +58,7 @@ html () {
 js &
 html &
 css &
-sleep 3
+sleep 4
 date
 # total_saved=$((saved_css + saved_js))
 # total_uncmp=$((old_css + old_js))
