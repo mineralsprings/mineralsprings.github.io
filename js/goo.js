@@ -1,8 +1,12 @@
 function onSignIn(googleUser) {
   console.log("clicked sign in");
   var circle  = document.getElementById("bigcircle");
-  circle.removeEventListener("click", showGLogin);
-  writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
+  try {
+    circle.removeEventListener("click", showGLogin);
+    writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
+  } catch (e) {
+    // nope
+  }
 
   /* global */ currentGoogleUser        = {};
   /* global */ currentGoogleUser.vendor = googleUser;
