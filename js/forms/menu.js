@@ -10,11 +10,16 @@ var editMenuForm = {
       return fields.item(fields.length - 1);
     },
 
+    _getRemoveButton: function (n) {
+      var buttons = document.getElementsByClassName("fc-removethis");
+      console.log("len: " + buttons.length + " n: " + n);
+      return buttons.item( "last" === n ? (buttons.length - 1) : (n-1));
+    },
+
     addItem: function () {
       var newname =  'field-' + this.counter;
-      var newfield = '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n';
-
-      newfield +=
+      var newfield =
+        '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n' +
           '<label class="menu-itemname"> Item name' +
             '<input class="menu-itemname-input" type="text" name="' + newname + '-name" value=""/>' +
           '</label>' +
@@ -31,14 +36,16 @@ var editMenuForm = {
           '<label class="menu-itemoptions" id="' + newname + '-special-checkbox">' +
             'Options?' +
             '<input class="menu-itemoptions-input" type="checkbox" name="' + newname + '-options" value=""/>' +
-          '</label>';
+          '</label></fieldset>';
 
-      newfield += '<button class="fc-button" type="button" id="fc-removethis"' +
-                  ' onclick="editMenuForm.formResizer.removeItem('
-                  + this.counter + ');">-</button>\n';
+      var newbutton = '<button class="fc-button fc-removethis" type="button" id="fc-removethis-' +
+        this.counter + '" onclick="editMenuForm.formResizer.removeItem(' +
+        this.counter + ');"> - </button><br>\n';
 
-      newfield += '</fieldset>';
-      document.getElementById("menu-wrapper").insertAdjacentHTML('beforeend', newfield);
+      document.getElementById("menu-wrapper")
+        .insertAdjacentHTML("beforeend", newfield);
+      document.getElementById("menu-fc-buttons-col-right")
+        .insertAdjacentHTML("beforeend", newbutton);
       ++this.counter;
 
       document.getElementById(
@@ -54,6 +61,8 @@ var editMenuForm = {
       }
       // don't modify the counter here though
       lastfield.parentNode.removeChild(lastfield);
+      var lastbutton = this._getRemoveButton("last");
+      lastbutton.parentNode.removeChild(lastbutton);
     },
 
     removeItem: function (n) {
@@ -61,6 +70,8 @@ var editMenuForm = {
       /*if (0 === n) { return; }*/
       var elem = document.getElementById("field-" + n);
       elem.parentNode.removeChild(elem);
+      var button = this._getRemoveButton(n);
+      button.parentNode.removeChild(button);
     }
   },
 

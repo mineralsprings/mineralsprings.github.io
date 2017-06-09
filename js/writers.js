@@ -21,12 +21,26 @@ function loadContent(page) {
 
       btnwrp.insertAdjacentHTML("beforeend", inject);
 
-      if ("forms/menu" === page) {
-        document.getElementById("default-special-checkbox").addEventListener("click", function (e) {
-          if ("INPUT" === e.target.nodeName) {
-            editMenuForm.doSpecialCheckBox(e.target.parentElement);
-          }
-        })
+      switch (page) {
+
+        case "forms/menu": {
+          document.getElementById(
+            "default-special-checkbox"
+          ).addEventListener(
+            "click",
+            doOptionsCheckBox
+          );
+          break;
+        }
+
+        case "forms/order": {
+          editOrderForm.writeMenuData();
+          break;
+        }
+
+        default: {
+          break;
+        }
       }
     },
 

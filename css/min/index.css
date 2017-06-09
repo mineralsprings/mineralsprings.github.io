@@ -666,29 +666,36 @@ a:hover {
 
 }
 #menu-form {
-
+  display: inline-block;
   /*width: 80vw;*/
   /*  float: left; */
 }
 
 #menu-wrapper {
 
-  width: 75vw;
+  display: inline-block;
+
+  width: 50vw;
 
   border: 1px solid #c0392b;
 
   padding: 2vh;
 
   /*margin-right: 5vw;*/
-  display: block;
+  /*display: block;*/
 }
 
-#menu-fc-buttons-column {
+#menu-fc-buttons-col-left {
 
+  display: inline-block;
   width: 5vw;
   height: 10vw;
 
   float: left;
+}
+
+#menu-fc-buttons-col-right {
+  display: inline-block;
 }
 
 #menu-fc-buttons-bottom {

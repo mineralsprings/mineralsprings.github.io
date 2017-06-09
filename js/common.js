@@ -24,8 +24,7 @@ function hideElements(className) {
 }
 
 function spread () {
-  var out = [];
-      out = [].concat.apply([], arguments[0]);
+  var out = [].concat.apply([], arguments[0]);
 
   for (var i = 1; i < arguments.length; i++) {
     out = [].concat.apply(out, arguments[i]);

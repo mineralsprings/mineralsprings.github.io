@@ -26,7 +26,8 @@ function firstLoader() {
   haveJS();
   async(
     initialLoader,
-    checkCatnipCDNStatusOk);
+    checkCatnipCDNStatusOk
+  );
 }
 
 /*function doLoadingIconToggle (state, name) {
