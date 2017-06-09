@@ -117,12 +117,10 @@ function httpPostAsync(theUrl, callback, failfun, data) {
 }
 function onSignIn(googleUser) {
   console.log("clicked sign in");
-  var circle  = document.getElementById("bigcircle");
-  try {
+  var circle = document.getElementById("bigcircle");
+  if (circle) {
     circle.removeEventListener("click", showGLogin);
     writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
-  } catch (e) {
-    // nope
   }
 
   /* global */ currentGoogleUser        = {};
@@ -164,13 +162,12 @@ function renderButton() {
 }
 
 function doSignOut () {
-  if (! confirm("Are you sure you would like to sign out of Mineral Springs?")) {
+  if (! confirm("Really sign out of Mineral Springs?")) {
     return;
   }
   var btnwrp = document.getElementById("buttonWrapper");
-  /*removeChildren(btnwrp);*/
   signOut();
-  /*firstLoader(); trigger a refresh instead */
+  /* trigger a refresh instead of keeping the same call stack */
   window.location.reload();
 }
 
@@ -219,11 +216,7 @@ catnipCDNUp = {
           (rsp["response"]         === "reply_ping") &&
           (rsp["data"]["pingback"] === true)
       ) {
-        try {
-          enableBigButton();
-        } catch (e){
-          // nothing to do here 
-        }
+        enableBigButton();
         console.log("catnip ok");
         writeConnTimeStats(rsp["time"]);
         elt.style.color = "green";
@@ -316,8 +309,10 @@ defaultJSONObjs = {
   }
 };
 function removeChildren(elt) {
-  while (elt.firstChild) {
-    elt.removeChild(elt.firstChild);
+  if (elt) {
+    while (elt.firstChild) {
+      elt.removeChild(elt.firstChild);
+    }
   }
 }
 
@@ -430,10 +425,13 @@ function mainPageLoader () {
 }
 
 function showGLogin() {
-  var circle = document.getElementById("bigcircle");
-  circle.parentNode.removeChild(circle);
-  var glogin = document.getElementById("googleSignInWrapper");
-  glogin.style.display = "inline-block";
+  var
+    circle = document.getElementById("bigcircle"),
+    glogin = document.getElementById("googleSignInWrapper");
+  if (circle && glogin) {
+    circle.parentNode.removeChild(circle);
+    glogin.style.display = "inline-block";
+  }
 }
 
 function initialLoader() {
@@ -452,14 +450,20 @@ function initialLoader() {
 
 function enableBigButton() {
   var circle  = document.getElementById("bigcircle");
-  circle.addEventListener("click", showGLogin);
-
-  writeBigButtonMsg("Login to Google", "login to use this app");
+  if (circle) {
+    circle.addEventListener("click", showGLogin);
+    writeBigButtonMsg("Login to Google", "login to use this app");
+  }
 }
 
 function writeBigButtonMsg(big, small) {
-  document.getElementById("c_bigtext").innerHTML = big;
-  document.getElementById("c_liltext").innerHTML = small;
+  var
+    b = document.getElementById("c_bigtext"),
+    s = document.getElementById("c_liltext");
+  if (b && s) {
+    b.innerHTML = big;
+    s.innerHTML = small;
+  }
 }
 var currentGoogleUser = null;
 var viewIsHome = false;
@@ -482,6 +486,9 @@ function checkCatnipCDNStatusOk() {
 function haveJS () {
   var alert = document.getElementById("alert");
   alert.parentNode.removeChild(alert);
+  var url = window.location.href;
+  url = "/" === url[url.length - 1] ? url.slice(0, url.length - 1) : url;
+  document.title += " | " + url;
 }
 
 function firstLoader() {

@@ -1,11 +1,9 @@
 function onSignIn(googleUser) {
   console.log("clicked sign in");
-  var circle  = document.getElementById("bigcircle");
-  try {
+  var circle = document.getElementById("bigcircle");
+  if (circle) {
     circle.removeEventListener("click", showGLogin);
     writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
-  } catch (e) {
-    // nope
   }
 
   /* global */ currentGoogleUser        = {};
@@ -47,13 +45,12 @@ function renderButton() {
 }
 
 function doSignOut () {
-  if (! confirm("Are you sure you would like to sign out of Mineral Springs?")) {
+  if (! confirm("Really sign out of Mineral Springs?")) {
     return;
   }
   var btnwrp = document.getElementById("buttonWrapper");
-  /*removeChildren(btnwrp);*/
   signOut();
-  /*firstLoader(); trigger a refresh instead */
+  /* trigger a refresh instead of keeping the same call stack */
   window.location.reload();
 }
 

@@ -34,11 +34,7 @@ catnipCDNUp = {
           (rsp["response"]         === "reply_ping") &&
           (rsp["data"]["pingback"] === true)
       ) {
-        try {
-          enableBigButton();
-        } catch (e){
-          // nothing to do here 
-        }
+        enableBigButton();
         console.log("catnip ok");
         writeConnTimeStats(rsp["time"]);
         elt.style.color = "green";

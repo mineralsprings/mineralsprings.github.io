@@ -1,6 +1,8 @@
 function removeChildren(elt) {
-  while (elt.firstChild) {
-    elt.removeChild(elt.firstChild);
+  if (elt) {
+    while (elt.firstChild) {
+      elt.removeChild(elt.firstChild);
+    }
   }
 }
 
@@ -113,10 +115,13 @@ function mainPageLoader () {
 }
 
 function showGLogin() {
-  var circle = document.getElementById("bigcircle");
-  circle.parentNode.removeChild(circle);
-  var glogin = document.getElementById("googleSignInWrapper");
-  glogin.style.display = "inline-block";
+  var
+    circle = document.getElementById("bigcircle"),
+    glogin = document.getElementById("googleSignInWrapper");
+  if (circle && glogin) {
+    circle.parentNode.removeChild(circle);
+    glogin.style.display = "inline-block";
+  }
 }
 
 function initialLoader() {
@@ -135,12 +140,18 @@ function initialLoader() {
 
 function enableBigButton() {
   var circle  = document.getElementById("bigcircle");
-  circle.addEventListener("click", showGLogin);
-
-  writeBigButtonMsg("Login to Google", "login to use this app");
+  if (circle) {
+    circle.addEventListener("click", showGLogin);
+    writeBigButtonMsg("Login to Google", "login to use this app");
+  }
 }
 
 function writeBigButtonMsg(big, small) {
-  document.getElementById("c_bigtext").innerHTML = big;
-  document.getElementById("c_liltext").innerHTML = small;
+  var
+    b = document.getElementById("c_bigtext"),
+    s = document.getElementById("c_liltext");
+  if (b && s) {
+    b.innerHTML = big;
+    s.innerHTML = small;
+  }
 }

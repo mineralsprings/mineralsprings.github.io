@@ -19,6 +19,9 @@ function checkCatnipCDNStatusOk() {
 function haveJS () {
   var alert = document.getElementById("alert");
   alert.parentNode.removeChild(alert);
+  var url = window.location.href;
+  url = "/" === url[url.length - 1] ? url.slice(0, url.length - 1) : url;
+  document.title += " | " + url;
 }
 
 function firstLoader() {
