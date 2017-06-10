@@ -13,31 +13,36 @@ old_css=0
 set -o errexit
 # do js
 js () {
-  local mindir='js/min'
+  local md="js/min"
   paste --delimiter=\\n --serial vendor/js/jquery-3.2.1.min.js \
     vendor/js/bootstrap.min.js js/common.js js/goo.js js/verbs.js \
     js/writers.js js/index-helper.js js/forms/*.js js/viewers/*.js \
-    vendor/js/platform.js > $mindir/index.js
+    vendor/js/platform.js > $md/index.js
 
   ${uglify:-uglifyjs} --mangle --ie8 --compress --source-map --output \
-    $mindir/index.min.js -- $mindir/index.js
-  old_js=$(wc -c < $mindir/index.js)
-  new_js=$(wc -c < $mindir/index.min.js)
+    $md/index.min.js -- $md/index.js
+
+  old_js=$(wc -c < $md/index.js)
+  rm $md/index.js
+  new_js=$(wc -c < $md/index.min.js)
   saved_js=$((old_js - new_js))
   echo -e "\n !! built the javascript component to save $saved_js B = $(calc "$saved_js / $old_js * 100")%\n"
 }
 
 # do css
 css () {
-  local mindir='css/min'
+  local md="css/min"
   cat vendor/css/bootstrap.min.css vendor/css/raleway_playfair_display.css \
     css/common.css css/desktop.css css/mobile.css css/forms/*.css \
-    css/viewers/*.css > $mindir/index.css
+    css/viewers/*.css > $md/index.css
 
-  ${cs2o:-csso} $mindir/index.css --map file --output $mindir/index.min.css
-  old_css=$(wc -c < $mindir/index.css)
-  new_css=$(wc -c < $mindir/index.min.css)
+  ${cs2o:-csso} $md/index.css --map file --output $md/index.min.css
+
+  old_css=$(wc -c < $md/index.css)
+  rm $md/index.css
+  new_css=$(wc -c < $md/index.min.css)
   saved_css=$((old_css - new_css))
+
   echo -e "\n !! built the stylesheet component to save $saved_css B = $(calc "$saved_css / $old_css * 100")%\n"
 }
 
@@ -56,8 +61,8 @@ html () {
 
 # in order of how long they might take so they finish faster
 js &
-html &
 css &
+html &
 sleep 4
 date
 # total_saved=$((saved_css + saved_js))

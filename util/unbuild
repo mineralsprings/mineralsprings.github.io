@@ -1,0 +1,4 @@
+#!/bin/bash
+ub="{css,js}/min/*"
+echo "unbuilding $ub"
+#rm "$ub"
