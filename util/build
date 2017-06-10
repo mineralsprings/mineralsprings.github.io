@@ -10,6 +10,8 @@ saved_css=0
 old_js=0
 old_css=0
 
+echo "build $(date)"
+
 set -o errexit
 # do js
 js () {
@@ -26,7 +28,7 @@ js () {
   rm $md/index.js
   new_js=$(wc -c < $md/index.min.js)
   saved_js=$((old_js - new_js))
-  echo -e "\n !! built the javascript component to save $saved_js B = $(calc "$saved_js / $old_js * 100")%\n"
+  echo " !! built the javascript component to save $saved_js B = $(calc "$saved_js / $old_js * 100")%"
 }
 
 # do css
@@ -43,7 +45,7 @@ css () {
   new_css=$(wc -c < $md/index.min.css)
   saved_css=$((old_css - new_css))
 
-  echo -e "\n !! built the stylesheet component to save $saved_css B = $(calc "$saved_css / $old_css * 100")%\n"
+  echo " !! built the stylesheet component to save $saved_css B = $(calc "$saved_css / $old_css * 100")%"
 }
 
 # do html
@@ -56,7 +58,7 @@ html () {
   old_ml=$(wc -c < index.big.html)
   new_ml=$(wc -c < index.html)
   saved_ml=$((old_ml - new_ml))
-  echo -e "\n !! built the hypertext component to save $saved_ml B = $(calc "$saved_ml / $old_ml * 100")%\n"
+  echo " !! built the  hypertext component to save $saved_ml B = $(calc "$saved_ml / $old_ml * 100")%"
 }
 
 # in order of how long they might take so they finish faster
@@ -64,7 +66,7 @@ js &
 css &
 html &
 sleep 4
-date
+echo "ended $(date)"
 # total_saved=$((saved_css + saved_js))
 # total_uncmp=$((old_css + old_js))
 # echo -e " !! built all components to save overall $total_saved B = $(calc "$total_saved / $total_uncmp * 100" )%\n"
