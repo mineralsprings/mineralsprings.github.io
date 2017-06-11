@@ -68,7 +68,8 @@ function afterGLoginWriter() {
         }
       }
     },
-    async(mainPageLoader,
+    async(
+      mainPageLoader,
       function () {
         var probutton = document.getElementById("profileButton");
         probutton.style.backgroundImage = "url(" + currentGoogleUser.nih_info.picture + ")";
@@ -85,7 +86,6 @@ function mainPageLoader () {
     viewIsHome = true;
 
     var fnames = [ "big2" ];
-
 
     fnames.push(
       [ "user", "admin" ][ + ((currentGoogleUser || {}).nih_info || {}).is_elevated || 0  ]
@@ -111,6 +111,9 @@ function mainPageLoader () {
 
       );
     }
+
+    var c = document.getElementById("bigcircle");
+    if (c) { c.parentElement.removeChild(c); } 
   }
 }
 
