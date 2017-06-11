@@ -61,11 +61,10 @@ html () {
   echo " !! built the  hypertext component to save $saved_ml B = $(calc "$saved_ml / $old_ml * 100")%"
 }
 
-# in order of how long they might take so they finish faster
 js &
 css &
 html &
-sleep 4
+wait
 echo "ended $(date)"
 # total_saved=$((saved_css + saved_js))
 # total_uncmp=$((old_css + old_js))
