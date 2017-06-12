@@ -30,7 +30,7 @@ var editOrderForm = {
             '"> $' + item.price +
             ' <input type="number" class="menu-display-count" id="menu-itemct-' + item.sort_id +
             '"value="0" placeholder="0" oninput="editOrderForm.updatePriceVal(' + item.sort_id +
-            ')" hidden/> </label> <br>'
+            ')" disabled/> </label> <br>'
           );
         }
 
@@ -47,11 +47,11 @@ var editOrderForm = {
     var ct = document.getElementById("menu-counter-column")
              .querySelector("#menu-itemct-" + n),
        row = document.getElementById("menu-itemrow-" + n);
-    if (ct.hidden) {
-      ct.removeAttribute("hidden")
+    if (ct.disabled) {
+      ct.removeAttribute("disabled")
       row.style.backgroundColor = "#aaa";
     } else {
-      ct.setAttribute("hidden", true);
+      ct.setAttribute("disabled", true);
       row.style.backgroundColor = "white";
     }
   },
