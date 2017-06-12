@@ -19,10 +19,14 @@ var editOrderForm = {
         for (var i = 0; i < il.length; i++) {
           var item = il[i];
           mc_div.insertAdjacentHTML("beforeend",
-            '<div id="menu-itemrow-' + item.sort_id + '" class="menudisplay-row" onclick="editOrderForm.toggleCountBox(' +
+            '<div class="menu-display-row" id="menu-itemrow-' + item.sort_id +
+            '" onclick="editOrderForm.toggleCountBox(' +
             item.sort_id + ')">' + item.fullname + " " + item.comment + " $" + item.price +
-            ' <input type="number" class="menudisplay-count" id="menu-itemct-' + item.sort_id + '" hidden="true" value="0" placeholder="0" />' +
             '</div><br>'
+          );
+          document.getElementById("menu-counter-column").insertAdjacentHTML(
+            "beforeend",
+            ' <input type="number" class="menu-display-count" id="menu-itemct-' + item.sort_id + '" hidden="true" value="0" placeholder="0" /> <br>'
           );
         }
 
@@ -36,7 +40,8 @@ var editOrderForm = {
   },
 
   toggleCountBox: function (n) {
-    var ct = document.getElementById("menu-itemct-" + n),
+    var ct = document.getElementById("menu-counter-column")
+             .querySelector("#menu-itemct-" + n),
        row = document.getElementById("menu-itemrow-" + n);
     if (ct.hidden) {
       ct.removeAttribute("hidden")
