@@ -13,12 +13,8 @@ var editOrderForm = {
           document.getElementById("buffet-userwarn").removeAttribute("hidden");
         }
 
-        console.log(menudata);
-
         var     il = menudata.item_list;
         var mc_div = document.getElementById("menu-content");
-
-        console.log(il)
 
         for (var i = 0; i < il.length; i++) {
           var item = il[i];
@@ -29,12 +25,14 @@ var editOrderForm = {
             '</div><br>'
           );
         }
+
       },
       function () {
         console.log("error!");
       },
       JSON.stringify(defaultJSONObjs.view_menu())
     );
+    document.getElementById("loadtext").setAttribute("hidden", true);
   },
 
   toggleCountBox: function (n) {
