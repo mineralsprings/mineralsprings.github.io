@@ -28,8 +28,8 @@ var editMenuForm = {
 
           '<label class="menu-itemdesc"> Description' +
             '<textarea class="menu-itemdesc-input" type="text" name="' + newname + '-desc" value=""/>' +
-          '</textarea></label>'
-          +
+          '</textarea></label>' +
+
           '<label class="menu-itemprice" style="display: ' + (is_buffet ? "none" : "inline") + ';">'
           + 'Price' +
             '<input class="menu-itemprice-input" type="number" name="' + newname + '-price" value="" />' +
@@ -57,6 +57,7 @@ var editMenuForm = {
 
     removeLast: function () {
       var lastfield = this._getLastFieldSet();
+      // don't remove the 'default' field
       if ( null === lastfield || lastfield.id.match(/default/) ) {
         this.counter = 1;
         return;
@@ -69,10 +70,9 @@ var editMenuForm = {
 
     removeItem: function (n) {
       --this.counter;
-      /*if (0 === n) { return; }*/
-      var elem = document.getElementById("field-" + n);
-      elem.parentElement.removeChild(elem);
+      var elem   = document.getElementById("field-" + n);
       var button = this._getRemoveButton(n);
+      elem.parentElement.removeChild(elem);
       button.parentElement.removeChild(button);
     }
   },
@@ -152,7 +152,7 @@ var editMenuForm = {
       all_items[fs.id] = local_result;
     }
     all_items.is_buffet = document.getElementById("is_buffet").checked.toString();
-    //console.log(all_items);
+
     return all_items;
   },
 

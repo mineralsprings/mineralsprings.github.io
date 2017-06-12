@@ -13,20 +13,24 @@ var editOrderForm = {
           document.getElementById("buffet-userwarn").removeAttribute("hidden");
         }
 
-        var     il = menudata.item_list;
-        var mc_div = document.getElementById("menu-content");
+        var       il = menudata.item_list,
+          contentdiv = document.getElementById("menu-content"),
+          counterdiv = document.getElementById("menu-counter-column");
 
         for (var i = 0; i < il.length; i++) {
           var item = il[i];
-          mc_div.insertAdjacentHTML("beforeend",
+          contentdiv.insertAdjacentHTML("beforeend",
             '<div class="menu-display-row" id="menu-itemrow-' + item.sort_id +
             '" onclick="editOrderForm.toggleCountBox(' +
-            item.sort_id + ')">' + item.fullname + " " + item.comment + " $" + item.price +
-            '</div><br>'
+            item.sort_id + ')">' + item.fullname + " " + item.comment + '</div><br>'
           );
-          document.getElementById("menu-counter-column").insertAdjacentHTML(
+          counterdiv.insertAdjacentHTML(
             "beforeend",
-            ' <input type="number" class="menu-display-count" id="menu-itemct-' + item.sort_id + '" hidden="true" value="0" placeholder="0" /> <br>'
+            '<label class="menu-display-price" id="menu-itemprice-' + item.sort_id +
+            '"> $' + item.price +
+            ' <input type="number" class="menu-display-count" id="menu-itemct-' + item.sort_id +
+            '"value="0" placeholder="0" oninput="editOrderForm.updatePriceVal(' + item.sort_id +
+            ')" hidden/> </label> <br>'
           );
         }
 
@@ -36,7 +40,7 @@ var editOrderForm = {
       },
       JSON.stringify(defaultJSONObjs.view_menu())
     );
-    document.getElementById("loadtext").setAttribute("hidden", true);
+    document.getElementById("loadtext").style.display = "none";
   },
 
   toggleCountBox: function (n) {
@@ -50,5 +54,9 @@ var editOrderForm = {
       ct.setAttribute("hidden", true);
       row.style.backgroundColor = "white";
     }
+  },
+
+  updatePriceVal: function () {
+    return false;
   }
 };
