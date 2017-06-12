@@ -11,9 +11,11 @@ var editMenuForm = {
     },
 
     _getRemoveButton: function (n) {
-      var buttons = document.getElementsByClassName("fc-removethis");
-      console.log("len: " + buttons.length + " n: " + n);
-      return buttons.item( "last" === n ? (buttons.length - 1) : (n-1));
+      if ("last" === n) {
+        var buttons = document.getElementsByClassName("fc-removethis");
+        return buttons.item(buttons.length - 1);
+      }
+      return document.getElementById("fc-removethis-" + n);
     },
 
     addItem: function () {
@@ -69,9 +71,9 @@ var editMenuForm = {
       --this.counter;
       /*if (0 === n) { return; }*/
       var elem = document.getElementById("field-" + n);
-      elem.parentNode.removeChild(elem);
+      elem.parentElement.removeChild(elem);
       var button = this._getRemoveButton(n);
-      button.parentNode.removeChild(button);
+      button.parentElement.removeChild(button);
     }
   },
 
