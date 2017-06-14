@@ -19,6 +19,7 @@ var editOrderForm = {
 
         for (var i = 0; i < il.length; i++) {
           var item = il[i];
+          var price = item.price.toFixed(2);
           contentdiv.insertAdjacentHTML("beforeend",
             '<div class="menu-display-row" id="menu-itemrow-' + item.sort_id +
             '" onclick="editOrderForm.toggleCountBox(' +
@@ -27,10 +28,10 @@ var editOrderForm = {
           counterdiv.insertAdjacentHTML(
             "beforeend",
             '<label class="menu-display-price" id="menu-itemprice-' + item.sort_id +
-            '"> $' + item.price +
+            '"> $' + item.price + '</label>' +
             ' <input type="number" class="menu-display-count" id="menu-itemct-' + item.sort_id +
             '"value="0" placeholder="0" oninput="editOrderForm.updatePriceVal(' + item.sort_id +
-            ')" disabled/> </label> <br>'
+            ')" disabled/> <br>'
           );
         }
 
@@ -52,11 +53,12 @@ var editOrderForm = {
       row.style.backgroundColor = "#aaa";
     } else {
       ct.setAttribute("disabled", true);
-      row.style.backgroundColor = "white";
+      row.style.backgroundColor = "inherit";
     }
   },
 
-  updatePriceVal: function () {
-    return false;
+  updatePriceVal: function (n) {
+    var curprice = /\$(\d+\.\d+)/.exec(document.getElementById("menu-itemct-" + n).innerHTML)[1],
+           count = document.getElementById("menu-itemprice-" + n).value
   }
 };
