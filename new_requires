@@ -1,0 +1,14 @@
+1. live updates to admin UI
+  * client script watches server data store
+  * UI updates automagically
+2. resource tracking + itemisation
+  * another data store for keeping statistics
+  * UI integration
+3. statistics
+  * view data in admin UI
+4. square integration at P/S
+  * square API on web? if not, need to make a native app
+5. manual record creation
+  * UI integration
+6. payment method record
+  * UI integration
