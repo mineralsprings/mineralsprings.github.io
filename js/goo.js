@@ -33,6 +33,7 @@ function onSignIn(googleUser) {
 }
 
 function renderButton() {
+  console.log("rendered");
   gapi.signin2.render('glogin', {
     'scope': 'profile email',
     'width': 400,

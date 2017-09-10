@@ -1,3 +1,4 @@
+/* do somethings "asynchronously" */
 function async(your_function, callback) {
     setTimeout(function() {
         your_function();
@@ -5,16 +6,19 @@ function async(your_function, callback) {
     }, 0);
 }
 
+/* listen for a click on an element */
 function listenClick(id, fn) {
   document.getElementById(id).addEventListener("click", fn);
 }
 
+/* */
 function doOptionsCheckBox (e) {
   if (e.target.nodeName === "INPUT") { // prevent event bubbling / chrome's duplication
     editMenuForm.doSpecialCheckBox(e.target.parentElement);
   }
 }
 
+/* hide these named elements */
 function hideElements(className) {
   var blocks = document.getElementsByClassName(className);
   for (var i = 0; i < blocks.length; i++) {
@@ -23,6 +27,7 @@ function hideElements(className) {
 
 }
 
+/* replaces the spread operator ... */
 function spread () {
   var out = [].concat.apply([], arguments[0]);
 
@@ -33,7 +38,6 @@ function spread () {
   return out;
 }
 
-
 /* developer env vs production server */
 function getServerHostForEnv() {
   return null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
@@ -41,15 +45,15 @@ function getServerHostForEnv() {
     : "https://catnipcdn.pagekite.me" ;
 }
 
-
+/* now in microseconds */
 function microTime() {
   return 1000 * new Date();
 }
 
-
+/* determine how to make XHR requests in this browser */
 function getXHRCallable() {
   var xmlHttp;
-  // Mozilla / Chromium / WebKit / KHMTL
+  // Mozilla / Chromium / WebKit / KHMTL (like Gecko)
   if (window.XMLHttpRequest) {
     xmlHttp = new XMLHttpRequest();
 
@@ -68,7 +72,7 @@ function getXHRCallable() {
   return xmlHttp;
 }
 
-
+/* get something asynchronously */
 function httpGetAsync(theUrl, callback, failfun) {
 
   var xmlHttp = getXHRCallable();
@@ -86,7 +90,7 @@ function httpGetAsync(theUrl, callback, failfun) {
   xmlHttp.send(null); // connection close
 }
 
-
+/* post some data async */
 function httpPostAsync(theUrl, callback, failfun, data) {
   var xmlHttp = getXHRCallable();
 
