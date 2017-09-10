@@ -113,17 +113,17 @@ function mainPageLoader () {
     }
 
     var c = document.getElementById("bigcircle");
-    if (c) { c.parentElement.removeChild(c); } 
+    if (c) { c.parentElement.removeChild(c); }
   }
 }
 
 function showGLogin() {
   var
-    circle = document.getElementById("bigcircle"),
-    glogin = document.getElementById("googleSignInWrapper");
-  if (circle && glogin) {
+    circle     = document.getElementById("bigcircle"),
+    in_wrapper = document.getElementById("googleSignInWrapper");
+  if (circle && in_wrapper) {
     circle.parentNode.removeChild(circle);
-    glogin.style.display = "inline-block";
+    in_wrapper.style.display = "block";
   }
 }
 

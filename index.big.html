@@ -5,12 +5,12 @@
 
     <meta charset="utf-8">
 
-    <meta name="viewport"                content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<meta name="viewport"                content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
     <meta name="google-signin-client_id" content="502024288218-4h8it97gqlkmc0ttnr9ju3hpke8gcatj.apps.googleusercontent.com">
 
     <link   type="text/css" rel="stylesheet" href="css/min/index.min.css" />
     <script type="text/javascript"            src="js/min/index.min.js" ></script>
-    <!--<script type="text/javascript"            src="https://apis.google.com/js/platform.js" ></script>-->
+    <script type="text/javascript"            src="https://apis.google.com/js/platform.js?onload=renderButton" async></script>
 
     <!-- ICONS -->
     <link rel="icon"          type="image/x-icon" href="img/icon.png">
@@ -55,7 +55,7 @@
       <!-- write things here ok -->
 
       <div id="googleSignInWrapper" style="display: none;" class="click">
-        <div class="google-signin" id="glogin"> </div>
+        <div id="glogin"> </div>
       </div>
 
     </div>
