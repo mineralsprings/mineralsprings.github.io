@@ -48,3 +48,20 @@ function testFormsOffline (elv) {
   currentGoogleUser = { nih_info: { is_elevated: elv } };
   afterGLoginWriter();
 }
+
+function testSquareIPOS () {
+  var dataParameter = {
+    "amount_money": {
+      "amount" : "500",
+      "currency_code" : "USD"
+    },
+    "callback_url" : "https://catnipcdn.pagekite.me/integrate/square", // Replace this value with your application's callback URL
+    "client_id" : "sq0idp-T3wtWA0UKDNW5v4SKRcOrg", // Replace this value with your application's ID
+    "version": "1.3",
+    "notes": "notes for the transaction",
+    "options" : {
+      "supported_tender_types" : ["CREDIT_CARD","CASH","OTHER","SQUARE_GIFT_CARD","CARD_ON_FILE"]
+    }
+  };
+  window.location = "square-commerce-v1://payment/create?data=" + encodeURIComponent(JSON.stringify(dataParameter));
+}
