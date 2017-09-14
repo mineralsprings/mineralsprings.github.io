@@ -55,7 +55,7 @@ function testSquareIPOS () {
       "amount" : "500",
       "currency_code" : "USD"
     },
-    "callback_url" : "https://catnipcdn.pagekite.me/integrate/square", // Replace this value with your application's callback URL
+    "callback_url" : "https://catnipcdn.pagekite.me/payment-complete", // Replace this value with your application's callback URL
     "client_id" : "sq0idp-T3wtWA0UKDNW5v4SKRcOrg", // Replace this value with your application's ID
     "version": "1.3",
     "notes": "notes for the transaction",
