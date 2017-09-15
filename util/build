@@ -20,7 +20,7 @@ js () {
     vendor/js/bootstrap.min.js js/common.js js/goo.js js/verbs.js \
     js/writers.js js/index-helper.js js/forms/*.js js/viewers/*.js \
     > $md/index.js
-    # vendor/js/platform.js 
+    # vendor/js/platform.js
 
   ${uglify:-uglifyjs} --mangle --ie8 --compress --source-map --output \
     $md/index.min.js -- $md/index.js
@@ -35,9 +35,8 @@ js () {
 # do css
 css () {
   local md="css/min"
-  cat vendor/css/bootstrap.min.css vendor/css/raleway_playfair_display.css \
-    css/common.css css/desktop.css css/mobile.css css/forms/*.css \
-    css/viewers/*.css > $md/index.css
+  cat vendor/css/bootstrap.min.css vendor/css/raleway_playfair_display.css css/*.css css/forms/*.css css/viewers/*.css \
+  > $md/index.css
 
   ${cs2o:-csso} $md/index.css --map file --output $md/index.min.css
 

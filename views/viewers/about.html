@@ -12,11 +12,18 @@
     603 356 4370
   </p>
 
-  <iframe
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDvD35oe18swkkjqTWKeacPPucLHcYhGPg&q=Kennett+High+School,North+Conway+NH"
-    allowfullscreen>
-  </iframe>
+  <div id="map-box">
+    <div id="iframe-loading">
+      <img src="img/loading.gif" alt="Loading, please wait" title="Loading, please wait"/>
+    </div>
+    <br>
+    <iframe
+      width="600"
+      height="400"
+      frameborder="0" style="border:0"
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDvD35oe18swkkjqTWKeacPPucLHcYhGPg&q=Kennett+High+School,North+Conway+NH"
+      allowfullscreen
+      onload="document.getElementById('iframe-loading').style.display = 'none'">
+    </iframe>
+  </div>
 </div>
