@@ -31,7 +31,7 @@ var editOrderForm = {
             '"> $' + item.price + '</label>' +
             ' <input type="number" class="menu-display-count" id="menu-itemct-' + item.sort_id +
             '"value="0" placeholder="0" oninput="editOrderForm.updatePriceVal(' + item.sort_id +
-            ')" disabled/> <br>'
+            ')" /> <br>'
           );
         }
 

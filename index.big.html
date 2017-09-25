@@ -16,7 +16,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="img/icon.png">
 
     <!-- TITLE -->
-    <title>Mineral Springs Order Placement</title>
+    <title>Mineral Springs Web App</title>
 
   </head>
 
@@ -24,25 +24,25 @@
 
     <header>
 
-      <div title="Go Home" id='backButton' onclick="mainPageLoader()"
-        class="click">
+      <div title="Go Back" id='backButton' onclick="mainPageLoader()"
+         class="click" style="display: none;">
         <img src='img/back-arrow.svg' style="height: 3em;" alt="Go Back"/>
       </div>
 
-      <div id='headerText' title="Go Home" onclick="mainPageLoader()"
+      <div id="headerText" title="Go Home" onclick="mainPageLoader()"
         class="click">
         <p>
           Mineral Springs
         </p>
       </div>
 
-      <div id='profileButton' title="Sign Out of Mineral Springs Webapp"
+      <div id="profileButton" title="Sign Out of Mineral Springs Web App"
         onclick="doSignOut()" class="click"> </div>
 
     </header>
 
     <div id="alert">
-      The web client requires client-side JavaScript to work.
+      This web app requires client-side JavaScript to work.
       <br>
       Your browser does not have JavaScript, or it is disabled.
       <br>
@@ -68,9 +68,9 @@
       <button onclick="testFormsOffline(true)">admin offline</button>
       <button onclick="testSquareIPOS()">test square</button>
 
-      <div class="bottom-status links-bottom">
+      <div class="links-bottom">
         the
-        <a class="authorText links-bottom"
+        <a class="authorText"
           href="//github.com/mineralsprings/mineralsprings.github.io"
           title="Fork me on GitHub" target="_blank">
           open source Mineral Springs Webapp
@@ -79,7 +79,7 @@
         <div title="crafted with ♥ by">
           courtesy of
         </div>
-        <a class="authorText links-bottom" href="#" onclick="loadContent('viewers/contrib')">
+        <a class="authorText" href="#" onclick="loadContent('viewers/contrib')">
           the contributors
         </a>
       </div>
@@ -92,10 +92,10 @@
         <a class="bigger-link" target="_blank" href="//github.io">Github Pages </a>
       </div>
       |
-      <div class="links-bottom" title="privacy">
+      <div title="privacy">
         we value
       </div>
-      <a class="bottom-status authorText links-bottom" href="#" onclick="loadContent('viewers/privacy')">
+      <a class="authorText links-bottom" href="#" onclick="loadContent('viewers/privacy')">
         privacy
       </a>
       |

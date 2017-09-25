@@ -71,6 +71,7 @@ function afterGLoginWriter() {
     async(
       mainPageLoader,
       function () {
+        document.getElementById("backButton").style.display = "inherit";
         var probutton = document.getElementById("profileButton");
         probutton.style.backgroundImage = "url(" + currentGoogleUser.nih_info.picture + ")";
         probutton.style.display = "inline-block";
