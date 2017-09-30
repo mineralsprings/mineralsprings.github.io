@@ -1,2 +1,3 @@
 #!/bin/bash
+util/autobuild &
 python3 -m http.server 3000
