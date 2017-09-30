@@ -23,7 +23,7 @@ var editOrderForm = {
           contentdiv.insertAdjacentHTML("beforeend",
             '<div class="menu-display-row" id="menu-itemrow-' + item.sort_id +
             '" onclick="editOrderForm.toggleCountBox(' +
-            item.sort_id + ')">' + item.fullname + " " + item.comment + '</div><br>'
+            item.sort_id + ')">' + item.fullname + "<b>$" + item.price + "</b>" + " <br>" + item.comment + '</div><br>'
           );
           counterdiv.insertAdjacentHTML(
             "beforeend",

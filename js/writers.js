@@ -116,6 +116,8 @@ function mainPageLoader () {
     var c = document.getElementById("bigcircle");
     if (c) { c.parentElement.removeChild(c); }
   }
+
+  readQueryString();
 }
 
 function showGLogin() {
@@ -158,4 +160,25 @@ function writeBigButtonMsg(big, small) {
     b.innerHTML = big;
     s.innerHTML = small;
   }
+}
+
+function readQueryString() {
+  var qs = document.location.search;
+  if (undefined === qs) { return; }
+
+  qs = qs.slice(1); // trim leading ?
+
+  // human readable names for certain pages
+  var nice_names = {
+    "make-order": "forms/order",
+    "pending": "viewers/order",
+    "about": "viewers/about"
+  };
+
+  var tformed = nice_names[qs];
+  if (tformed !== undefined) {
+    qs = tformed;
+  }
+
+  loadContent(qs);
 }
