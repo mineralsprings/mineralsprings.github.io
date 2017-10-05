@@ -1,4 +1,4 @@
-var editOrderForm = {
+/*var editOrderForm = {
 
   writeMenuData: function () {
     console.log("writing menu data");
@@ -61,4 +61,4 @@ var editOrderForm = {
     var curprice = /\$(\d+\.\d+)/.exec(document.getElementById("menu-itemct-" + n).innerHTML)[1],
            count = document.getElementById("menu-itemprice-" + n).value
   }
-};
+};*/

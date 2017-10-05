@@ -2,22 +2,83 @@
 <script type="text/javascript" src="../../js/min/index.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../css/min/index.min.css"/>
 
+<span id="loadtext" hidden>Loading menu items, please wait...</span>
 
-<span id="loadtext">Loading menu items, please wait...</span>
+<div id="buffet-userwarn" hidden>
+  <p>note: this is a buffet menu and prices are set at the point of sale</p>
+</div>
 
-<form id="order-form">
+<div id="form-grid" class="container-fluid clearfix">
 
-  <div id="buffet-userwarn" hidden>
-    <p>note: this is a buffet menu and prices are set at the point of sale</p>
+  <div class="row mako-row mako-legend">
+    <div class="col-md-3 mako-col">Name</div>
+    <div class="col-md-3 mako-col">Summary</div>
+    <div class="col-md-1 mako-col">Price</div>
+    <div class="col-md-1 mako-col">Count</div>
+    <div class="col-md-1 mako-col">Total</div>
+    <div class="col-md-2 mako-col">Add / remove 1 </div>
   </div>
 
-  <div id="menu-content">
+  <div class="row mako-row">
+    <div class="col-md-3 mako-col mako-static-item-name">Chargrilled Chicken Rojo Wrap</div>
+    <div class="col-md-3 mako-col mako-static-item-desc">Crisp romaine generously dressed with our In-House Caesar Dressing, topped with shaved Parmesan and croutons</div>
+    <div class="col-md-1 mako-col mako-static-item-price">$1.60</div>
+    <div class="col-md-1 mako-col mako-dyn-item-ct">2</div>
+    <div class="col-md-1 mako-col mako-dyn-item-mprice">$2.60</div>
+    <div class="col-md-1 mako-btn white-col"> <div class>➕</div> <div>➖</div> </div>
+  </div>
+
+  <div class="row mako-row mako-option">
+    <div class="col-md-3 mako-col white-col">ITEM OPTIONS</div>
+    <div class="col-md-3 mako-col">Crackers</div>
+    <div class="col-md-1 mako-col">$0.50</div>
+    <div class="col-md-1 mako-col">2</div>
+    <div class="col-md-1 mako-col">$1.00</div>
+    <div class="col-md-1 mako-btn white-col"> <div class>➕</div> <div>➖</div> </div>
+  </div>
+
+  <div class="row mako-row mako-option">
+    <div class="col-md-3 mako-col white-col">&nbsp;</div>
+    <div class="col-md-3 mako-col">Have A Gorilla</div>
+    <div class="col-md-1 mako-col">$0.50</div>
+    <div class="col-md-1 mako-col">2</div>
+    <div class="col-md-1 mako-col">$1.00</div>
+    <div class="col-md-1 mako-btn white-col"> <div class>➕</div> <div>➖</div> </div>
+  </div>
+
+  <br />
+
+  <div class="row mako-row">
+    <div class="col-md-3 mako-col mako-static-item-name">Item name</div>
+    <div class="col-md-3 mako-col mako-static-item-desc">description</div>
+    <div class="col-md-1 mako-col mako-static-item-price">$1.60</div>
+    <div class="col-md-1 mako-col mako-dyn-item-ct">2</div>
+    <div class="col-md-1 mako-col mako-dyn-item-mprice">$2.60</div>
+    <div class="col-md-1 mako-btn white-col"> <div class>➕</div> <div>➖</div> </div>
+  </div>
+</div>
+
+  <!---
+  <div class="mako-static-col">
+
+    <div class="mako-static-col-item" style="background: gray;">
+      <h4 class="mako-static-item-name"> Item name </h4> <b class="mako-static-item-price"> $1.30 </b> <p class="mako-static-item-desc"> Item desc </p>
+    </div>
 
   </div>
 
-  <div id="menu-counter-column">
-
+  <div class="mako-dyn-col">
+    <div class="mako-dyn-col-item" style="background: gray;">
+      <p class="mako-dyn-item-mprice"> $2.60 </p> <p class="mako-dyn-item-ct"> 2 </p>
+    </div>
   </div>
 
-</form>
+  <div class="mako-btn-col">
+    <div class="mako-btn-col-item" style="background: gray;">
+      <div class="mako-btn-➕"> ➕ </div>
+      <div class="mako-btn-sub"> - </div>
+    </div>
+
+  </div>
+  -->
 

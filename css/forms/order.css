@@ -1,7 +1,47 @@
-.menu-display-count {
-  width: 3em;
+#form-grid {
+  width: 80%;
+  margin-left: 5%;
+  margin-right: 5%;
+  color: #e6e6e6;
+
+  text-decoration: none;
+  font-family: "Raleway", Arial, Sans-serif;
+  font-size: 2.5vh;
 }
 
-.menu-display-row {
-  padding: 2%;
+.mako-row {
+  display: block;
+}
+
+.mako-col {
+  background: #c0392b;
+}
+
+.white-col {
+  background: #fafafa;
+  font-weight: bold;
+  color: #c0392b;
+}
+
+.mako-dyn-item-ct,
+.mako-dyn-item-mprice,
+.mako-static-item-name {
+  font-weight: 500;
+}
+
+.mako-btn {
+  /* animation CSS */
+}
+
+.mako-option {
+  padding-top: 1px;
+  /*border: 2px #fafafa solid;*/
+}
+
+.mako-option-grouplast {
+  padding-bottom: 1vh;
+}
+
+.mako-legend {
+  font-weight: bold;
 }

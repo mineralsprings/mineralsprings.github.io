@@ -83,41 +83,11 @@ function afterGLoginWriter() {
 function mainPageLoader () {
 
   if (! viewIsHome) {
-
-    viewIsHome = true;
-
-    var fnames = [ "big2" ];
-
-    fnames.push(
-      [ "user", "admin" ][ + ((currentGoogleUser || {}).nih_info || {}).is_elevated || 0  ]
-    );
-
-    var btnWrp = document.getElementById("buttonWrapper");
-
-    removeChildren(btnWrp);
-
-    for (var i = 0; i < fnames.length; i++) {
-      var fn = fnames[i];
-      var abspath = "views/btns/" + fn + ".html";
-      httpGetAsync(
-        abspath,
-        function (response) {
-          document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
-        },
-
-        function (url, req) {
-          console.log("failed to inject elt " + abspath);
-          // well this ocurrence is a developer screw up so idk what else to put here
-        }
-
-      );
-    }
-
-    var c = document.getElementById("bigcircle");
-    if (c) { c.parentElement.removeChild(c); }
+    goHome();
   }
 
   readQueryString();
+
 }
 
 function showGLogin() {
@@ -167,18 +137,69 @@ function readQueryString() {
   if (undefined === qs) { return; }
 
   qs = qs.slice(1); // trim leading ?
+  readQueryStringImpl(qs);
+}
+
+function readQueryStringImpl(qs) {
+
+  console.log("query " + qs)
+  if ("" === qs) { return; }
+
+  // don't know if this is a good idea
+  // but we'll try to prevent infinite recursion
+  if ( ("home" === qs) && (!viewIsHome) ) {
+    goHome();
+    return;
+  }
 
   // human readable names for certain pages
   var nice_names = {
     "make-order": "forms/order",
     "pending": "viewers/order",
-    "about": "viewers/about"
+    "about": "viewers/about",
+    "privacy": "viewers/privacy"
   };
 
   var tformed = nice_names[qs];
-  if (tformed !== undefined) {
+  if (undefined !== tformed) {
     qs = tformed;
   }
 
   loadContent(qs);
+}
+
+function goHome() {
+
+  viewIsHome = true;
+
+  var fnames = [ "big2" ];
+
+  fnames.push(
+    [ "user", "admin" ][ + ((currentGoogleUser || {}).nih_info || {}).is_elevated || 0  ]
+  );
+
+  var btnWrp = document.getElementById("buttonWrapper");
+
+  removeChildren(btnWrp);
+
+  for (var i = 0; i < fnames.length; i++) {
+    var fn = fnames[i];
+    var abspath = "views/btns/" + fn + ".html";
+    httpGetAsync(
+      abspath,
+      function (response) {
+        document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
+      },
+
+      function (url, req) {
+        console.log("failed to inject elt " + abspath);
+        // well this ocurrence is a developer screw up so idk what else to put here
+      }
+
+    );
+  }
+
+  var c = document.getElementById("bigcircle");
+  if (c) { c.parentElement.removeChild(c); }
+
 }
