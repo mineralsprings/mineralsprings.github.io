@@ -142,7 +142,7 @@ function readQueryString() {
 
 function readQueryStringImpl(qs) {
 
-  console.log("query " + qs)
+  //console.log("query " + qs)
   if ("" === qs) { return; }
 
   // don't know if this is a good idea

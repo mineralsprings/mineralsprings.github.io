@@ -113,6 +113,17 @@ function httpGetSync(url, data) {
   var xmlHttp = getXHRCallable();
 
   xmlHttp.open("GET", url, false);
+  xmlHttp.setRequestHeader('Content-Type', 'application/json');
+  xmlHttp.send(data || null);
+  // need an error condition here
+  return xmlHttp.responseText;
+}
+
+function httpPostSync(url, data) {
+  var xmlHttp = getXHRCallable();
+
+  xmlHttp.open("POST", url, false);
+  xmlHttp.setRequestHeader('Content-Type', 'application/json');
   xmlHttp.send(data || null);
   // need an error condition here
   return xmlHttp.responseText;
