@@ -1,0 +1,8 @@
+ITEM_NAME short name of the item
+ITEM_DESC summary of the item
+ITEM_PRICE item base price
+STATIC_DROPDOWN placeholder for <select> html
+ENTRY_NUMBER placeholder for unique (linear) id number
+
+OPT_NAME short name of the optional
+OPT_PRICE base price of the optional

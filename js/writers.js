@@ -36,7 +36,7 @@ function loadContent(page) {
         }
 
         case "forms/order": {
-          editOrderForm.writeMenuData();
+          formOrder.writeOutMenu();
           break;
         }
 

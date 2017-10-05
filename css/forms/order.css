@@ -1,12 +1,12 @@
 #form-grid {
   width: 80%;
-  margin-left: 5%;
-  margin-right: 5%;
-  color: #e6e6e6;
+/*  margin-left: 15%;
+  margin-right: 15%;
+*/color: #e6e6e6;
 
   text-decoration: none;
   font-family: "Raleway", Arial, Sans-serif;
-  font-size: 2.5vh;
+  font-size: 2.7vh;
 }
 
 .mako-row {
@@ -40,7 +40,6 @@
 
 .mako-option {
   padding-top: 1px;
-  /*border: 2px #fafafa solid;*/
 }
 
 .mako-option-grouplast {
@@ -49,4 +48,17 @@
 
 .mako-legend {
   font-weight: bold;
+}
+
+.mako-between {
+  margin-left:  20%;
+  margin-right: 20%;
+}
+
+.mako-total-top {
+  padding-top: 3vh;
+}
+
+.mako-btnfinal {
+  cursor: pointer;
 }

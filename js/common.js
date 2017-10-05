@@ -73,17 +73,17 @@ function getXHRCallable() {
 }
 
 /* get something asynchronously */
-function httpGetAsync(theUrl, callback, failfun) {
+function httpGetAsync(url, callback, failfun) {
 
   var xmlHttp = getXHRCallable();
-  xmlHttp.open("GET", theUrl, true); // true for asynchronous
+  xmlHttp.open("GET", url, true); // true for asynchronous
 
   xmlHttp.onreadystatechange = function() {
     if (xmlHttp.readyState === 4) {
       if (xmlHttp.status === 200) {
         callback(xmlHttp.responseText);
       } else {
-        failfun(xmlHttp, theUrl);
+        failfun(xmlHttp, url);
       }
     }
   }
@@ -91,10 +91,10 @@ function httpGetAsync(theUrl, callback, failfun) {
 }
 
 /* post some data async */
-function httpPostAsync(theUrl, callback, failfun, data) {
+function httpPostAsync(url, callback, failfun, data) {
   var xmlHttp = getXHRCallable();
 
-  xmlHttp.open('POST', theUrl, true);
+  xmlHttp.open('POST', url, true);
   xmlHttp.setRequestHeader('Content-Type', 'application/json');
 
   xmlHttp.onreadystatechange = function() {
@@ -102,9 +102,18 @@ function httpPostAsync(theUrl, callback, failfun, data) {
       if (xmlHttp.status === 200) {
         callback(xmlHttp.responseText);
       } else {
-        failfun(xmlHttp, theUrl);
+        failfun(xmlHttp, url);
       }
     }
   }
   xmlHttp.send(data);
+}
+
+function httpGetSync(url, data) {
+  var xmlHttp = getXHRCallable();
+
+  xmlHttp.open("GET", url, false);
+  xmlHttp.send(data || null);
+  // need an error condition here
+  return xmlHttp.responseText;
 }
