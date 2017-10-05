@@ -33,6 +33,11 @@
   /* animation CSS */
 }
 
+.mako-plus,
+.mako-minus {
+  cursor: pointer;
+}
+
 .mako-option {
   padding-top: 1px;
   /*border: 2px #fafafa solid;*/
