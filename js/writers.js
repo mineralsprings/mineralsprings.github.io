@@ -1,4 +1,4 @@
-function removeChildren(elt) {
+function remove_children(elt) {
   if (elt) {
     while (elt.firstChild) {
       elt.removeChild(elt.firstChild);
@@ -6,20 +6,20 @@ function removeChildren(elt) {
   }
 }
 
-function loadContent(page) {
-  viewIsHome = false;
+function load_content(page) {
+  view_is_home = false;
 
-  hideElements("block");
+  hide_elements("block");
 
   var pname = "views/" + page + ".html";
-  httpGetAsync(
+  http.nosync.get(
     pname,
     function (response) {
       // need to animate this somehow
       var inject = response;
-      btnwrp = document.getElementById("buttonWrapper");
+      var btnwrp = document.getElementById("wrapper-btns");
 
-      removeChildren(btnwrp);
+      remove_children(btnwrp);
 
       btnwrp.insertAdjacentHTML("beforeend", inject);
 
@@ -36,7 +36,7 @@ function loadContent(page) {
         }
 
         case "forms/order": {
-          formOrder.writeOutMenu();
+          order_form.write_out_menu();
           break;
         }
 
@@ -53,12 +53,12 @@ function loadContent(page) {
   );
 }
 
-function afterGLoginWriter() {
+function after_glogin_writer() {
   async(
     function() {
       var elems = [
-        document.getElementById("googleSignInWrapper"),
-        document.getElementById("bigcircle")
+        document.getElementById("google-sign-in-wrapper"),
+        document.getElementById("circle-glogin")
       ];
 
       for (var i = 0; i < elems.length; i++) {
@@ -69,42 +69,42 @@ function afterGLoginWriter() {
       }
     },
     async(
-      mainPageLoader,
+      mainpage_loader,
       function () {
-        document.getElementById("backButton").style.display = "inherit";
-        var probutton = document.getElementById("profileButton");
-        probutton.style.backgroundImage = "url(" + currentGoogleUser.nih_info.picture + ")";
+        document.getElementById("btn-back").style.display = "inherit";
+        var probutton = document.getElementById("btn-profile");
+        probutton.style.backgroundImage = "url(" + current_google_user.nih_info.picture + ")";
         probutton.style.display = "inline-block";
       }
     )
   );
 }
 
-function mainPageLoader () {
+function mainpage_loader () {
 
-  if (! viewIsHome) {
-    goHome();
+  if (! view_is_home) {
+    go_home();
   }
 
-  readQueryString();
+  read_qstring();
 
 }
 
-function showGLogin() {
+function show_glogin() {
   var
-    circle     = document.getElementById("bigcircle"),
-    in_wrapper = document.getElementById("googleSignInWrapper");
+    circle     = document.getElementById("circle-glogin"),
+    in_wrapper = document.getElementById("google-sign-in-wrapper");
   if (circle && in_wrapper) {
     circle.parentNode.removeChild(circle);
     in_wrapper.style.display = "block";
   }
 }
 
-function initialLoader() {
-  httpGetAsync(
+function second_loader() {
+  http.nosync.get(
     "views/btns/bigcircle.html",
     function (response) {
-      document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
+      document.getElementById("wrapper-btns").insertAdjacentHTML("beforeend", response);
     },
 
     function (url, req) {
@@ -114,33 +114,33 @@ function initialLoader() {
   );
 }
 
-function enableBigButton() {
-  var circle  = document.getElementById("bigcircle");
+function enable_glogin_btn() {
+  var circle  = document.getElementById("circle-glogin");
   if (circle) {
-    circle.addEventListener("click", showGLogin);
-    writeBigButtonMsg("Login to Google", "login to use this app");
+    circle.addEventListener("click", show_glogin);
+    write_big_btn_msg("Login to Google", "login to use this app");
   }
 }
 
-function writeBigButtonMsg(big, small) {
+function write_big_btn_msg(big, small) {
   var
-    b = document.getElementById("c_bigtext"),
-    s = document.getElementById("c_liltext");
+    b = document.getElementById("circle-bigtext"),
+    s = document.getElementById("circle-smalltext");
   if (b && s) {
     b.innerHTML = big;
     s.innerHTML = small;
   }
 }
 
-function readQueryString() {
+function read_qstring() {
   var qs = document.location.search;
   if (undefined === qs) { return; }
 
   qs = qs.slice(1); // trim leading ?
-  readQueryStringImpl(qs);
+  read_qstring_impl(qs);
 }
 
-function readQueryStringImpl(qs) {
+function read_qstring_impl(qs) {
 
   //console.log("query " + qs)
   if ("" === qs) { return; }
@@ -148,7 +148,7 @@ function readQueryStringImpl(qs) {
   // don't know if this is a good idea
   // but we'll try to prevent infinite recursion
   if ( ("home" === qs) && (!viewIsHome) ) {
-    goHome();
+    go_home();
     return;
   }
 
@@ -165,30 +165,32 @@ function readQueryStringImpl(qs) {
     qs = tformed;
   }
 
-  loadContent(qs);
+  load_content(qs);
 }
 
-function goHome() {
+function go_home() {
 
-  viewIsHome = true;
+  view_is_home = true;
 
   var fnames = [ "big2" ];
 
+  console.log(current_google_user.nih_info.is_elevated);
+
   fnames.push(
-    [ "user", "admin" ][ + ((currentGoogleUser || {}).nih_info || {}).is_elevated || 0  ]
+    [ "user", "admin" ][ + ((current_google_user || {}).nih_info || {}).is_elevated || 0  ]
   );
 
-  var btnWrp = document.getElementById("buttonWrapper");
+  var btn_wrp = document.getElementById("wrapper-btns");
 
-  removeChildren(btnWrp);
+  remove_children(btn_wrp);
 
   for (var i = 0; i < fnames.length; i++) {
     var fn = fnames[i];
     var abspath = "views/btns/" + fn + ".html";
-    httpGetAsync(
+    http.nosync.get(
       abspath,
       function (response) {
-        document.getElementById("buttonWrapper").insertAdjacentHTML("beforeend", response);
+        btn_wrp.insertAdjacentHTML("beforeend", response);
       },
 
       function (url, req) {
@@ -199,7 +201,7 @@ function goHome() {
     );
   }
 
-  var c = document.getElementById("bigcircle");
+  var c = document.getElementById("circle-glogin");
   if (c) { c.parentElement.removeChild(c); }
 
 }

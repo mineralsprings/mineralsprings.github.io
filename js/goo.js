@@ -1,19 +1,19 @@
-function onSignIn(googleUser) {
+function on_sign_in(google_user) {
   console.log("clicked sign in");
-  var circle = document.getElementById("bigcircle");
+  var circle = document.getElementById("circle-glogin");
   if (circle) {
-    circle.removeEventListener("click", showGLogin);
-    writeBigButtonMsg("Please wait...", "taking too long? refresh the page");
+    circle.removeEventListener("click", show_glogin);
+    write_big_btn_msg("Please wait...", "taking too long? refresh the page");
   }
 
-  /* global */ currentGoogleUser        = {};
-  /* global */ currentGoogleUser.vendor = googleUser;
-  /* global */ currentGoogleUser.reload = googleUser.reloadAuthResponse;
+  /* global */ current_google_user        = {};
+  /* global */ current_google_user.vendor = google_user;
+  /* global */ current_google_user.reload = google_user.reloadAuthResponse;
 
-  var id_token = googleUser.getAuthResponse().id_token;
+  var id_token = google_user.getAuthResponse().id_token;
 
-  httpPostAsync(
-    getServerHostForEnv(),
+  http.nosync.post(
+    get_env_host(),
     function (response) {
       var info = JSON.parse(response);
       console.log(info);
@@ -21,40 +21,40 @@ function onSignIn(googleUser) {
       anticsrf = info.data.anticsrf;
 
       // NOTE: VALIDATE THIS
-      currentGoogleUser.nih_info = info.data.gapi_info;
+      current_google_user.nih_info = info.data.gapi_info;
 
-      afterGLoginWriter();
+      after_glogin_writer();
     },
     function (url, req) {
       console.log("failed " + req);
     },
-    JSON.stringify(defaultJSONObjs.initial_gapi_validate(id_token))
+    JSON.stringify(default_objs.initial_gapi_validate(id_token))
   );
 }
 
-function renderButton() {
+function render_button() {
   gapi.signin2.render('glogin', {
     'scope': 'profile email',
     'width': 400,
     'height': 100,
     'longtitle': true,
     'theme': 'dark',
-    'onsuccess': onSignIn,
+    'onsuccess': on_sign_in,
     'onfailure': function (error) { console.log(error); }
   });
 }
 
-function doSignOut () {
+function do_sign_out() {
   if (! confirm("Really sign out of Mineral Springs?")) {
     return;
   }
-  var btnwrp = document.getElementById("buttonWrapper");
-  signOut();
+  //var btnwrp = document.getElementById("wrapper-btns");
+  sign_out();
   /* trigger a refresh instead of keeping the same call stack */
   window.location.reload();
 }
 
-function signOut() {
+function sign_out() {
   var auth2 = gapi.auth2.getAuthInstance();
 
   auth2.signOut().then(function () {

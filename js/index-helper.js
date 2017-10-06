@@ -1,22 +1,22 @@
-var currentGoogleUser = null;
-var viewIsHome = false;
+var current_google_user = null;
+var view_is_home = false;
 var anticsrf = {};
 
-function writeConnTimeStats(time) {
+function write_conntime(time) {
   var diff = Math.abs(time["conn_init"] - time["conn_finish"]);
   console.log("connection to the CDN took " + (diff / Math.pow(10, 3)).toString() + "msec");
 }
 
-function checkCatnipCDNStatusOk() {
-  httpPostAsync(
-    getServerHostForEnv(),
-    catnipCDNUp.ok,
-    catnipCDNUp.err,
-    JSON.stringify(defaultJSONObjs.ping())
+function check_cdn_up() {
+  http.nosync.post(
+    get_env_host(),
+    catnip_cdn_up.ok,
+    catnip_cdn_up.err,
+    JSON.stringify(default_objs.ping())
   );
 }
 
-function haveJS () {
+function have_js () {
   var alert = document.getElementById("alert");
   alert.parentNode.removeChild(alert);
   var url = window.location.href;
@@ -24,33 +24,22 @@ function haveJS () {
   document.title += " | " + url;
 }
 
-function firstLoader() {
+function first_loader() {
   // faster
-  haveJS();
+  have_js();
   async(
-    initialLoader,
-    checkCatnipCDNStatusOk
+    second_loader,
+    check_cdn_up
   );
 }
 
-/*function doLoadingIconToggle (state, name) {
-  console.log("loading " + (state ? "on" : "off") + " caller: " + name);
-  document.getElementById("loading").style.display = state ? "inline-block" : "none";
+function test_forms_offline (elv) {
+  current_google_user = { nih_info: { is_elevated: elv } };
+  after_glogin_writer();
 }
 
-function callLoader(fun) {
-  doLoadingIconToggle(true, fun.name);
-  fun();
-  doLoadingIconToggle(false, fun.name);
-}*/
-
-function testFormsOffline (elv) {
-  currentGoogleUser = { nih_info: { is_elevated: elv } };
-  afterGLoginWriter();
-}
-
-function testSquareIPOS () {
-  var dataParameter = {
+function test_square_ios () {
+  var data = {
     "amount_money": {
       "amount" : "500",
       "currency_code" : "USD"
@@ -63,5 +52,5 @@ function testSquareIPOS () {
       "supported_tender_types" : ["CREDIT_CARD","CASH","OTHER","SQUARE_GIFT_CARD","CARD_ON_FILE"]
     }
   };
-  window.location = "square-commerce-v1://payment/create?data=" + encodeURIComponent(JSON.stringify(dataParameter));
+  window.location = "square-commerce-v1://payment/create?data=" + encodeURIComponent(JSON.stringify(data));
 }

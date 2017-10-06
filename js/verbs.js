@@ -1,4 +1,4 @@
-googleAPIFile = {
+/*gapi_file = {
   ok:
     function (response) {
       var elt = document.getElementById("google-auth-check");
@@ -20,48 +20,46 @@ googleAPIFile = {
       elt.style.color = "red";
       elt.innerHTML += " missing";
     }
-};
+};*/
 
-catnipCDNUp = {
-  ok:
-    function (response) {
-      var rsp = JSON.parse(response),
-          elt = document.getElementById("cdn-api-check");
-      rsp["time"]["conn_finish"] = microTime();
-      /*console.log(rsp);*/
+catnip_cdn_up = {
+  ok: function (response) {
+    var rsp = JSON.parse(response),
+        elt = document.getElementById("cdn-api-check");
+    rsp["time"]["conn_finish"] = micro.time();
+    /*console.log(rsp);*/
 
-      if (
-          (rsp["response"]         === "reply_ping") &&
-          (rsp["data"]["pingback"] === true)
-      ) {
-        enableBigButton();
-        console.log("catnip ok");
-        writeConnTimeStats(rsp["time"]);
-        elt.style.color = "green";
-        elt.innerHTML += " UP";
-      } else {
-        catnipCDNUp.cdn_no_good()
-      }
-    },
-  err:
-    function (url, resp) {
-      catnipCDNUp.cdn_no_good()
-    },
-
-  cdn_no_good:
-    function () {
-      console.log("catnip no good");
-
-      var elt = document.getElementById("cdn-api-check");
-      elt.style.color = "red";
-      elt.innerHTML += " DOWN";
-      document.getElementById("bigcircle").addEventListener("mousedown", function() {
-        alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
-      });
+    if (
+        (rsp["response"]         === "reply_ping") &&
+        (rsp["data"]["pingback"] === true)
+    ) {
+      enable_glogin_btn();
+      console.log("catnip ok");
+      write_conntime(rsp["time"]);
+      elt.style.color = "green";
+      elt.innerHTML += " UP";
+    } else {
+      catnip_cdn_up.cdn_no_good()
     }
+  },
+
+  err: function (url, resp) {
+    check_cdn_up.cdn_no_good()
+  },
+
+  cdn_no_good: function () {
+    console.log("catnip no good");
+
+    var elt = document.getElementById("cdn-api-check");
+    elt.style.color = "red";
+    elt.innerHTML += " DOWN";
+    document.getElementById("bigcircle").addEventListener("mousedown", function() {
+      alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
+    });
+  }
 };
 
-defaultJSONObjs = {
+default_objs = {
   ping: function () {
     return {
       "verb": "ping",
@@ -69,7 +67,7 @@ defaultJSONObjs = {
         "ping": "hello",
       },
       "time": {
-        "conn_init": microTime(),
+        "conn_init": micro.time(),
       }
     }
   },
@@ -81,7 +79,7 @@ defaultJSONObjs = {
         'gapi_key': (tok || "")
       },
       "time": {
-        "conn_init": microTime(),
+        "conn_init": micro.time(),
       }
     }
   },
@@ -91,7 +89,7 @@ defaultJSONObjs = {
       "verb": "view_menu",
       "data": {},
       "time": {
-        "conn_init": microTime()
+        "conn_init": micro.time()
       },
       "anticsrf": (anticsrf.tok || "")
     }
@@ -106,7 +104,7 @@ defaultJSONObjs = {
         "from_end": from_end || "head" // or tail
       },
       "time": {
-        "conn_init": microTime()
+        "conn_init": micro.time()
       },
       "anticsrf": (anticsrf.tok || "")
     }
@@ -117,10 +115,10 @@ defaultJSONObjs = {
       "verb": "edit_menu",
       "data": {
         "menu_data": formdata || {},
-        "gapi_token": currentGoogleUser.vendor.Zi.id_token || ""
+        "gapi_token": current_google_user.vendor.Zi.id_token || ""
       },
       "time": {
-        "conn_init": microTime()
+        "conn_init": micro.time()
       },
       "anticsrf": (anticsrf.tok || "")
     }

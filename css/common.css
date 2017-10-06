@@ -33,7 +33,7 @@ div {
 
 }
 
-div.bodyWrapper {
+div.wrapper-body {
 
   width: 100vw;
 
@@ -69,7 +69,7 @@ div.block:hover {
 
 */
 
-div.headerWrapper {
+div.wrapper-header {
 
   background-color: inherit;
 
@@ -77,13 +77,7 @@ div.headerWrapper {
 
 }
 
-div.authorTag {
-
-  width: 100%;
-
-}
-
-#buttonWrapper {
+#wrapper-btns {
 
   width: 100vw;
 
@@ -110,7 +104,7 @@ footer {
 TEXT THINGS
 */
 
-#headerText {
+#text-header {
 
   font-family: "Playfair Display", Georgia, Serif;
   font-size: 10vh;
@@ -132,7 +126,7 @@ TEXT THINGS
 
 }
 
-p.blockText {
+p.block-text {
 
   text-decoration: none;
   font-family: "Raleway", Arial, Sans-serif;
@@ -150,7 +144,7 @@ p.blockText {
 
 }
 
-.authorText {
+.text-author {
 
   font-family: Arial, sans-serif;
   font-size: 1.5vh;
@@ -159,7 +153,7 @@ p.blockText {
 
 }
 
-#googleSignInWrapper {
+#google-sign-in-wrapper {
 
   margin: 0;
 
@@ -184,7 +178,7 @@ NOSCRIPT ALERT
 MISC
 */
 
-.noMargin {
+.no-margin {
   margin: 0px;
 }
 
@@ -241,7 +235,7 @@ a:hover {
   width: 10vh;
 }
 
-#profileButton {
+#btn-profile {
 
   vertical-align: middle;
 
@@ -264,7 +258,7 @@ a:hover {
 
 }
 
-#profileButton:hover {
+#btn-profile:hover {
   border-radius: 1vw;
 
   border: 5px solid #c0392b;
