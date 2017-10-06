@@ -50,6 +50,19 @@ function microTime() {
   return 1000 * new Date();
 }
 
+
+function microToSeconds(micro) {
+  return micro / 1000;
+}
+
+function microToDateObj(micro) {
+  return new Date(microToSeconds(micro));
+}
+
+function microToDateStr(micro) {
+  return microToDateObj(micro).toString();
+}
+
 /* determine how to make XHR requests in this browser */
 function getXHRCallable() {
   var xmlHttp;
