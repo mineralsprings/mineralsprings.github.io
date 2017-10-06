@@ -16,7 +16,7 @@
 
   }
 
-  div.headerText {
+  div.header-text {
     font-size: 10vh;
 
   }
@@ -35,7 +35,7 @@
 
   }
 
-  #bigcircle {
+  #circle-glogin {
 
     background: #c0392b;
     color: #e6e6e6;
@@ -58,7 +58,7 @@
 
   }
 
-  #profileButton {
+  #btn-profile {
 
     vertical-align: middle;
 
@@ -82,7 +82,7 @@
 
   */
 
-  p.hoverButtonText {
+  p.hover-button-text {
 
     color: rgba(255, 255, 255, 0);
 

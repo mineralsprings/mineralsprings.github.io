@@ -1,13 +1,13 @@
-var formOrder = {
-  writeOutMenu: function () {
+var order_form = {
+  write_out_menu: function () {
     var form_grid      = document.getElementById("form-grid"),
         load_text      = document.getElementById("load-text"),
         load_icon      = document.getElementById("load-icon"),
-        menu_json_text = formOrder.getRemoteMenuData(),
+        menu_json_text = order_form.fetch_menu_data(),
         menu_json      = JSON.parse(menu_json_text).data,
         buffet_warn    = document.getElementById("buffet-userwarn"),
-        menu_ctime     = microToDateStr(menu_json.effective),
-        menu_dtime     = microToDateStr(menu_json.expires);
+        menu_ctime     = micro.to_date_str(menu_json.effective),
+        menu_dtime     = micro.to_date_str(menu_json.expires);
 
     //console.log( menu_json );
 
@@ -15,31 +15,41 @@ var formOrder = {
       buffet_warn.style.display = "block";
     }
 
-    var stub_names = [
-      "timestamp"
-    ];
 
-    var htmls = [];
+    /*
+    PART 1: FIRST STATIC HTML SECTION
+    */
 
-    for (var i = 0; i < stub_names.length; i++) {
-      htmls.push( httpGetSync( "views/stubs/order/" + stub_names[i] + ".html") );
+    /*
+
+    PART 3: FINAL STATIC HTML SECTIONS
+
+    */
+    var final_static = {
+      stubs: [
+        "timestamp"
+      ],
+      htmls: [],
+      repls: [
+        ["MENU_CTIME", menu_ctime],
+        ["MENU_DTIME", menu_dtime]
+      ]
+    };
+
+    for (var i = 0; i < final_static.stubs.length; i++) {
+      final_static.htmls.push( http.sync.get( "views/stubs/order/" + final_static.stubs[i] + ".html") );
     }
 
-    // can't iterate over objects but it's ok
-    var repls = [
-      ["MENU_CTIME", menu_ctime],
-      ["MENU_DTIME", menu_dtime]
-    ];
+    console.log(final_static.htmls);
 
-    for (var i = 0; i < htmls.length; i++) {
-      for (var j = 0; j < repls.length; j++) {
-        //console.log(htmls[i].match(repls[j][0]));
-        htmls[i] = htmls[i].replace( repls[j][0], repls[j][1] );
+    for (var i = 0; i < final_static.htmls.length; i++) {
+      for (var j = 0; j < final_static.repls.length; j++) {
+        final_static.htmls[i] = final_static.htmls[i].replace( final_static.repls[j][0], final_static.repls[j][1] );
       }
     }
 
-    for (var i = 0; i < htmls.length; i++) {
-      form_grid.insertAdjacentHTML("beforeend", htmls[i]);
+    for (var i = 0; i < final_static.htmls.length; i++) {
+      form_grid.insertAdjacentHTML("beforeend", final_static.htmls[i]);
     }
 
     load_text.style.display = "none";
@@ -47,8 +57,8 @@ var formOrder = {
     form_grid.style.display = "block";
   },
 
-  getRemoteMenuData: function () {
-    return httpPostSync(getServerHostForEnv(), JSON.stringify( defaultJSONObjs.view_menu() ) );
+  fetch_menu_data: function () {
+    return http.sync.post(get_env_host(), JSON.stringify( default_objs.view_menu() ) );
   }
 
 };

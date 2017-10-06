@@ -20,24 +20,24 @@
 
   </head>
 
-  <body onload='firstLoader()'>
+  <body onload='first_loader()'>
 
     <header>
 
-      <div title="Go Back" id='backButton' onclick="mainPageLoader()"
+      <div title="Go Back" id='btn-back' onclick="mainpage_loader()"
          class="click" style="display: none;">
         <img src='img/back-arrow.svg' style="height: 3em;" alt="Go Back"/>
       </div>
 
-      <div id="headerText" title="Go Home" onclick="goHome()"
+      <div id="text-header" title="Go Home" onclick="go_home()"
         class="click">
         <p>
           Mineral Springs
         </p>
       </div>
 
-      <div id="profileButton" title="Sign Out of Mineral Springs Web App"
-        onclick="doSignOut()" class="click"> </div>
+      <div id="btn-profile" title="Sign Out of Mineral Springs Web App"
+        onclick="do_sign_out()" class="click"> </div>
 
     </header>
 
@@ -49,11 +49,11 @@
       Use a modern browser, or allow JavaScript on mineralsprings.github.io.
     </div>
 
-    <div id="buttonWrapper" class="container-fluid">
+    <div id="wrapper-btns" class="container-fluid">
 
       <!-- write things here ok -->
 
-      <div id="googleSignInWrapper" style="display: none;" class="click">
+      <div id="google-sign-in-wrapper" style="display: none;" class="click">
         <div id="glogin"> </div>
       </div>
 
@@ -64,13 +64,13 @@
     <footer>
 
       <!-- NOTE: DEBUG, do not ship -->
-      <button onclick="testFormsOffline(false)">user offline</button>
-      <button onclick="testFormsOffline(true)">admin offline</button>
-      <button onclick="testSquareIPOS()">test square</button>
+      <button onclick="test_forms_offline(false)">user offline</button>
+      <button onclick="test_forms_offline(true)">admin offline</button>
+      <button onclick="test_square_ios()">test square</button>
 
       <div class="links-bottom">
         the
-        <a class="authorText"
+        <a class="text-author"
           href="//github.com/mineralsprings/mineralsprings.github.io"
           title="Fork me on GitHub" target="_blank">
           open source Mineral Springs Webapp
@@ -79,7 +79,7 @@
         <div title="crafted with ♥ by">
           courtesy of
         </div>
-        <a class="authorText" href="#" onclick="loadContent('viewers/contrib')">
+        <a class="text-author" href="#" onclick="load_content('viewers/contrib')">
           the contributors
         </a>
       </div>
@@ -95,7 +95,7 @@
       <div title="privacy">
         we value
       </div>
-      <a class="authorText links-bottom" href="#" onclick="loadContent('viewers/privacy')">
+      <a class="text-author links-bottom" href="#" onclick="load_content('viewers/privacy')">
         privacy
       </a>
       |

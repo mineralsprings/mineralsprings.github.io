@@ -7,20 +7,20 @@ function async(your_function, callback) {
 }
 
 /* listen for a click on an element */
-function listenClick(id, fn) {
+function listen_click(id, fn) {
   document.getElementById(id).addEventListener("click", fn);
 }
 
 /* */
-function doOptionsCheckBox (e) {
+function do_options_checkbox (e) {
   if (e.target.nodeName === "INPUT") { // prevent event bubbling / chrome's duplication
-    editMenuForm.doSpecialCheckBox(e.target.parentElement);
+    menu_form.special_checkbox(e.target.parentElement);
   }
 }
 
 /* hide these named elements */
-function hideElements(className) {
-  var blocks = document.getElementsByClassName(className);
+function hide_elements(class_name) {
+  var blocks = document.getElementsByClassName(class_name);
   for (var i = 0; i < blocks.length; i++) {
     blocks[i].style.display = "none";
   }
@@ -39,105 +39,112 @@ function spread () {
 }
 
 /* developer env vs production server */
-function getServerHostForEnv() {
+function get_env_host() {
   return null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
     ? "http://localhost:8080"
     : "https://catnipcdn.pagekite.me" ;
 }
 
-/* now in microseconds */
-function microTime() {
-  return 1000 * new Date();
+var micro = {
+  /* now in microseconds */
+  time: function () {
+    return 1000 * new Date();
+  },
+
+  to_seconds: function () {
+    return micro / 1000;
+  },
+
+  to_date_obj: function (m) {
+    return new Date(micro.to_seconds(m));
+  },
+
+  to_date_str: function (m) {
+    return micro.to_date_obj(m).toString();
+  }
 }
 
-
-function microToSeconds(micro) {
-  return micro / 1000;
-}
-
-function microToDateObj(micro) {
-  return new Date(microToSeconds(micro));
-}
-
-function microToDateStr(micro) {
-  return microToDateObj(micro).toString();
-}
 
 /* determine how to make XHR requests in this browser */
-function getXHRCallable() {
-  var xmlHttp;
+function xhr_callable() {
+  var xhr;
   // Mozilla / Chromium / WebKit / KHMTL (like Gecko)
   if (window.XMLHttpRequest) {
-    xmlHttp = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
 
   // IE
   } else if (window.ActiveXObject) {
-    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+    xhr = new ActiveXObject("Microsoft.xmlHttp");
 
   // ????
   } else {
-    console.log("no way to XMLHttpRequest, giving up");
+    console.log("no way to xhrRequest, giving up");
     // you're drunk
     alert("don't know how internet works HTTP anymore?????");
     throw new Error("don't know how internet works HTTP anymore?????");
   }
 
-  return xmlHttp;
+  return xhr;
 }
 
-/* get something asynchronously */
-function httpGetAsync(url, callback, failfun) {
+var http = {
+  sync: {
+    get: function (url, data) {
+      var xhr = xhr_callable();
 
-  var xmlHttp = getXHRCallable();
-  xmlHttp.open("GET", url, true); // true for asynchronous
+      xhr.open("GET", url, false);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(data || null);
+      // need an error condition here
+      return xhr.responseText;
 
-  xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState === 4) {
-      if (xmlHttp.status === 200) {
-        callback(xmlHttp.responseText);
-      } else {
-        failfun(xmlHttp, url);
+    },
+    post: function (url, data) {
+      var xhr = xhr_callable();
+
+      xhr.open("POST", url, false);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(data || null);
+      // need an error condition here
+      return xhr.responseText;
+    }
+  },
+
+  nosync: {
+    get: function (url, callback, failfun) {
+      var xhr = xhr_callable();
+      xhr.open("GET", url, true); // true for asynchronous
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            callback(xhr.responseText);
+          } else {
+            failfun(xhr, url);
+          }
+        }
       }
+      xhr.send(null); // connection close
+
+    },
+
+    post: function (url, callback, failfun, data) {
+      var xhr = xhr_callable();
+
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            callback(xhr.responseText);
+          } else {
+            failfun(xhr, url);
+          }
+        }
+      }
+      xhr.send(data);
+
     }
   }
-  xmlHttp.send(null); // connection close
-}
-
-/* post some data async */
-function httpPostAsync(url, callback, failfun, data) {
-  var xmlHttp = getXHRCallable();
-
-  xmlHttp.open('POST', url, true);
-  xmlHttp.setRequestHeader('Content-Type', 'application/json');
-
-  xmlHttp.onreadystatechange = function() {
-    if (xmlHttp.readyState === 4) {
-      if (xmlHttp.status === 200) {
-        callback(xmlHttp.responseText);
-      } else {
-        failfun(xmlHttp, url);
-      }
-    }
-  }
-  xmlHttp.send(data);
-}
-
-function httpGetSync(url, data) {
-  var xmlHttp = getXHRCallable();
-
-  xmlHttp.open("GET", url, false);
-  xmlHttp.setRequestHeader('Content-Type', 'application/json');
-  xmlHttp.send(data || null);
-  // need an error condition here
-  return xmlHttp.responseText;
-}
-
-function httpPostSync(url, data) {
-  var xmlHttp = getXHRCallable();
-
-  xmlHttp.open("POST", url, false);
-  xmlHttp.setRequestHeader('Content-Type', 'application/json');
-  xmlHttp.send(data || null);
-  // need an error condition here
-  return xmlHttp.responseText;
 }

@@ -57,11 +57,11 @@
 
   }
 
-  div.smallBlock {
+  div.block-small {
     height: 22vh;
   }
 
-  #bigcircle {
+  #circle-glogin {
 
     width:  40vh;
     height: 40vh;
@@ -119,7 +119,7 @@
   }
 */
 
-  #backButton {
+  #btn-back {
 
     vertical-align: middle;
 
@@ -134,15 +134,7 @@
 
   }
 
-  div.authorTag {
-
-    background-color: inherit;
-
-    width: 100%;
-
-  }
-
-  div.buttonWrapper {
+  div.wrapper-btns {
 
     padding: 0;
 
@@ -160,7 +152,7 @@
   IMAGE THINGS
   */
 
-  #backButton > img {
+  #btn-back > img {
 
     height: 4vw;
     width: 4vw;
@@ -171,7 +163,7 @@
 
   }
 
-  #backButton > img:hover {
+  #btn-back > img:hover {
 
     height: 4vw;
     width: 4vw;
@@ -185,7 +177,7 @@
   TEXT THINGS
   */
 
-  #bigcircle:hover > p.blockText {
+  #circle-glogin:hover > p.block-text {
 
     transition-duration: 0.33s;
 
@@ -193,7 +185,7 @@
 
   }
 
-  p.hoverButtonText {
+  p.hover-button-text {
 
     color: rgba(255, 255, 255, 0);
 
@@ -204,7 +196,7 @@
 
   }
 
-  div.block:hover > p.hoverButtonText {
+  div.block:hover > p.hover-button-text {
 
     color: rgba(255, 255, 255, 255);
 
@@ -216,7 +208,7 @@
 
   }
 
-  #bigcircle > p.hoverButtonText {
+  #circle-glogin > p.hover-button-text {
 
     margin-top: 35%;
 
@@ -225,7 +217,7 @@
 
   }
 
-  div.block:hover > p.blockText {
+  div.block:hover > p.block-text {
 
     transition-duration: 0.33s;
 
