@@ -57,9 +57,7 @@ function do_sign_out() {
 function sign_out() {
   var auth2 = gapi.auth2.getAuthInstance();
 
-  auth2.signOut().then(function () {
-    console.log('User signed out.');
-    //document.getElementById("google-signin").style.display = "none";
-  });
+  // force displaying the switcher
+  auth2.disconnect();
 }
 
