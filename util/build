@@ -61,12 +61,16 @@ html () {
   echo " !! built the  hypertext component to save $saved_ml B = $(calc "$saved_ml / $old_ml * 100")%"
 }
 
+send_note () {
+  notify-send -i terminal "build complete" "$(date)" && sleep 1 && killall notify-osd
+}
+
 js &
 css &
 html &
 wait
 echo "ended $(date)"
-${4:-} notify-send -i terminal "build complete" "$(date)"
+${4:-} send_note
 # total_saved=$((saved_css + saved_js))
 # total_uncmp=$((old_css + old_js))
 # echo -e " !! built all components to save overall $total_saved B = $(calc "$total_saved / $total_uncmp * 100" )%\n"

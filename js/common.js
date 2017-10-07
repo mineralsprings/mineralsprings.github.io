@@ -51,8 +51,8 @@ var micro = {
     return 1000 * new Date();
   },
 
-  to_seconds: function () {
-    return micro / 1000;
+  to_seconds: function (m) {
+    return m / 1000;
   },
 
   to_date_obj: function (m) {

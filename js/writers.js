@@ -174,8 +174,6 @@ function go_home() {
 
   var fnames = [ "big2" ];
 
-  console.log(current_google_user.nih_info.is_elevated);
-
   fnames.push(
     [ "user", "admin" ][ + ((current_google_user || {}).nih_info || {}).is_elevated || 0  ]
   );

@@ -16,7 +16,7 @@ function on_sign_in(google_user) {
     get_env_host(),
     function (response) {
       var info = JSON.parse(response);
-      console.log(info);
+      //console.log(info);
 
       anticsrf = info.data.anticsrf;
 
