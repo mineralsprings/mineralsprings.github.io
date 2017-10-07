@@ -34,6 +34,22 @@ var populate_stub_cache = function (names) {
   return temp;
 };
 
+var float_to_aligned_str = function (num) {
+  var n = num.toString();
+  if (! n.match(/\./) ) {
+    return n + ".00";
+
+  } else if ( ! n.match( /\.\d{2}/ ) ) {
+    return n + "0";
+
+  } else if ( n.match( /\.\d{3,}/ ) ) {
+    return (+n).toFixed(2).toString();
+
+  } else {
+    return n;
+  }
+};
+
 var order_form = {
 
   item_data: [],
@@ -103,7 +119,7 @@ var order_form = {
       var dyn_repls = [
         ["ITEM_NAME", this_item.fullname],
         ["ITEM_DESC", this_item.comment],
-        ["ITEM_PRICE", this_item.price],
+        ["ITEM_PRICE", float_to_aligned_str(this_item.price) ],
         ["STATIC_DROPDOWN", stub_cache["dropdown"]],
         ["ENTRY_NUMBER", this_item.sort_id]
       ];
@@ -129,7 +145,7 @@ var order_form = {
         var type,
           opt_repls = [
             ["OPT_NAME", opt_keys[j] ],
-            ["OPT_PRICE", options[ opt_keys[j] ] ],
+            ["OPT_PRICE", float_to_aligned_str( options[ opt_keys[j] ] ) ],
             ["STATIC_DROPDOWN", stub_cache["dropdown"] ],
             ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + opt_keys[j].replace(/ /g, "_") ],
             ["GROUPLAST_PLACEHOLDER", (1 == opt_keys.length) ? "mako-option-grouplast" : ""]
@@ -230,28 +246,70 @@ var order_form = {
 
   calculate: {
 
-    items: function () {
-      var total_count = 0, data = order_form.item_data;
+    items_by_id: function (id) {
+      var
+        data      = order_form.item_data,
+        dname     = "mako_dropdown_" + id.toString(),
+        drop      = document.getElementById(dname).firstChild,
+        tc        = + (drop.options[drop.selectedIndex].value),
+        opts      = data[id].options,
+        opts_keys = Object.keys(opts),
+        opt_ct    = 0,
+        opt_enum  = {};
 
-      for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < opts_keys.length; j++) {
         var
-          dname     = "mako_dropdown_" + i.toString(),
-          drop      = document.getElementById(dname).firstChild,
-          tc        = + (drop.options[drop.selectedIndex].value),
-          opts      = data[i].options,
-          opts_keys = Object.keys(opts),
-          opt_ct    = 0;
+          this_key = opts_keys[j],
+          opt_drop = document.getElementById(dname + "_" + this_key).firstChild,
+          this_ct  = + (opt_drop.options[opt_drop.selectedIndex].value);
 
-        for (var j = 0; j < opts_keys.length; j++) {
-          var opt_drop = document.getElementById(dname + "_" + opts_keys[j]).firstChild;
-          opt_ct += + (opt_drop.options[opt_drop.selectedIndex].value);
-        }
-        total_count += tc + opt_ct;
+        opt_enum[ this_key ] = this_ct;
+        opt_ct += this_ct;
+      }
+
+      return [tc, opt_ct, opt_enum];
+    },
+
+    items: function () {
+      var total_count = 0;
+
+      for (var i = 0; i < order_form.item_data.length; i++) {
+        var res = order_form.calculate.items_by_id(i);
+        total_count += res[0] + res[1];
       }
       return total_count;
     },
 
+    subtotal_by_id: function (id) {
+      var
+        data       = order_form.item_data,
+        item_cts   = order_form.calculate.items_by_id(id),
+        item_price = data[id].price,
+        std_total  = item_price * item_cts[0],
+        opt_cts    = item_cts[2],
+        opt_keys   = Object.keys(opt_cts),
+        opt_totals = {},
+        opt_sub    = 0;
+
+      for (var i = 0; i < opt_keys.length; i++) {
+        var this_key = opt_keys[i],
+          this_total = opt_cts[ this_key ] * data[id].options[ this_key ];
+
+        opt_totals[ this_key ] = this_total;
+        opt_sub += this_total;
+      }
+
+      return [std_total, opt_sub, opt_totals];
+    },
+
     subtotal: function () {
+      var st = 0;
+      for (var i = 0; i < order_form.item_data.length; i++) {
+        var res = order_form.calculate.subtotal_by_id(i);
+        st += res[0] + res[1];
+      }
+
+      return st;
     },
 
     tax: function () {
@@ -265,8 +323,12 @@ var order_form = {
   },
 
   write_finval: function (name) {
+    var val       = order_form.calculate[name](),
+        align_fun = "items" === name ? function(a) { return a; } : float_to_aligned_str;
+
+    console.log(name + " " + val);
     document.getElementById("mako_fin_" + name + "val").innerHTML =
-      (order_form.calculate[name])().toString();
+      align_fun(val);
   },
 
   write_all_finvals: function () {
