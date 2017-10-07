@@ -44,7 +44,7 @@ catnip_cdn_up = {
   },
 
   err: function (url, resp) {
-    check_cdn_up.cdn_no_good()
+    catnip_cdn_up.cdn_no_good()
   },
 
   cdn_no_good: function () {

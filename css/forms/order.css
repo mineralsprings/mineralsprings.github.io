@@ -58,21 +58,26 @@
   padding-bottom: 1.7vh;
 }
 
-.mako-legend {
-  font-weight: bold;
-}
 
 .mako-between {
   margin-left:  20%;
   margin-right: 20%;
 }
 
-.mako-total-top {
+.mako-legend-top {
+  font-weight: bold;
+}
+
+.mako-legend-bottom {
   padding-top: 3vh;
 }
 
 .mako-btnfinal {
   cursor: pointer;
+}
+
+.mako-total {
+  padding-bottom: 3vh;
 }
 
 .timestamp-row {

@@ -1,4 +1,43 @@
+var stub_element_names = {
+  ".": { "std": "std", "dropdown": "dropdown" },
+  "legend": { "bottom": "legend/bottom" },
+  "option": {
+    "first": "optgroup/first",
+    "inner": "optgroup/inner",
+    "last": "optgroup/last"
+  },
+  "summary": {
+    "buttons": "final/btns",
+    "numbers": "final/nums"
+  }
+};
+
+
+var get_stub_data = function (stub_name) {
+  return http.sync.get( "views/stubs/" + stub_name + ".html");
+};
+
+var get_order_stub_data = function (stub_name) {
+  return get_stub_data("order/" + stub_name);
+};
+
+var elem_name_to_stub_html = function (elem) {
+  return get_order_stub_data( stub_element_names[elem] );
+};
+
+var populate_stub_cache = function (names) {
+  var temp = {};
+  for (var i = 0; i < names.length; i++) {
+    var n = names[i];
+    temp[n] = get_order_stub_data(n);
+  };
+  return temp;
+};
+
 var order_form = {
+
+  item_data: [],
+
   write_out_menu: function () {
     var form_grid      = document.getElementById("form-grid"),
         load_text      = document.getElementById("load-text"),
@@ -53,6 +92,7 @@ var order_form = {
       this_item.sort_id = (+this_item.sort_id) - 1;
 
       menu_items[this_item.sort_id] = this_item;
+      order_form.item_data[this_item.sort_id]  = this_item;
     }
 
     var dyn_rows = [];
@@ -91,7 +131,7 @@ var order_form = {
             ["OPT_NAME", opt_keys[j] ],
             ["OPT_PRICE", options[ opt_keys[j] ] ],
             ["STATIC_DROPDOWN", stub_cache["dropdown"] ],
-            ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + j.toString() ],
+            ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + opt_keys[j].replace(/ /g, "_") ],
             ["GROUPLAST_PLACEHOLDER", (1 == opt_keys.length) ? "mako-option-grouplast" : ""]
           ];
 
@@ -178,42 +218,65 @@ var order_form = {
 
   fetch_menu_data: function () {
     return http.sync.post(get_env_host(), JSON.stringify( default_objs.view_menu() ) );
-  }
-
-};
-
-var stub_element_names = {
-  ".": { "std": "std", "dropdown": "dropdown" },
-  "legend": { "bottom": "legend/bottom" },
-  "option": {
-    "first": "optgroup/first",
-    "inner": "optgroup/inner",
-    "last": "optgroup/last"
   },
-  "summary": {
-    "buttons": "final/btns",
-    "numbers": "final/nums"
+
+  register_click_handlers: function () {
+
+  },
+
+  click_handlers: {
+
+  },
+
+  calculate: {
+
+    items: function () {
+      var total_count = 0, data = order_form.item_data;
+
+      for (var i = 0; i < data.length; i++) {
+        var
+          dname     = "mako_dropdown_" + i.toString(),
+          drop      = document.getElementById(dname).firstChild,
+          tc        = + (drop.options[drop.selectedIndex].value),
+          opts      = data[i].options,
+          opts_keys = Object.keys(opts),
+          opt_ct    = 0;
+
+        for (var j = 0; j < opts_keys.length; j++) {
+          var opt_drop = document.getElementById(dname + "_" + opts_keys[j]).firstChild;
+          opt_ct += + (opt_drop.options[opt_drop.selectedIndex].value);
+        }
+        total_count += tc + opt_ct;
+      }
+      return total_count;
+    },
+
+    subtotal: function () {
+    },
+
+    tax: function () {
+      var s = order_form.calculate.subtotal();
+      return s > 0.36 ? s * 0.09 : 0;
+    },
+
+    total: function () {
+      return order_form.calculate.tax() + order_form.calculate.subtotal();
+    }
+  },
+
+  write_finval: function (name) {
+    document.getElementById("mako_fin_" + name + "val").innerHTML =
+      (order_form.calculate[name])().toString();
+  },
+
+  write_all_finvals: function () {
+    var fields = [
+      "items", "subtotal", "tax", "total"
+    ];
+
+    for (var i = 0; i < fields.length; i++) {
+      order_form.write_finval(fields[i]);
+    }
   }
+
 };
-
-
-var get_stub_data = function (stub_name) {
-  return http.sync.get( "views/stubs/" + stub_name + ".html");
-}
-
-var get_order_stub_data = function (stub_name) {
-  return get_stub_data("order/" + stub_name);
-}
-
-var elem_name_to_stub_html = function (elem) {
-  return get_order_stub_data( stub_element_names[elem] );
-}
-
-var populate_stub_cache = function (names) {
-  var temp = {};
-  for (var i = 0; i < names.length; i++) {
-    var n = names[i];
-    temp[n] = get_order_stub_data(n);
-  };
-  return temp;
-}
