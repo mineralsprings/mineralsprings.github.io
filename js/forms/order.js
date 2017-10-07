@@ -58,13 +58,14 @@ var order_form = {
     var form_grid      = document.getElementById("form-grid"),
         load_text      = document.getElementById("load-text"),
         load_icon      = document.getElementById("load-icon"),
-        menu_json_text = order_form.fetch_menu_data(),
+        menu_json_text = fetch_menu_data(),
         menu_json      = JSON.parse(menu_json_text).data,
         buffet_warn    = document.getElementById("buffet-userwarn"),
         menu_ctime     = micro.to_date_str(menu_json.effective),
         menu_dtime     = micro.to_date_str(menu_json.expires),
 
         stub_names = [
+          "buffet",
           "std",
           "dropdown",
           "timestamp",
@@ -88,7 +89,8 @@ var order_form = {
 
     */
 
-    // for now just "top"
+    // for now just "buffet" and "top"
+    form_grid.insertAdjacentHTML("beforeend", stub_cache["buffet"]);
     form_grid.insertAdjacentHTML("beforeend", stub_cache["legend/top"]);
 
     /*
@@ -227,21 +229,58 @@ var order_form = {
       form_grid.insertAdjacentHTML("beforeend", final_static.htmls[i]);
     }
 
+    order_form.register_click_handlers();
     load_text.style.display = "none";
     load_icon.style.display = "none";
     form_grid.style.display = "block";
   },
 
-  fetch_menu_data: function () {
-    return http.sync.post(get_env_host(), JSON.stringify( default_objs.view_menu() ) );
-  },
-
   register_click_handlers: function () {
 
+    /* do + / - buttons */
+    var plus = "mako_btn_plus_", minus = "mako_btn_minus_";
+
+    for (var i = 0; i < order_form.item_data.length; i++) {
+      var p = document.getElementById(plus + i.toString()),
+          m = document.getElementById(minus + i.toString());
+
+      p.addEventListener("click", order_form.click_handlers.plus);
+      m.addEventListener("click", order_form.click_handlers.minus);
+
+    }
+
+    /* do submit / clear buttons */
+
+    document.getElementById("mako_btn_fin_submit").addEventListener("click", order_form.click_handlers.global.submit_selections);
+    document.getElementById("mako_btn_fin_clear").addEventListener("click", order_form.click_handlers.global.clear_all_selections);
   },
 
   click_handlers: {
+    row: {
+      plus: function () {
+        alert("plus " + this.id);
+      },
+      minus: function () {
+        alert("minus " + this.id);
+      }
+    },
 
+    global: {
+      submit_selections: function () {
+        var order = order_form.gather_selection_data();
+      },
+
+      clear_all_selections: function () {
+        // refresh the menu
+        document.getElementById("form-grid").innerHTML = "";
+        order_form.write_out_menu();
+      }
+    }
+
+  },
+
+  gather_selection_data: function () {
+    return {};
   },
 
   calculate: {

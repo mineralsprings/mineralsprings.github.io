@@ -22,7 +22,7 @@
     }
 };*/
 
-catnip_cdn_up = {
+var catnip_cdn_up = {
   ok: function (response) {
     var rsp = JSON.parse(response),
         elt = document.getElementById("cdn-api-check");
@@ -54,12 +54,12 @@ catnip_cdn_up = {
     elt.style.color = "red";
     elt.innerHTML += " DOWN";
     document.getElementById("bigcircle").addEventListener("mousedown", function() {
-      alert("Sorry, your request cannot be processed, because the server (" + getServerHostForEnv() + ") is down for maintenance. Try again later.");
+      alert("Sorry, your request cannot be processed, because the server (" + get_env_host() + ") is down for maintenance. Try again later.");
     });
   }
 };
 
-default_objs = {
+var default_objs = {
   ping: function () {
     return {
       "verb": "ping",
@@ -124,3 +124,7 @@ default_objs = {
     }
   }
 };
+
+var fetch_menu_data = function () {
+  return http.sync.post(get_env_host(), JSON.stringify( default_objs.view_menu() ) );
+}
