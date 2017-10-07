@@ -91,9 +91,9 @@ var order_form = {
             ["OPT_NAME", opt_keys[j] ],
             ["OPT_PRICE", options[ opt_keys[j] ] ],
             ["STATIC_DROPDOWN", stub_cache["dropdown"] ],
-            ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + j.toString() ]
+            ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + j.toString() ],
+            ["GROUPLAST_PLACEHOLDER", (1 == opt_keys.length) ? "mako-option-grouplast" : ""]
           ];
-
 
         if (0 === j) {
           type = "first";
@@ -121,17 +121,15 @@ var order_form = {
 
     }
 
-    //console.log(dyn_rows);
+    /*
+
+    PART 3: FINAL STATIC HTML SECTION
+
+    */
 
     for (var i = 0; i < dyn_rows.length; i++) {
       form_grid.insertAdjacentHTML("beforeend", dyn_rows[i]);
     }
-
-    /*
-
-    PART 2.5: LAST DYNAMIC BITS
-
-    */
 
     var final_dyn = [
       stub_cache["legend/bottom"],
@@ -143,11 +141,6 @@ var order_form = {
       form_grid.insertAdjacentHTML("beforeend", final_dyn[i]);
     }
 
-    /*
-
-    PART 3: FINAL STATIC HTML SECTION
-
-    */
     var final_static = {
       stubs: [
         "timestamp"
