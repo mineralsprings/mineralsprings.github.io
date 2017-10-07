@@ -27,7 +27,6 @@ var order_form = {
       buffet_warn.style.display = "block";
     }
 
-
     /*
 
     PART 1: FIRST STATIC HTML SECTION
@@ -127,6 +126,23 @@ var order_form = {
     for (var i = 0; i < dyn_rows.length; i++) {
       form_grid.insertAdjacentHTML("beforeend", dyn_rows[i]);
     }
+
+    /*
+
+    PART 2.5: LAST DYNAMIC BITS
+
+    */
+
+    var final_dyn = [
+      stub_cache["legend/bottom"],
+      stub_cache["final/nums"],
+      stub_cache["final/btns"]
+    ];
+
+    for (var i = 0; i < final_dyn.length; i++) {
+      form_grid.insertAdjacentHTML("beforeend", final_dyn[i]);
+    }
+
     /*
 
     PART 3: FINAL STATIC HTML SECTION
