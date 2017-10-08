@@ -60,7 +60,6 @@ var order_form = {
         load_icon      = document.getElementById("load-icon"),
         menu_json_text = fetch_menu_data(),
         menu_json      = JSON.parse(menu_json_text).data,
-        buffet_warn    = document.getElementById("buffet-userwarn"),
         menu_ctime     = micro.to_date_str(menu_json.effective),
         menu_dtime     = micro.to_date_str(menu_json.expires),
 
@@ -79,9 +78,8 @@ var order_form = {
         ],
         stub_cache = populate_stub_cache(stub_names);
 
-    if (menu_json.is_buffet) {
-      buffet_warn.style.display = "block";
-    }
+    form_grid.innerHTML = "";
+
 
     /*
 
@@ -93,6 +91,9 @@ var order_form = {
     form_grid.insertAdjacentHTML("beforeend", stub_cache["buffet"]);
     form_grid.insertAdjacentHTML("beforeend", stub_cache["legend/top"]);
 
+    if (menu_json.is_buffet) {
+      document.getElementById("buffet-userwarn").style.display = "block";
+    }
     /*
 
     PART 2: NON-STATIC HTML AND BUTTONS
@@ -282,7 +283,7 @@ var order_form = {
       }
 
       document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
-
+      order_form.write_all_finvals();
     },
     minus: function () {
       var
@@ -308,6 +309,8 @@ var order_form = {
       }
 
       document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
+
+      order_form.write_all_finvals();
     },
 
     submit_selections: function () {
