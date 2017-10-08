@@ -64,45 +64,46 @@
     <footer>
 
       <!-- NOTE: DEBUG, do not ship -->
-      <button onclick="test_forms_offline(false)">user offline</button>
-      <button onclick="test_forms_offline(true)">admin offline</button>
-      <button onclick="test_square_ios()">test square</button>
+      <button onclick="test_forms_offline(false)">usr</button>
+      <button onclick="test_forms_offline(true)">rt</button>
+      <button onclick="test_square_ios()">sqr</button>
 
-      <div class="links-bottom">
-        the
-        <a class="text-author"
+      <div>
+        <a
+          class="small-link"
           href="//github.com/mineralsprings/mineralsprings.github.io"
           title="Fork me on GitHub" target="_blank">
-          open source Mineral Springs Webapp
+          Mineral Springs Web App
         </a>
-        |
-        <div title="crafted with ♥ by">
-          courtesy of
-        </div>
-        <a class="text-author" href="#" onclick="load_content('viewers/contrib')">
-          the contributors
-        </a>
-      </div>
 
-      |
-      <div title="free + libre software for a freer society">
-        hosting for this project is graciously provided for free by
-        <a class="bigger-link" target="_blank" href="//pagekite.net">PageKite.net</a>
-        and
-        <a class="bigger-link" target="_blank" href="//github.io">Github Pages </a>
-      </div>
-      |
-      <div title="privacy">
+        <div class="separator"> | </div>
+
+        created by
+        <div class="small-link" href="#" onclick="load_content('viewers/contrib')">
+          contributors
+        </div>
+
+        <div class="separator"> | </div>
+
+        hosting by
+        <a class="small-link" target="_blank" href="//pagekite.net">PageKite.net</a>
+        +
+        <a class="small-link" target="_blank" href="//github.io">Github Pages </a>
+
+        <div class="separator"> | </div>
+
         we value
+        <div class="small-link" href="#" onclick="load_content('viewers/privacy')">
+          privacy
+        </div>
+
+        <div class="separator"> | </div>
+
+        <div class="small-link" href="#" onclick="window.open(get_env_host(), '_blank')" id="cdn-api-check" >
+          remote
+        </div>
+
       </div>
-      <a class="text-author links-bottom" href="#" onclick="load_content('viewers/privacy')">
-        privacy
-      </a>
-      |
-      <a class="smaller-link" target="_blank" href="//catnipcdn.pagekite.me"
-        id="cdn-api-check" title="the database server">
-        CatnipCDN API
-      </a>
 
 <!--        <a href="//travis-ci.org/mineralsprings/mineralsprings.github.io">
           <img

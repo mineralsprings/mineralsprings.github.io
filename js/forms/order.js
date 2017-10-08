@@ -214,8 +214,6 @@ var order_form = {
       final_static.htmls.push( stub_cache[ final_static.stubs[i] ] );
     }
 
-    ////console.log(final_static.repls);
-
     for (var i = 0; i < final_static.htmls.length; i++) {
       for (var j = 0; j < final_static.repls.length; j++) {
         final_static.htmls[i] = final_static.htmls[i].replace(
@@ -238,45 +236,92 @@ var order_form = {
   register_click_handlers: function () {
 
     /* do + / - buttons */
-    var plus = "mako_btn_plus_", minus = "mako_btn_minus_";
+    var
+      plus  = "mako_btn_plus_",
+      minus = "mako_btn_minus_",
+      ps    = document.querySelectorAll(".mako-plus"),
+      ms    = document.querySelectorAll(".mako-minus");
 
-    for (var i = 0; i < order_form.item_data.length; i++) {
-      var p = document.getElementById(plus + i.toString()),
-          m = document.getElementById(minus + i.toString());
+    for (var i = 0; i < ps.length; i++) {
+      ps[i].addEventListener("click", order_form.click_handlers.plus);
+      ms[i].addEventListener("click", order_form.click_handlers.minus);
+    }
 
-      p.addEventListener("click", order_form.click_handlers.plus);
-      m.addEventListener("click", order_form.click_handlers.minus);
-
+    /* do dropdowns */
+    var dropdowns = document.querySelectorAll(".mako-dropdown");
+    for (var i = 0; i < dropdowns.length; i++) {
+      dropdowns[i].addEventListener("change", order_form.click_handlers.update_dropdown);
     }
 
     /* do submit / clear buttons */
+    document.getElementById("mako_btn_fin_submit").addEventListener("click", order_form.click_handlers.submit_selections);
+    document.getElementById("mako_btn_fin_clear").addEventListener("click", order_form.click_handlers.clear_all_selections);
 
-    document.getElementById("mako_btn_fin_submit").addEventListener("click", order_form.click_handlers.global.submit_selections);
-    document.getElementById("mako_btn_fin_clear").addEventListener("click", order_form.click_handlers.global.clear_all_selections);
   },
 
   click_handlers: {
-    row: {
-      plus: function () {
-        alert("plus " + this.id);
-      },
-      minus: function () {
-        alert("minus " + this.id);
+    plus: function () {
+      var
+        own_id = this.id,
+        match  = own_id.match( /mako_btn_plus_(\d+)(?:_(.+))?/ ),
+        name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : ""),
+        name_ct = "mako_dropdown_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
+
+      console.log(name_ct);
+
+      var drop = document.getElementById(name_ct).firstElementChild;
+      ++drop.selectedIndex;
+
+      var ni = drop.options[drop.selectedIndex].value;
+
+      var price = 0;
+      if ( undefined !== match[2] ) {
+        price = order_form.item_data[ match[1] ].options[ match[2] ] * ni;
+      } else {
+        price = order_form.item_data[ match[1] ].price * ni;
       }
+
+      document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
+
+    },
+    minus: function () {
+      var
+        own_id = this.id,
+        match  = own_id.match( /mako_btn_minus_(\d+)(?:_(.+))?/ ),
+        name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : ""),
+        name_ct = "mako_dropdown_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
+
+      console.log(name_ct);
+
+      var drop = document.getElementById(name_ct).firstElementChild;
+      if (drop.selectedIndex >= 1) {
+        --drop.selectedIndex;
+      }
+
+      var ni = drop.options[drop.selectedIndex].value;
+
+      var price = 0;
+      if ( undefined !== match[2] ) {
+        price = order_form.item_data[ match[1] ].options[ match[2] ] * ni;
+      } else {
+        price = order_form.item_data[ match[1] ].price * ni;
+      }
+
+      document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
     },
 
-    global: {
-      submit_selections: function () {
-        var order = order_form.gather_selection_data();
-      },
+    submit_selections: function () {
+      var order = order_form.gather_selection_data();
+    },
+    clear_all_selections: function () {
+      // refresh the menu
+      document.getElementById("form-grid").innerHTML = "";
+      order_form.write_out_menu();
+    },
 
-      clear_all_selections: function () {
-        // refresh the menu
-        document.getElementById("form-grid").innerHTML = "";
-        order_form.write_out_menu();
-      }
+    update_dropdown: function () {
+      console.log(this.parentNode.id);
     }
-
   },
 
   gather_selection_data: function () {
