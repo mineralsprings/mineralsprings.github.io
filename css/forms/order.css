@@ -41,6 +41,10 @@
   font-weight: 500;
 }
 
+.mako-static-item-desc {
+  /*font-size: 2.4vh;*/
+}
+
 .mako-btn {
   /* animation CSS */
 }

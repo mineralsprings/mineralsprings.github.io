@@ -35,19 +35,7 @@ var populate_stub_cache = function (names) {
 };
 
 var float_to_aligned_str = function (num) {
-  var n = num.toString();
-  if (! n.match(/\./) ) {
-    return n + ".00";
-
-  } else if ( ! n.match( /\.\d{2}/ ) ) {
-    return n + "0";
-
-  } else if ( n.match( /\.\d{3,}/ ) ) {
-    return (+n).toFixed(2).toString();
-
-  } else {
-    return n;
-  }
+  return (+num).toFixed(2);
 };
 
 var order_form = {
@@ -263,12 +251,10 @@ var order_form = {
   click_handlers: {
     plus: function () {
       var
-        own_id = this.id,
-        match  = own_id.match( /mako_btn_plus_(\d+)(?:_(.+))?/ ),
+        own_id  = this.id,
+        match   = own_id.match( /mako_btn_plus_(\d+)(?:_(.+))?/ ),
         name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : ""),
         name_ct = "mako_dropdown_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
-
-      console.log(name_ct);
 
       var drop = document.getElementById(name_ct).firstElementChild;
       ++drop.selectedIndex;
@@ -285,14 +271,13 @@ var order_form = {
       document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
       order_form.write_all_finvals();
     },
+
     minus: function () {
       var
-        own_id = this.id,
-        match  = own_id.match( /mako_btn_minus_(\d+)(?:_(.+))?/ ),
+        own_id  = this.id,
+        match   = own_id.match( /mako_btn_minus_(\d+)(?:_(.+))?/ ),
         name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : ""),
         name_ct = "mako_dropdown_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
-
-      console.log(name_ct);
 
       var drop = document.getElementById(name_ct).firstElementChild;
       if (drop.selectedIndex >= 1) {
@@ -315,15 +300,34 @@ var order_form = {
 
     submit_selections: function () {
       var order = order_form.gather_selection_data();
+      window.location = "";
     },
     clear_all_selections: function () {
       // refresh the menu
+      document.getElementById("form-grid").style.display = "none";
       document.getElementById("form-grid").innerHTML = "";
       order_form.write_out_menu();
     },
 
     update_dropdown: function () {
-      console.log(this.parentNode.id);
+      var
+        own_id  = this.parentNode.id,
+        count   = this.options[this.selectedIndex].value,
+        match   = own_id.match( /mako_dropdown_(\d+)(?:_(.+))?/ );
+      console.log(own_id);
+      var name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
+
+
+      var price = 0;
+      if ( undefined !== match[2] ) {
+        price = order_form.item_data[ match[1] ].options[ match[2] ] * count;
+      } else {
+        price = order_form.item_data[ match[1] ].price * count;
+      }
+
+      document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
+
+      order_form.write_all_finvals();
     }
   },
 
