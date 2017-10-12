@@ -39,12 +39,12 @@ var catnip_cdn_up = {
       elt.style.color = "green";
       elt.innerHTML += " UP";
     } else {
-      catnip_cdn_up.cdn_no_good()
+      catnip_cdn_up.cdn_no_good();
     }
   },
 
   err: function (url, resp) {
-    catnip_cdn_up.cdn_no_good()
+    catnip_cdn_up.cdn_no_good();
   },
 
   cdn_no_good: function () {
@@ -69,7 +69,7 @@ var default_objs = {
       "time": {
         "conn_init": micro.time(),
       }
-    }
+    };
   },
 
   initial_gapi_validate: function(tok) {
@@ -81,7 +81,7 @@ var default_objs = {
       "time": {
         "conn_init": micro.time(),
       }
-    }
+    };
   },
 
   view_menu: function () {
@@ -92,7 +92,7 @@ var default_objs = {
         "conn_init": micro.time()
       },
       "anticsrf": (anticsrf.tok || "")
-    }
+    };
   },
 
   view_orders: function (age, count, from_end) {
@@ -107,10 +107,10 @@ var default_objs = {
         "conn_init": micro.time()
       },
       "anticsrf": (anticsrf.tok || "")
-    }
+    };
   },
 
-  edit_menu: function (formdata, gapi_info) {
+  edit_menu: function (formdata) {
     return {
       "verb": "edit_menu",
       "data": {
@@ -121,7 +121,21 @@ var default_objs = {
         "conn_init": micro.time()
       },
       "anticsrf": (anticsrf.tok || "")
-    }
+    };
+  },
+
+  open_order: function (order_data, gapi_info) {
+    return {
+      "verb": "open_order",
+      "data": {
+        "order_data": order_data || [],
+        "gapi_token": current_google_user.vendor.Zi.id_token || ""
+      },
+      "time": {
+        "conn_init": micro.time()
+      },
+      "anticsrf": anticsrf.tok || ""
+    };
   }
 };
 

@@ -299,9 +299,12 @@ var order_form = {
     },
 
     submit_selections: function () {
-      var order = order_form.gather_selection_data();
-      window.location = "";
+      var order = order_form.gather_selection_data(),
+           resp = http.sync.post(get_env_host(), JSON.stringify(default_objs.open_order(order)));
+      // do something with the response
     },
+
+
     clear_all_selections: function () {
       // refresh the menu
       document.getElementById("form-grid").style.display = "none";
@@ -329,10 +332,6 @@ var order_form = {
 
       order_form.write_all_finvals();
     }
-  },
-
-  gather_selection_data: function () {
-    return {};
   },
 
   calculate: {
@@ -417,9 +416,8 @@ var order_form = {
     var val       = order_form.calculate[name](),
         align_fun = "items" === name ? function(a) { return a; } : float_to_aligned_str;
 
-    console.log(name + " " + val);
-    document.getElementById("mako_fin_" + name + "val").innerHTML =
-      align_fun(val);
+    //console.log(name + " " + val);
+    document.getElementById("mako_fin_" + name + "val").innerHTML = align_fun(val);
   },
 
   write_all_finvals: function () {
@@ -430,6 +428,29 @@ var order_form = {
     for (var i = 0; i < fields.length; i++) {
       order_form.write_finval(fields[i]);
     }
+  },
+
+  gather_selection_data: function () {
+    var sels = [];
+
+    for (var i = 0; i < order_form.item_data.length; i++) {
+      var id = "mako_dropdown_" + i, drop = document.getElementById(id).firstChild;
+
+      if (drop.selectedIndex > 0) {
+        sels[i] = [ +drop.options[drop.selectedIndex].value, {} ];
+
+        var opts = order_form.item_data[i].options, opt_keys = Object.keys(opts);
+        for (var j = 0; j < opt_keys.length; j++) {
+          var
+            opt_name = opt_keys[j],
+            opt_drop = document.getElementById(id + "_" + opt_name).firstChild;
+          if (opt_drop.selectedIndex > 0) {
+            sels[i][1][opt_name] = opt_drop.options[opt_drop.selectedIndex].value;
+          }
+        }
+      }
+    }
+    return sels;
   }
 
 };

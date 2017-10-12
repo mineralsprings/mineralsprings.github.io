@@ -39,8 +39,8 @@ body {
   margin-left: auto;
   margin-right: auto;
 
+  padding-bottom: 100px;
 }
-
 
 footer {
 
@@ -52,8 +52,8 @@ footer {
   right: 0;
   left: 0;
 
-  margin-left: 7.5vw;
-  margin-right: 7.5vw;
+  margin-left: auto;
+  margin-right: auto;
 
   padding-bottom: 1%;
   padding-top: 1%;
