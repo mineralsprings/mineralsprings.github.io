@@ -50,14 +50,12 @@
 }
 
 .mako-dropdown {
-  margin-top: 2px;
   border: none;
-  border-top: 1px solid #fafafa;
+  border-right: 2px solid #fafafa;
 
   color: #fafafa;
   background-color: #c0392b;
-
-  padding-left: 33%;
+  padding-left: 10%;
 }
 
 .mako-plus,

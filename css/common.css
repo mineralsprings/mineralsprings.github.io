@@ -76,7 +76,7 @@ TEXT THINGS
 #text-header {
 
   font-family: "Playfair Display", Georgia, Serif;
-  font-size: 10vh;
+  font-size: 7vh;
   font-stretch: expanded;
 
   text-align: center;
@@ -192,8 +192,8 @@ MISC
 
   border-radius: 4vw;
 
-  width: 4.5vw;
-  height: 4.5vw;
+  width: 4vw;
+  height: 4vw;
 
   background-size: cover;
 

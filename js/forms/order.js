@@ -299,8 +299,15 @@ var order_form = {
     },
 
     submit_selections: function () {
-      var order = order_form.gather_selection_data(),
-           resp = http.sync.post(get_env_host(), JSON.stringify(default_objs.open_order(order)));
+      var order = order_form.gather_selection_data();
+
+      // [] != []
+      if ( ! order.length ) {
+        alert("Nothing selected\nSelect items to create an order");
+        return;
+      }
+
+      var resp = http.sync.post(get_env_host(), JSON.stringify(default_objs.open_order(order)));
       // do something with the response
     },
 
@@ -392,7 +399,7 @@ var order_form = {
       return [std_total, opt_sub, opt_totals];
     },
 
-    subtotal: function () {
+    total: function () {
       var st = 0;
       for (var i = 0; i < order_form.item_data.length; i++) {
         var res = order_form.calculate.subtotal_by_id(i);
@@ -402,27 +409,18 @@ var order_form = {
       return st;
     },
 
-    tax: function () {
-      var s = order_form.calculate.subtotal();
-      return s > 0.36 ? s * 0.09 : 0;
-    },
-
-    total: function () {
-      return order_form.calculate.tax() + order_form.calculate.subtotal();
-    }
   },
 
   write_finval: function (name) {
     var val       = order_form.calculate[name](),
         align_fun = "items" === name ? function(a) { return a; } : float_to_aligned_str;
 
-    //console.log(name + " " + val);
     document.getElementById("mako_fin_" + name + "val").innerHTML = align_fun(val);
   },
 
   write_all_finvals: function () {
     var fields = [
-      "items", "subtotal", "tax", "total"
+      "items", "total"
     ];
 
     for (var i = 0; i < fields.length; i++) {
