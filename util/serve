@@ -1,3 +1,16 @@
 #!/bin/bash
+
+# Prevent a shell fork from living longer than its initiator? https://unix.stackexchange.com/a/364317/136107
+my_exit() {
+    [ "$racing" ] && pid=$!
+    [ "$pid" ] && kill "$pid"
+    echo "Killed autobuild daemon (was $pid)"
+}
+
+trap my_exit EXIT
+racing=Y
 util/autobuild &
+pid=$!
+racing=
+
 python3 -m http.server 3000

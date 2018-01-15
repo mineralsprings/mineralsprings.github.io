@@ -1,0 +1,4 @@
+#!/bin/bash
+
+apt install npm nodejs-legacy
+npm install -g csso-cli html-minifier uglify-js

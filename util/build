@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e # errorexit
 uglify=$1
 cs2o=$2
 htmin=$3
@@ -20,7 +21,6 @@ js () {
     vendor/js/bootstrap.min.js vendor/js/platform.js js/common.js js/goo.js js/verbs.js \
     js/writers.js js/index-helper.js js/forms/*.js js/viewers/*.js \
     > $md/index.js
-    # vendor/js/platform.js
 
   ${uglify:-uglifyjs} --mangle --ie8 --compress --source-map --output \
     $md/index.min.js -- $md/index.js
@@ -62,7 +62,7 @@ html () {
 }
 
 send_note () {
-  notify-send -i terminal "build complete" "$(date)" && sleep 1 && killall notify-osd
+  notify-send -i terminal "build complete" "$(date)" -t 2000 #&& sleep 1 && killall notify-osd
 }
 
 js &
@@ -71,6 +71,7 @@ html &
 wait
 echo "ended $(date)"
 ${4:-} send_note
+set +e
 # total_saved=$((saved_css + saved_js))
 # total_uncmp=$((old_css + old_js))
 # echo -e " !! built all components to save overall $total_saved B = $(calc "$total_saved / $total_uncmp * 100" )%\n"

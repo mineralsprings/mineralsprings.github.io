@@ -40,8 +40,8 @@ function spread () {
 
 /* developer env vs production server */
 function get_env_host() {
-  return null !== window.location.href.match(/^http:\/\/localhost:(3000|8080).*$/)
-    ? "http://localhost:8080"
+  return null !== window.location.href.match(/^http:\/\/localhost:(3000|9000).*$/)
+    ? "http://localhost:9000"
     : "https://catnipcdn.pagekite.me" ;
 }
 
