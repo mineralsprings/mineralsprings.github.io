@@ -1,8 +1,8 @@
 var viewMenuData = {
-  writeMenuData: function () {  
+  writeMenuData: function () {
     console.log("writing menu data");
 
-    httpPostAsync(
+    http.nosync.post(
       getServerHostForEnv(),
       function (r) {
         var data = JSON.parse(r);

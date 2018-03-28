@@ -53,7 +53,7 @@ var catnip_cdn_up = {
     var elt = document.getElementById("cdn-api-check");
     elt.style.color = "red";
     elt.innerHTML += " DOWN";
-    document.getElementById("bigcircle").addEventListener("mousedown", function() {
+    document.getElementById("circle-glogin").addEventListener("mousedown", function() {
       alert("Sorry, your request cannot be processed, because the server (" + get_env_host() + ") is down for maintenance. Try again later.");
     });
   }

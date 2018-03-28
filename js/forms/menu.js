@@ -159,7 +159,7 @@ var editMenuForm = {
   doProcessMenuForm: function () {
     var items = this.formExtract();
     console.log(JSON.stringify(items));
-    httpPostAsync(
+    http.nosync.post(
       getServerHostForEnv(),
       function (r) { console.log(r); },
       function () { console.log("form not ok"); },
