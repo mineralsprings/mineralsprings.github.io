@@ -1,16 +1,16 @@
 is_buffet = false;
 
-var editMenuForm = {
-  formResizer: {
+var edit_menu_form = {
+  form_resizer: {
 
     counter: 1,
 
-    _getLastFieldSet: function () {
+    _get_last_fieldset: function () {
       var    fields = document.getElementsByTagName("fieldset");
       return fields.item(fields.length - 1);
     },
 
-    _getRemoveButton: function (n) {
+    _get_remove_button: function (n) {
       if ("last" === n) {
         var buttons = document.getElementsByClassName("fc-removethis");
         return buttons.item(buttons.length - 1);
@@ -18,7 +18,7 @@ var editMenuForm = {
       return document.getElementById("fc-removethis-" + n);
     },
 
-    addItem: function () {
+    add_item: function () {
       var newname =  'field-' + this.counter;
       var newfield =
         '<fieldset class="menu-field" id="' + newname + '" name="' + newname + '">\n' +
@@ -55,8 +55,8 @@ var editMenuForm = {
       ).addEventListener("click", doOptionsCheckBox);
     },
 
-    removeLast: function () {
-      var lastfield = this._getLastFieldSet();
+    remove_last: function () {
+      var lastfield = this._get_last_fieldset();
       // don't remove the 'default' field
       if ( null === lastfield || lastfield.id.match(/default/) ) {
         this.counter = 1;
@@ -64,20 +64,20 @@ var editMenuForm = {
       }
       // don't modify the counter here though
       lastfield.parentNode.removeChild(lastfield);
-      var lastbutton = this._getRemoveButton("last");
+      var lastbutton = this._get_remove_button("last");
       lastbutton.parentNode.removeChild(lastbutton);
     },
 
-    removeItem: function (n) {
+    remove_item: function (n) {
       --this.counter;
       var elem   = document.getElementById("field-" + n);
-      var button = this._getRemoveButton(n);
+      var button = this._get_remove_button(n);
       elem.parentElement.removeChild(elem);
       button.parentElement.removeChild(button);
     }
   },
 
-  doSpecialCheckBox: function (label) {
+  do_special_checkbox: function (label) {
     var cbox     = label.getElementsByTagName("input")[0],
         checked  = cbox.checked,
         topfield = label.parentElement;
@@ -111,7 +111,7 @@ var editMenuForm = {
     }
   },
 
-  doBuffetBox: function () {
+  do_buffet_box: function () {
     var checked = document.getElementById("is_buffet").checked;
     /* global */ is_buffet = checked;
 
@@ -131,7 +131,7 @@ var editMenuForm = {
     }
   },
 
-  formExtract: function () {
+  form_extract: function () {
     var all_items = {};
     var top_forms = document.getElementsByTagName("fieldset");
     for (var j = 0; j < top_forms.length; j++) {
@@ -156,14 +156,14 @@ var editMenuForm = {
     return all_items;
   },
 
-  doProcessMenuForm: function () {
-    var items = this.formExtract();
+  do_process_menu_form: function () {
+    var items = this.form_extract();
     console.log(JSON.stringify(items));
     http.nosync.post(
-      getServerHostForEnv(),
+      get_env_host(),
       function (r) { console.log(r); },
       function () { console.log("form not ok"); },
-      JSON.stringify(defaultJSONObjs.edit_menu(items))
+      JSON.stringify(default_objs.edit_menu(items))
     );
   }
 }

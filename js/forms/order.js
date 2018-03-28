@@ -47,7 +47,7 @@ var order_form = {
         load_text      = document.getElementById("load-text"),
         load_icon      = document.getElementById("load-icon"),
         menu_json_text = fetch_menu_data(),
-        menu_json      = JSON.parse(menu_json_text).data,
+        menu_json      = JSON.parse(menu_json_text).data[0],
         menu_ctime     = micro.to_date_str(menu_json.effective),
         menu_dtime     = micro.to_date_str(menu_json.expires),
 
@@ -90,7 +90,7 @@ var order_form = {
 
     var menu_items = [],
         item_list  = menu_json.item_list,
-        items_keys = Object.keys(item_list);
+        items_keys = Object.keys(item_list); // error here
 
     // avoid for .. in, for .. of, forEach, etc
     for (var i = 0; i < items_keys.length; i++) {
@@ -115,14 +115,12 @@ var order_form = {
         ["ENTRY_NUMBER", this_item.sort_id]
       ];
 
-      //console.log(dyn_repls);
-
       var std_row = stub_cache["std"];
 
       for (var k = 0; k < dyn_repls.length; k++) {
         std_row = std_row.replace(
           new RegExp(dyn_repls[k][0], "g"),
-          dyn_repls[k][1]
+          dyn_repls[k][1] // that's a 1 not an L
         );
       }
 
