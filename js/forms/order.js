@@ -12,20 +12,19 @@ var stub_element_names = {
   }
 };
 
-
-var get_stub_data = function (stub_name) {
+var get_stub_data = function (stub_name /* a stub filename */ ) {
   return http.sync.get( "views/stubs/" + stub_name + ".html");
 };
 
-var get_order_stub_data = function (stub_name) {
+var get_order_stub_data = function (stub_name /* a stub filename */) {
   return get_stub_data("order/" + stub_name);
 };
 
-var elem_name_to_stub_html = function (elem) {
+var elem_name_to_stub_html = function (elem /* an element name */) {
   return get_order_stub_data( stub_element_names[elem] );
 };
 
-var populate_stub_cache = function (names) {
+var populate_stub_cache = function (names /* list of element names */) {
   var temp = {};
   for (var i = 0; i < names.length; i++) {
     var n = names[i];
@@ -34,9 +33,17 @@ var populate_stub_cache = function (names) {
   return temp;
 };
 
-var float_to_aligned_str = function (num) {
+var float_to_aligned_str = function (num /* a number */) {
   return (+num).toFixed(2);
 };
+
+var snake_spaces = function (str) {
+  return str.replace(" ", "_");
+}
+
+var unsnake_spaces = function (str) {
+  return str.replace("_", " ");
+}
 
 var order_form = {
 
@@ -68,7 +75,6 @@ var order_form = {
 
     form_grid.innerHTML = "";
 
-
     /*
 
     PART 1: FIRST STATIC HTML SECTION
@@ -99,7 +105,7 @@ var order_form = {
       this_item.sort_id = (+this_item.sort_id) - 1;
 
       menu_items[this_item.sort_id] = this_item;
-      order_form.item_data[this_item.sort_id]  = this_item;
+      order_form.item_data[this_item.sort_id] = this_item;
     }
 
     var dyn_rows = [];
@@ -136,7 +142,7 @@ var order_form = {
             ["OPT_NAME", opt_keys[j] ],
             ["OPT_PRICE", float_to_aligned_str( options[ opt_keys[j] ] ) ],
             ["STATIC_DROPDOWN", stub_cache["dropdown"] ],
-            ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + opt_keys[j].replace(/ /g, "_") ],
+            ["ENTRY_NUMBER", this_item.sort_id.toString() + "_" + snake_spaces(opt_keys[j]) ],
             ["GROUPLAST_PLACEHOLDER", (1 == opt_keys.length) ? "mako-option-grouplast" : ""]
           ];
 
@@ -220,15 +226,15 @@ var order_form = {
     form_grid.style.display = "block";
   },
 
+  // addEventListener is the only thing this does
   register_click_handlers: function () {
 
     /* do + / - buttons */
     var
-      plus  = "mako_btn_plus_",
-      minus = "mako_btn_minus_",
       ps    = document.querySelectorAll(".mako-plus"),
       ms    = document.querySelectorAll(".mako-minus");
 
+    // add + / - buttons to everywhere they are needed
     for (var i = 0; i < ps.length; i++) {
       ps[i].addEventListener("click", order_form.click_handlers.plus);
       ms[i].addEventListener("click", order_form.click_handlers.minus);
@@ -246,6 +252,7 @@ var order_form = {
 
   },
 
+  // here are the event handler functions; they return undefined
   click_handlers: {
     plus: function () {
       var
@@ -255,13 +262,15 @@ var order_form = {
         name_ct = "mako_dropdown_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
 
       var drop = document.getElementById(name_ct).firstElementChild;
-      ++drop.selectedIndex;
+      if (drop.selectedIndex + 1 < drop.options.length) {
+        ++drop.selectedIndex;
+      }
 
       var ni = drop.options[drop.selectedIndex].value;
 
       var price = 0;
       if ( undefined !== match[2] ) {
-        price = order_form.item_data[ match[1] ].options[ match[2] ] * ni;
+        price = order_form.item_data[ match[1] ].options[ unsnake_spaces(match[2]) ] * ni;
       } else {
         price = order_form.item_data[ match[1] ].price * ni;
       }
@@ -286,7 +295,7 @@ var order_form = {
 
       var price = 0;
       if ( undefined !== match[2] ) {
-        price = order_form.item_data[ match[1] ].options[ match[2] ] * ni;
+        price = order_form.item_data[ match[1] ].options[ unsnake_spaces(match[2]) ] * ni;
       } else {
         price = order_form.item_data[ match[1] ].price * ni;
       }
@@ -322,19 +331,17 @@ var order_form = {
         own_id  = this.parentNode.id,
         count   = this.options[this.selectedIndex].value,
         match   = own_id.match( /mako_dropdown_(\d+)(?:_(.+))?/ );
-      console.log(own_id);
-      var name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
 
+      var name_tl = "mako_totalpriceval_" + match[1] + (undefined !== match[2] ? "_" + match[2] : "");
 
       var price = 0;
       if ( undefined !== match[2] ) {
-        price = order_form.item_data[ match[1] ].options[ match[2] ] * count;
+        price = order_form.item_data[ match[1] ].options[ unsnake_spaces(match[2]) ] * count;
       } else {
         price = order_form.item_data[ match[1] ].price * count;
       }
 
       document.getElementById(name_tl).innerHTML = float_to_aligned_str(price);
-
       order_form.write_all_finvals();
     }
   },
@@ -354,7 +361,7 @@ var order_form = {
 
       for (var j = 0; j < opts_keys.length; j++) {
         var
-          this_key = opts_keys[j],
+          this_key = snake_spaces(opts_keys[j]),
           opt_drop = document.getElementById(dname + "_" + this_key).firstChild,
           this_ct  = + (opt_drop.options[opt_drop.selectedIndex].value);
 
@@ -388,7 +395,9 @@ var order_form = {
 
       for (var i = 0; i < opt_keys.length; i++) {
         var this_key = opt_keys[i],
-          this_total = opt_cts[ this_key ] * data[id].options[ this_key ];
+          this_count = opt_cts[ snake_spaces(this_key) ] || 0,
+          this_price = data[id].options[ this_key ] || 0,
+          this_total = this_count * this_price;
 
         opt_totals[ this_key ] = this_total;
         opt_sub += this_total;
@@ -401,6 +410,7 @@ var order_form = {
       var st = 0;
       for (var i = 0; i < order_form.item_data.length; i++) {
         var res = order_form.calculate.subtotal_by_id(i);
+
         st += res[0] + res[1];
       }
 
