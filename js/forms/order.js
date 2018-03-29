@@ -318,7 +318,8 @@ var order_form = {
       // do something with the response
     },
 
-
+    // probably should make this client-side and just set the fields to 0
+    // rather than actually running the request again
     clear_all_selections: function () {
       // refresh the menu
       document.getElementById("form-grid").style.display = "none";

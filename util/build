@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e # errorexit
+set -e # errexit
 uglify=$1
 cs2o=$2
 htmin=$3
@@ -16,6 +16,7 @@ echo "build $(date)"
 set -o errexit
 # do js
 js () {
+  set -e
   local md="js/min"
   # platform.js must be included last in order to work
   paste --delimiter=\\n --serial vendor/js/jquery-3.2.1.min.js \
@@ -35,6 +36,7 @@ js () {
 
 # do css
 css () {
+  set -e
   local md="css/min"
   cat vendor/css/bootstrap.min.css vendor/css/raleway_playfair_display.css css/*.css css/forms/*.css css/viewers/*.css \
   > $md/index.css
@@ -51,6 +53,7 @@ css () {
 
 # do html
 html () {
+  set -e
   ${htmin:-html-minifier} --html5 --collapse-whitespace \
     --collapse-inline-tag-whitespace --remove-style-link-type-attributes \
     --conservative-collapse --remove-script-type-attributes --remove-comments \
@@ -66,9 +69,9 @@ send_note () {
   notify-send -i terminal "build complete" "$(date)" -t 2000 #&& sleep 1 && killall notify-osd
 }
 
-js &
 css &
 html &
+js
 wait
 echo "ended $(date)"
 ${4:-} send_note
